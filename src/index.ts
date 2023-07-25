@@ -13,6 +13,7 @@ export { isValidNumber } from "./isValidNumber.js";
 export { joinPath } from "./joinPath.js";
 export { kebabCase } from "./kebabCase.js";
 export { markTextMatchingSearchTerm } from "./markTextMatchingSearchTerm.js";
+export { objectToEntries } from "./objectToEntries.js";
 export { omit } from "./omit.js";
 export { pause } from "./pause.js";
 export { cachePlatform, getPlatform, Platform } from "./platform.js";
