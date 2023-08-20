@@ -6,10 +6,7 @@ import type { AnyDict } from "./types.js";
  * @param collection Collection of objects containing a field with a number value
  * @param field Field to get sum for
  */
-export function sumBy(
-  collection: AnyDict[],
-  field: string,
-): number {
+export function sumBy(collection: AnyDict[], field: string): number {
   let total = 0;
 
   if (collection.length === 0) {
