@@ -9,6 +9,7 @@ export { debounce } from "./debounce.js";
 export { gte, lte } from "./equality.js";
 export { isEmpty } from "./isEmpty.js";
 export { isNil } from "./isNil.js";
+export { isNotNil } from "./isNotNil.js";
 export { isValidNumber } from "./isValidNumber.js";
 export { joinFilePath, splitFilePath } from "./filePaths.js";
 export { kebabCase } from "./kebabCase.js";
