@@ -1,5 +1,10 @@
 // noinspection JSDeprecatedSymbols
 
+/**
+ * Possible platforms for the host. Note that Linux encompasses several different
+ * distros. But for the purposes of this library, we only need to know the
+ * specific OS distro.
+ */
 export enum Platform {
   Unknown,
   Linux,

@@ -1,4 +1,4 @@
-import type { AnyDictionary } from "./types.js";
+import type { AnyDict } from "./types.js";
 
 /**
  * Removes the specified key from the specified object and returns a copy of
@@ -6,16 +6,16 @@ import type { AnyDictionary } from "./types.js";
  * @param object Object containing keys to omit
  * @param key Key in the object to omit
  */
-export function omit<T extends AnyDictionary>(object: T, key: string): T;
+export function omit<T extends AnyDict>(object: T, key: string): T;
 /**
  * Removes the specified keys from the specified object and returns a copy of
  * the updated object.
  * @param object Object containing keys to omit
  * @param keys Keys in the object to omit
  */
-export function omit<T extends AnyDictionary>(object: T, keys: string[]): T;
+export function omit<T extends AnyDict>(object: T, keys: string[]): T;
 
-export function omit<T extends AnyDictionary>(
+export function omit<T extends AnyDict>(
   object: T,
   keyOrKeys: string | string[],
 ): T {

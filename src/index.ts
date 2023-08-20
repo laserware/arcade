@@ -2,7 +2,7 @@ export { default as isEqual } from "lodash.isequal";
 export { default as groupBy } from "lodash.groupby";
 
 export { appendToObjectArray } from "./appendToObjectArray.js";
-export { arrayToDictionary } from "./arrayToDictionary.js";
+export { keyBy } from "./keyBy.js";
 export { capitalize } from "./capitalize.js";
 export { debounce } from "./debounce.js";
 export { gte, lte } from "./equality.js";
