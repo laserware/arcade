@@ -1,4 +1,4 @@
-import { sort } from "./sort.js";
+import { toSorted } from "./toSorted.js";
 
 /**
  * Sorts the specified values by the specified field and returns the sorted
@@ -16,10 +16,13 @@ export function sortBy<T>(values: T[], field: string): T[] {
   const key = field as keyof typeof firstRecord;
 
   if (typeof firstRecord[key] === "string") {
-    return sort<T>(values, (a, z) =>
+    return toSorted<T>(values, (a, z) =>
       (a[key] as string).localeCompare(z[key] as string),
     );
   } else {
-    return sort<T>(values, (a, z) => (a[key] as number) - (z[key] as number));
+    return toSorted<T>(
+      values,
+      (a, z) => (a[key] as number) - (z[key] as number),
+    );
   }
 }

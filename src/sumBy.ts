@@ -1,4 +1,4 @@
-import type { RecordKey } from "./types.js";
+import type { AnyDict } from "./types.js";
 
 /**
  * Sums the values of the specified field in a collection of objects and returns
@@ -6,10 +6,7 @@ import type { RecordKey } from "./types.js";
  * @param collection Collection of objects containing a field with a number value
  * @param field Field to get sum for
  */
-export function sumBy(
-  collection: Record<RecordKey, any>[],
-  field: string,
-): number {
+export function sumBy(collection: AnyDict[], field: string): number {
   let total = 0;
 
   if (collection.length === 0) {

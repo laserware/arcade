@@ -1,4 +1,4 @@
-import type { AnyDictionary } from "./types.js";
+import type { AnyDict } from "./types.js";
 
 /**
  * Returns an array of values in which the field name value matches the
@@ -7,7 +7,7 @@ import type { AnyDictionary } from "./types.js";
  * @param searchTerm Search term to match
  * @param fieldName Field name in the collection to search
  */
-export function searchWithin<T extends AnyDictionary>(
+export function searchWithin<T extends AnyDict>(
   collection: T[],
   searchTerm: string,
   fieldName: string,

@@ -1,14 +1,14 @@
 import { describe, expect, test } from "vitest";
 
-import { arrayToDictionary } from "../arrayToDictionary.js";
+import { keyBy } from "../keyBy.js";
 
-describe("the arrayToDictionary function", () => {
+describe("the arrayToDict function", () => {
   test("converts an array of objects to an object keyed by the specified field", () => {
     const input = [
       { id: "a", value: "A" },
       { id: "b", value: "B" },
     ];
-    const result = arrayToDictionary(input, "id");
+    const result = keyBy(input, "id");
 
     const expected = {
       a: { id: "a", value: "A" },
@@ -25,7 +25,7 @@ describe("the arrayToDictionary function", () => {
     ];
 
     expect(() => {
-      arrayToDictionary(input, "invalid");
+      keyBy(input, "invalid");
     }).toThrowError(/unable to convert/gi);
   });
 });

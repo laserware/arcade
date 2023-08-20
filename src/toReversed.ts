@@ -1,7 +1,7 @@
 /**
  * Returns a copy of the specified array reversed.
  */
-export function reverse<T>(values: T[]): T[] {
+export function toReversed<T>(values: T[]): T[] {
   const copy = [...values];
 
   copy.reverse();

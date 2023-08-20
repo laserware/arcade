@@ -1,13 +1,15 @@
+import { isNil } from "./isNil.js";
+
 /**
  * Returns true if the specified value is empty.
  */
 export function isEmpty(value: any): boolean {
-  if (value === null) {
+  if (isNil(value)) {
     return true;
   }
 
-  if (value === undefined) {
-    return true;
+  if (typeof value === "string") {
+    return value === "";
   }
 
   if (Array.isArray(value)) {
