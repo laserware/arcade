@@ -5,7 +5,6 @@ export { appendToObjectArray } from "./appendToObjectArray.js";
 export { arrayToDictionary } from "./arrayToDictionary.js";
 export { capitalize } from "./capitalize.js";
 export { debounce } from "./debounce.js";
-export { dictionaryToEntries } from "./dictionaryToEntries.js";
 export { gte, lte } from "./equality.js";
 export { isEmpty } from "./isEmpty.js";
 export { isNil } from "./isNil.js";
