@@ -6,7 +6,7 @@ import { isNil } from "./isNil.js";
  * @param values Array to sort
  * @param [compareFunc] Optional compare function to use for sorting
  */
-export function sort<T>(
+export function toSorted<T>(
   values: T[],
   compareFunc?: (a: T, z: T) => number,
 ): T[] {
