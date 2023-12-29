@@ -1,9 +1,11 @@
+// TODO: Add custom implementation for object and arrays only.
 export { default as isEqual } from "lodash.isequal";
 
 export * from "./types";
 export { appendToObjectArray } from "./appendToObjectArray";
 export { cachePlatform, getPlatform, Platform } from "./platform";
 export { capitalize } from "./capitalize";
+export { clamp } from "./clamp";
 export { debounce } from "./debounce";
 export { gte, lte } from "./equality";
 export { groupBy } from "./groupBy";
@@ -14,6 +16,7 @@ export { isValidNumber } from "./isValidNumber";
 export { joinFilePath, splitFilePath } from "./filePaths";
 export { kebabCase } from "./kebabCase";
 export { keyBy } from "./keyBy";
+export { noop } from "./noop";
 export { omit } from "./omit";
 export { pause } from "./pause";
 export { round } from "./round";
