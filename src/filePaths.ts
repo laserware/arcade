@@ -1,4 +1,4 @@
-import { getPlatform, Platform } from "./platform.js";
+import { getPlatform, Platform } from "./platform";
 
 /**
  * Joins the specified file path elements and returns the full path.

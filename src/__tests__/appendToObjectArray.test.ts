@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { appendToObjectArray } from "../appendToObjectArray.js";
+import { appendToObjectArray } from "../appendToObjectArray";
 
 describe("the appendToObjectArray function", () => {
   test("adds a new entry to an object which doesn't contain the key", () => {

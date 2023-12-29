@@ -1,6 +1,6 @@
 export type DictKey = string | number | symbol;
 
-export type Dict<T, K extends DictKey = string> = Record<K, T>;
+export type Dict<V, K extends DictKey = string> = Record<K, V>;
 
 export type AnyDict = Record<DictKey, any>;
 

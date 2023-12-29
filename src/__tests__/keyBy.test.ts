@@ -1,8 +1,8 @@
 import { describe, expect, test } from "vitest";
 
-import { keyBy } from "../keyBy.js";
+import { keyBy } from "../keyBy";
 
-describe("the arrayToDict function", () => {
+describe("the keyBy function", () => {
   test("converts an array of objects to an object keyed by the specified field", () => {
     const input = [
       { id: "a", value: "A" },

@@ -1,4 +1,4 @@
-import type { DictKey } from "./types.js";
+import type { DictKey } from "./types";
 
 /**
  * Appends a value to the array value associated with the specified key. If the
@@ -8,11 +8,11 @@ import type { DictKey } from "./types.js";
  * @param key Key of the object for which to append value
  * @param value Value that gets appended to the array in the object
  */
-export function appendToObjectArray<TValue, TKey extends DictKey = string>(
-  object: Record<TKey, TValue[]>,
-  key: TKey,
-  value: TValue,
-): Record<TKey, TValue[]> {
+export function appendToObjectArray<V, K extends DictKey = string>(
+  object: Record<K, V[]>,
+  key: K,
+  value: V,
+): Record<K, V[]> {
   const objectCopy = { ...object };
 
   if (objectCopy[key]) {

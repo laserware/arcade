@@ -1,4 +1,4 @@
-import type { AnyFunc } from "./types.js";
+import type { AnyFunc } from "./types";
 
 /**
  * Creates a debounced function that only invokes `func` at most once per

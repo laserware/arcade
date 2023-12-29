@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { omit } from "../omit.js";
+import { omit } from "../omit";
 
 describe("the omit function", () => {
   test("removes the specified key from the specified dictionary", () => {

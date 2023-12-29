@@ -1,4 +1,4 @@
-import { isNil } from "./isNil.js";
+import { isNil } from "./isNil";
 
 /**
  * Returns a copy of the specified array sorted by the optional compare function.

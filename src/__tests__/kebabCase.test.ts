@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { kebabCase } from "../kebabCase.js";
+import { kebabCase } from "../kebabCase";
 
 describe("the kebabCase function", () => {
   const testCases = [

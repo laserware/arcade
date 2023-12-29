@@ -1,4 +1,4 @@
-import type { AnyDict } from "./types.js";
+import type { AnyDict } from "./types";
 
 /**
  * Sums the values of the specified field in a collection of objects and returns

@@ -1,4 +1,4 @@
-import { toSorted } from "./toSorted.js";
+import { toSorted } from "./toSorted";
 
 /**
  * Sorts the specified values by the specified field and returns the sorted

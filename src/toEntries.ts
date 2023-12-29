@@ -1,4 +1,4 @@
-import type { Dict } from "./types.js";
+import type { Dict } from "./types";
 
 /**
  * Returns an array of [key, value] pairs for the specified object.
@@ -6,10 +6,8 @@ import type { Dict } from "./types.js";
  * object key since TypeScript defaults to only allowing a string (but it
  * could be a string enum).
  */
-export function toEntries<TValue, TKey = string>(
-  object: Dict<TValue>,
-): [TKey, TValue][] {
+export function toEntries<V, K = string>(object: Dict<V>): [K, V][] {
   const entries = Object.entries(object);
 
-  return entries as [TKey, TValue][];
+  return entries as [K, V][];
 }

@@ -1,4 +1,4 @@
-import type { AnyDict } from "./types.js";
+import type { AnyDict } from "./types";
 
 /**
  * Removes the specified key from the specified object and returns a copy of
