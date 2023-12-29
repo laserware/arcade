@@ -36,9 +36,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@types/lodash.groupby": "^4.6.7",
-    "@types/lodash.isequal": "^4.5.6",
-    "lodash.groupby": "^4.6.0",
+    "@types/lodash.isequal": "^4.5.8",
     "lodash.isequal": "^4.5.0"
   },
   "devDependencies": {
