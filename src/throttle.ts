@@ -1,4 +1,4 @@
-import type { AnyFunc } from "./types";
+import type { AnyFunc } from "./types.js";
 
 /**
  * Creates a throttled function that only invokes `func` at most once per

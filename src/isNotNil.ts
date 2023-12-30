@@ -1,4 +1,4 @@
-import { isNil } from "./isNil";
+import { isNil } from "./isNil.js";
 
 /**
  * Returns true if the specified value is not null and not undefined.

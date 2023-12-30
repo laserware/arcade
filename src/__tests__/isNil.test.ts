@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { isNil } from "../isNil";
+import { isNil } from "../isNil.js";
 
 describe("the isNil function", () => {
   const testCases = [

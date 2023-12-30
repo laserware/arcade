@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { describe, expect, test } from "vitest";
 
-import { groupBy } from "../groupBy";
+import { groupBy } from "../groupBy.js";
 
 describe("the groupBy function", () => {
   test("throws an error if the first argument is not a valid array", () => {

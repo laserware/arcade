@@ -1,4 +1,4 @@
-import type { AnyDict } from "./types";
+import type { AnyDict } from "./types.js";
 
 /**
  * Returns an array of values in which the field name value matches the

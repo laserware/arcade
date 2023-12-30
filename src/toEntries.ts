@@ -1,4 +1,4 @@
-import type { Dict } from "./types";
+import type { Dict } from "./types.js";
 
 /**
  * Returns an array of [key, value] pairs for the specified object.

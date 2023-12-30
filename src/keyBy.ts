@@ -1,4 +1,4 @@
-import type { Dict } from "./types";
+import type { Dict } from "./types.js";
 
 /**
  * Converts a collection of objects to keyed by the specified field name.

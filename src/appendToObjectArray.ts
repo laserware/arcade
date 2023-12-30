@@ -1,4 +1,4 @@
-import type { DictKey } from "./types";
+import type { DictKey } from "./types.js";
 
 /**
  * Appends a value to the array value associated with the specified key. If the

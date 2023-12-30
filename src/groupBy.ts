@@ -1,5 +1,5 @@
-import { appendToObjectArray } from "./appendToObjectArray";
-import type { Dict, DictKey } from "./types";
+import { appendToObjectArray } from "./appendToObjectArray.js";
+import type { Dict, DictKey } from "./types.js";
 
 type Iteratee<T> = (value: T) => DictKey;
 

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { keyBy } from "../keyBy";
+import { keyBy } from "../keyBy.js";
 
 describe("the keyBy function", () => {
   test("converts an array of objects to an object keyed by the specified field", () => {
