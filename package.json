@@ -21,15 +21,14 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc --project tsconfig.build.json && pnpm format:build",
-    "check:format": "prettier --check \"src/**/**.ts\"",
+    "build": "rm -rf dist && tsc --project tsconfig.build.json",
+    "check:format": "prettier --check src",
     "check:types": "tsc --noEmit",
     "prepublishOnly": "npm run build",
     "preversion": "pnpm lint && pnpm check:types",
     "version": "pnpm format && git add -A src",
     "postversion": "git push && git push --tags",
-    "format": "prettier --write \"src/**/**.ts\"",
-    "format:build": "prettier --write \"src/**/**.{js,ts}\"",
+    "format": "prettier --write src",
     "lint": "eslint --cache src",
     "test": "vitest",
     "test:run": "vitest run",
@@ -40,14 +39,14 @@
     "lodash.isequal": "^4.5.0"
   },
   "devDependencies": {
-    "@laserware/eslint-config": "^1.2.0",
-    "@rushstack/eslint-patch": "^1.6.1",
-    "@types/node": "^20.10.5",
-    "@vitest/coverage-istanbul": "^1.1.0",
+    "@laserware/eslint-config": "^1.2.1",
+    "@rushstack/eslint-patch": "^1.7.2",
+    "@types/node": "^20.11.7",
+    "@vitest/coverage-istanbul": "^1.2.2",
     "eslint": "^8.56.0",
-    "prettier": "^3.1.1",
+    "prettier": "^3.2.4",
     "typescript": "^5.3.3",
-    "vitest": "^1.1.0"
+    "vitest": "^1.2.2"
   },
   "prettier": {
     "trailingComma": "all"
