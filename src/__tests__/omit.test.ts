@@ -1,9 +1,7 @@
-import { describe, expect, test } from "vitest";
-
 import { omit } from "../omit.js";
 
 describe("the omit function", () => {
-  test("removes the specified key from the specified dictionary", () => {
+  it("removes the specified key from the specified dictionary", () => {
     const input = { a: "1", b: "2" };
 
     const result = omit(input, "a");
@@ -12,7 +10,7 @@ describe("the omit function", () => {
     expect(Object.is(input, result)).toBeFalsy();
   });
 
-  test("returns the input if the specified key isn't in the specified dictionary", () => {
+  it("returns the input if the specified key isn't in the specified dictionary", () => {
     const input = { a: "1", b: "2" };
 
     const result = omit(input, "c");

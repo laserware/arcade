@@ -1,9 +1,7 @@
-import { describe, expect, test } from "vitest";
-
 import { keyBy } from "../keyBy.js";
 
 describe("the keyBy function", () => {
-  test("converts an array of objects to an object keyed by the specified field", () => {
+  it("converts an array of objects to an object keyed by the specified field", () => {
     const input = [
       { id: "a", value: "A" },
       { id: "b", value: "B" },
@@ -18,7 +16,7 @@ describe("the keyBy function", () => {
     expect(result).toEqual(expected);
   });
 
-  test("throws an error if the key field is invalid", () => {
+  it("throws an error if the key field is invalid", () => {
     const input = [
       { id: "a", value: "A" },
       { id: "b", value: "B" },
@@ -26,6 +24,6 @@ describe("the keyBy function", () => {
 
     expect(() => {
       keyBy(input, "invalid");
-    }).toThrowError(/unable to convert/gi);
+    }).toThrow(/unable to convert/gi);
   });
 });
