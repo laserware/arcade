@@ -9,7 +9,7 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "default": "./dist/index.cjs"
+      "require": "./dist/index.cjs"
     }
   },
   "repository": "github:laserware/arcade.git",
