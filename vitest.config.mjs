@@ -1,13 +1,8 @@
-import path from "node:path";
-
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
     globals: true,
-    cache: {
-      dir: path.resolve(process.cwd(), "node_modules", ".vitest"),
-    },
     coverage: {
       provider: "istanbul",
       reporter: ["lcov"],
