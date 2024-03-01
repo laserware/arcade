@@ -12,7 +12,10 @@
       "require": "./dist/index.cjs"
     }
   },
-  "repository": "github:laserware/arcade.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laserware/arcade.git"
+  },
   "bugs": "https://github.com/laserware/arcade/issues",
   "author": "Mike Rourke <mike.w.rourke@gmail.com>",
   "license": "MIT",
