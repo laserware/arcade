@@ -1,4 +1,3 @@
-// TODO: Add custom implementation for object and arrays only.
 export { default as isEqual } from "lodash.isequal";
 
 export * from "./types.js";
@@ -19,6 +18,7 @@ export { keyBy } from "./keyBy.js";
 export { noop } from "./noop.js";
 export { omit } from "./omit.js";
 export { pause } from "./pause.js";
+export { removeAtIndex } from "./removeAtIndex.js";
 export { round } from "./round.js";
 export { searchWithin } from "./searchWithin.js";
 export { sortBy } from "./sortBy.js";
