@@ -2,12 +2,18 @@
   "name": "@laserware/arcade",
   "version": "2.4.0",
   "description": "Miscellaneous utility functions.",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "repository": {
-    "url": "https://github.com/laserware/arcade.git",
-    "type": "git"
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.cjs"
+    }
   },
+  "repository": "github:laserware/arcade.git",
+  "bugs": "https://github.com/laserware/arcade/issues",
   "author": "Mike Rourke <mike.w.rourke@gmail.com>",
   "license": "MIT",
   "type": "module",
@@ -21,7 +27,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc --project tsconfig.build.json",
+    "build": "tsup && cd dist && npx prettier --write index.d.ts",
     "prepublishOnly": "npm run build",
     "preversion": "npm run eslint && npm run typecheck",
     "version": "npm run prettier && git add -A src",
@@ -43,6 +49,7 @@
     "@vitest/coverage-istanbul": "^1.3.1",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
+    "tsup": "^8.0.2",
     "typescript": "^5.3.3",
     "vitest": "^1.3.1"
   },
