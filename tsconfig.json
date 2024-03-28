@@ -8,8 +8,8 @@
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "lib": ["DOM", "ESNext"],
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "./dist",
     "removeComments": false,
     "resolveJsonModule": true,
@@ -20,6 +20,7 @@
     "types": ["vitest/globals"],
     "verbatimModuleSyntax": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["dist", "node_modules"]
+  "include": ["./src/**/*.ts"],
+  "exclude": ["dist", "node_modules"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

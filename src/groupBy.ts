@@ -1,4 +1,4 @@
-import { appendToGroup } from "./appendToGroup";
+import { appendToGroup } from "./appendToGroup.js";
 import type { Dict, DictKey } from "./types.js";
 
 type Iteratee<T> = (value: T) => DictKey;

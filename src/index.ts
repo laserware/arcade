@@ -1,7 +1,7 @@
 export { default as isEqual } from "lodash.isequal";
 
 export * from "./types.js";
-export { appendToGroup } from "./appendToGroup";
+export { appendToGroup } from "./appendToGroup.js";
 export { cachePlatform, getPlatform, Platform } from "./platform.js";
 export { capitalize } from "./capitalize.js";
 export { clamp } from "./clamp.js";
