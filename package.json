@@ -38,7 +38,7 @@
     "typecheck": "tsc --noEmit",
     "prettier": "prettier --cache --write src",
     "prettier:ci": "prettier --check src",
-    "eslint": "eslint --cache src",
+    "eslint": "eslint --cache src tsup.config.ts vitest.config.ts",
     "vitest": "vitest"
   },
   "dependencies": {
@@ -46,7 +46,7 @@
     "lodash.isequal": "^4.5.0"
   },
   "devDependencies": {
-    "@laserware/eslint-config": "^2.2.0",
+    "@laserware/eslint-config": "^2.2.2",
     "@rushstack/eslint-patch": "^1.9.0",
     "@types/node": "20",
     "@vitest/coverage-istanbul": "^1.4.0",

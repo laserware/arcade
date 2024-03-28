@@ -6,13 +6,5 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ["./tsconfig.json", "./tsconfig.node.json"],
   },
-  ignorePatterns: ["*.js"],
-  overrides: [
-    {
-      files: ["./*.ts"],
-      rules: {
-        "import/no-default-export": "off",
-      },
-    },
-  ]
+  ignorePatterns: ["*.js"]
 };
