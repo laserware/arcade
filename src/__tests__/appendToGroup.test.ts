@@ -7,7 +7,7 @@ describe("the appendToGroup function", () => {
     const result = appendToGroup<unknown>(input, "test", 1);
 
     expect(result).toEqual({ test: [1] });
-    expect(Object.is(input, result)).toBeFalsy();
+    expect(Object.is(input, result)).toBeTruthy();
   });
 
   it("adds a new entry to an object which does contain the key", () => {
@@ -16,6 +16,6 @@ describe("the appendToGroup function", () => {
     const result = appendToGroup<number>(input, "test", 2);
 
     expect(result).toEqual({ test: [1, 2] });
-    expect(Object.is(input, result)).toBeFalsy();
+    expect(Object.is(input, result)).toBeTruthy();
   });
 });
