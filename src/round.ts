@@ -53,8 +53,8 @@
 /**
  * Returns the specified value rounded to the specified precision
  * Taken from the lodash library.
- * @param value The number to round
- * @param [precision=0] The precision to round to
+ * @param value The number to round.
+ * @param [precision=0] The precision to round to.
  * @example
  *   const result = round(4.006);
  *   assert(result === 4);

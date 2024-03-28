@@ -26,7 +26,7 @@
  * Converts the specified value to kebab-case. This was taken from the kebab-case
  * library (it didn't make sense to import another dependency for 2 lines of
  * code).
- * @param value Value to convert to kebab-case
+ * @param value Value to convert to kebab-case.
  * @see https://github.com/joakimbeng/kebab-case
  */
 export function kebabCase(value: string): string {

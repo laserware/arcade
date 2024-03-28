@@ -17,7 +17,7 @@ let currentPlatform = Platform.Unknown;
 
 /**
  * Caches the platform, so it doesn't need to be checked on every call to
- * getPlatform() and returns the current platform.
+ * {@link getPlatform} and returns the current platform.
  */
 export function cachePlatform(): Platform {
   if (currentPlatform === Platform.Unknown) {
@@ -57,6 +57,7 @@ export function getPlatform(): Platform {
 
 /**
  * Parses the platform string and returns the appropriate Platform enum.
+ * @param platformString String value to extract platform from.
  */
 function parsePlatform(platformString: string): Platform {
   switch (true) {
