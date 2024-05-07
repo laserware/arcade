@@ -6,6 +6,7 @@ export { cachePlatform, getPlatform, Platform } from "./platform.js";
 export { capitalize } from "./capitalize.js";
 export { clamp } from "./clamp.js";
 export { debounce } from "./debounce.js";
+export { dedent, type Dedent } from "./dedent.js";
 export { gte, lte } from "./equality.js";
 export { groupBy } from "./groupBy.js";
 export { isEmpty } from "./isEmpty.js";
