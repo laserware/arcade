@@ -1,4 +1,4 @@
-export { default as isEqual } from "lodash.isequal";
+export { deepEqual as isEqual } from "fast-equals";
 
 export * from "./types.js";
 export { appendToGroup } from "./appendToGroup.js";
