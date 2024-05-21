@@ -3,6 +3,7 @@ import { toSorted } from "./toSorted.js";
 /**
  * Sorts the specified values by the specified field and returns the sorted
  * result.
+ *
  * @param values Values to sort.
  * @param field Field to sort by.
  */

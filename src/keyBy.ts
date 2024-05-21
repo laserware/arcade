@@ -2,8 +2,10 @@ import type { Dict } from "./types.js";
 
 /**
  * Converts a collection of objects to keyed by the specified field name.
+ *
  * @param values Array of objects.
  * @param field Field to key by.
+ *
  * @example
  *   const result = keyBy({ id: "a", value: 1 }, { id: "b", value: 2 }, "id");
  *   > { a: { id: "a", value: 1 }, b: { id: "b", value: 2 } }

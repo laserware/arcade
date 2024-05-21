@@ -57,6 +57,7 @@ export function getPlatform(): Platform {
 
 /**
  * Parses the platform string and returns the appropriate Platform enum.
+ *
  * @param platformString String value to extract platform from.
  */
 function parsePlatform(platformString: string): Platform {

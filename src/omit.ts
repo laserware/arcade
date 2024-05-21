@@ -3,13 +3,16 @@ import type { AnyDict } from "./types.js";
 /**
  * Removes the specified key from the specified dictionary and returns a copy of
  * the updated dictionary.
+ *
  * @param dict Dictionary containing keys to omit.
  * @param key Key in the dictionary to omit.
  */
 export function omit<T extends AnyDict>(dict: T, key: string): T;
+
 /**
  * Removes the specified keys from the specified dictionary and returns a copy
  * of the updated dictionary.
+ *
  * @param dict Dictionary containing keys to omit.
  * @param keys Keys in the dictionary to omit.
  */

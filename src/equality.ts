@@ -1,6 +1,7 @@
 /**
  * Returns true if the specified value is greater than or equal to the
  * other value.
+ *
  * @param value Value to compare.
  * @param other Other value to compare.
  */
@@ -19,6 +20,7 @@ export function gte(value: number | string, other: number | string): boolean {
 /**
  * Returns true if the specified value is less than or equal to the
  * other value.
+ *
  * @param value Value to compare.
  * @param other Other value to compare.
  */

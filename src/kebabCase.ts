@@ -23,11 +23,11 @@
  */
 
 /**
- * Converts the specified value to kebab-case. This was taken from the kebab-case
- * library (it didn't make sense to import another dependency for 2 lines of
- * code).
+ * Converts the specified value to kebab-case. This was taken from the
+ * {@link https://github.com/joakimbeng/kebab-case|kebab-case} library (it didn't
+ * make sense to import another dependency for a few lines of code).
+ *
  * @param value Value to convert to kebab-case.
- * @see https://github.com/joakimbeng/kebab-case
  */
 export function kebabCase(value: string): string {
   const KEBAB_REGEX = /[A-Z\u00C0-\u00D6\u00D8-\u00DE]/g;
