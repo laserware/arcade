@@ -1,3 +1,5 @@
+// noinspection SpellCheckingInspection
+
 /*
  * The MIT License (MIT)
  *

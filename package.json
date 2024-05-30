@@ -45,7 +45,7 @@
     "fast-equals": "^5.0.1"
   },
   "devDependencies": {
-    "@laserware/eslint-config": "^3.0.1",
+    "@laserware/eslint-config": "^3.1.1",
     "@types/node": "20",
     "@vitest/coverage-istanbul": "^1.6.0",
     "eslint": "^8.57.0",
