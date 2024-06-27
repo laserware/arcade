@@ -1,22 +1,6 @@
 import type { DictKey } from "./types.js";
 
 /**
- * Appends a value to the array value associated with the array index. If the
- * index is not present in the array, add it and append the value to the
- * array. The object is mutated for performance reasons, and the mutated array
- * is returned.
- *
- * @param groupedArray Array of arrays (with specified index as the key).
- * @param index Index of the array to update group values.
- * @param value Value that gets appended to the array in the dictionary.
- */
-export function appendToGroup<V, K = number>(
-  groupedArray: V[][],
-  index: K,
-  value: V,
-): V[][];
-
-/**
  * Appends a value to the array value associated with the specified key. If the
  * key is not present in the dictionary, add it and append the value to the
  * array. The object is mutated for performance reasons, and the mutated dictionary
@@ -31,6 +15,22 @@ export function appendToGroup<V, K extends DictKey = string>(
   key: K,
   value: V,
 ): Record<K, V[]>;
+
+/**
+ * Appends a value to the array value associated with the array index. If the
+ * index is not present in the array, add it and append the value to the
+ * array. The object is mutated for performance reasons, and the mutated array
+ * is returned.
+ *
+ * @param groupedArray Array of arrays (with specified index as the key).
+ * @param index Index of the array to update group values.
+ * @param value Value that gets appended to the array in the dictionary.
+ */
+export function appendToGroup<V, K = number>(
+  groupedArray: V[][],
+  index: K,
+  value: V,
+): V[][];
 
 export function appendToGroup<V, K extends DictKey | number>(
   dict: K extends number ? V[][] : Record<K, V[]>,
