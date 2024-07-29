@@ -45,15 +45,15 @@
     "fast-equals": "^5.0.1"
   },
   "devDependencies": {
-    "@laserware/eslint-config": "^3.2.0",
+    "@laserware/eslint-config": "^3.2.1",
     "@types/node": "20",
-    "@vitest/coverage-istanbul": "^1.6.0",
+    "@vitest/coverage-istanbul": "^2.0.4",
     "eslint": "8.57.0",
-    "prettier": "^3.3.2",
+    "prettier": "^3.3.3",
     "tslib": "^2.6.3",
-    "tsup": "^8.1.0",
-    "typescript": "^5.5.2",
-    "vitest": "^1.6.0"
+    "tsup": "^8.2.3",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.4"
   },
   "prettier": {
     "trailingComma": "all"
