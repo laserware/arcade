@@ -1,4 +1,4 @@
-import { getPlatform, Platform } from "./platform.js";
+import { isPlatform } from "./platform.js";
 
 /**
  * Joins the specified file path elements and returns the full path.
@@ -7,7 +7,7 @@ import { getPlatform, Platform } from "./platform.js";
  * @returns Full path from the joined path elements.
  */
 export function joinFilePath(...pathElements: string[]): string {
-  const separator = getPlatform() === Platform.Windows ? "\\" : "/";
+  const separator = isPlatform("windows") ? "\\" : "/";
 
   return pathElements.join(separator);
 }
@@ -19,7 +19,7 @@ export function joinFilePath(...pathElements: string[]): string {
  * @returns Array of path elements.
  */
 export function splitFilePath(filePath: string): string[] {
-  const separator = getPlatform() === Platform.Windows ? "\\" : "/";
+  const separator = isPlatform("windows") ? "\\" : "/";
 
   return filePath.split(separator);
 }

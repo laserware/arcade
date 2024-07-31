@@ -18,7 +18,12 @@ export { keyBy } from "./keyBy.js";
 export { noop } from "./noop.js";
 export { omit } from "./omit.js";
 export { pause } from "./pause.js";
-export { cachePlatform, getPlatform, Platform } from "./platform.js";
+export {
+  cachePlatform,
+  getPlatform,
+  isPlatform,
+  type Platform,
+} from "./platform.js";
 export { randomNumber } from "./randomNumber.js";
 export { removeAtIndex } from "./removeAtIndex.js";
 export { round } from "./round.js";

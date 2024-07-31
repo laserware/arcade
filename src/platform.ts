@@ -5,22 +5,26 @@
  * distros. But for the purposes of this library, we only need to know the
  * specific OS distro.
  */
-export enum Platform {
-  Unknown,
-  Linux,
-  Mac,
-  Windows,
-}
+export type Platform = "unknown" | "linux" | "mac" | "windows";
 
 // We cache this, so we only have to check the platform once:
-let currentPlatform = Platform.Unknown;
+let currentPlatform: Platform = "unknown";
+
+/**
+ * Returns true if the specified platform matches the host.
+ *
+ * @param platform Platform to check against the host.
+ */
+export function isPlatform(platform: Platform): boolean {
+  return getPlatform() === platform;
+}
 
 /**
  * Caches the platform, so it doesn't need to be checked on every call to
  * {@link getPlatform} and returns the current platform.
  */
 export function cachePlatform(): Platform {
-  if (currentPlatform === Platform.Unknown) {
+  if (currentPlatform === "unknown") {
     currentPlatform = getPlatform();
   }
 
@@ -32,7 +36,7 @@ export function cachePlatform(): Platform {
  */
 export function getPlatform(): Platform {
   // Check if the platform has already been cached first. If it was, return it!
-  if (currentPlatform !== Platform.Unknown) {
+  if (currentPlatform !== "unknown") {
     return currentPlatform;
   }
 
@@ -63,14 +67,14 @@ export function getPlatform(): Platform {
 function parsePlatform(platformString: string): Platform {
   switch (true) {
     case /mac|darwin/gi.test(platformString):
-      return Platform.Mac;
+      return "mac";
 
     case /win/gi.test(platformString):
-      return Platform.Windows;
+      return "windows";
 
     // Fallback to Linux (rather than unknown), since the application will never
     // run on Android or iOS:
     default:
-      return Platform.Linux;
+      return "linux";
   }
 }
