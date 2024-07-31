@@ -47,13 +47,13 @@
   "devDependencies": {
     "@laserware/eslint-config": "^3.2.2",
     "@types/node": "20",
-    "@vitest/coverage-istanbul": "^2.0.4",
+    "@vitest/coverage-istanbul": "^2.0.5",
     "eslint": "8.57.0",
     "prettier": "^3.3.3",
     "tslib": "^2.6.3",
     "tsup": "^8.2.3",
     "typescript": "^5.5.4",
-    "vitest": "^2.0.4"
+    "vitest": "^2.0.5"
   },
   "prettier": {
     "trailingComma": "all"
