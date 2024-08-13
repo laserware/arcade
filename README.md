@@ -1,3 +1,3 @@
-# @laserware/arcade
+# Arcade
 
 Miscellaneous utility functions.

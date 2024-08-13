@@ -7,8 +7,12 @@ import type { Dict } from "./types.js";
  * @param field Field to key by.
  *
  * @example
- *   const result = keyBy({ id: "a", value: 1 }, { id: "b", value: 2 }, "id");
- *   > { a: { id: "a", value: 1 }, b: { id: "b", value: 2 } }
+ * keyBy(
+ *   { id: "a", value: 1 },
+ *   { id: "b", value: 2 },
+ *   "id",
+ * );
+ * // { a: { id: "a", value: 1 }, b: { id: "b", value: 2 } }
  */
 export function keyBy<T>(values: T[], field: string): Dict<T> {
   const keyedValues = values as (T & { [field: string]: unknown })[];
