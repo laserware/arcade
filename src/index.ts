@@ -32,6 +32,7 @@ export { sortBy } from "./sortBy.js";
 export { sumBy } from "./sumBy.js";
 export { throttle } from "./throttle.js";
 export { toBoolean } from "./toBoolean.js";
+export { toNumber } from "./toNumber.js";
 export { toEntries } from "./toEntries.js";
 export { toReversed } from "./toReversed.js";
 export { toSorted } from "./toSorted.js";

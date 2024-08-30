@@ -3,17 +3,14 @@
  *
  * @param value Value to check if valid number.
  */
-export function isValidNumber(
-  value: number | string | unknown,
-): value is number {
+export function isValidNumber(value: unknown): value is number {
   if (typeof value === "number") {
     return true;
   }
 
-  const numericValue = Number(value);
-  if (Number.isNaN(numericValue)) {
+  if (typeof value === "string") {
     return false;
   }
 
-  return Number.isFinite(numericValue);
+  return !Number.isNaN(Number(value));
 }
