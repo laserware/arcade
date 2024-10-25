@@ -39,4 +39,4 @@ export { toSorted } from "./toSorted.js";
 export { uniq } from "./uniq.js";
 export { uuid } from "./uuid.js";
 
-export type { AnyFunc, Dict, DictKey, AnyDict } from "./types.js";
+export type { AnyDict, AnyFunc, Dict, DictKey } from "./types.js";

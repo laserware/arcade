@@ -7,6 +7,7 @@ const isNode = typeof window === "undefined" || typeof window?.crypto === "undef
  */
 export function uuid(): string {
   if (isNode) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require("crypto").randomUUID();
   }
 

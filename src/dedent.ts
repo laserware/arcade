@@ -99,7 +99,7 @@ function createDedent(options: DedentOptions): Dedent {
       if (matches !== null) {
         const indent = matches[1].length;
 
-        if (!indentStart) {
+        if (indentStart === null) {
           // First indented line:
           indentStart = indent;
         } else {
