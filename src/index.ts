@@ -40,9 +40,9 @@ export { uniq } from "./uniq.js";
 export { uuid } from "./uuid.js";
 export {
   TypedEventTarget,
-  type TypedEventListenerOrEventListenerObject,
-  type TypedEventListenerObject,
   type TypedEventListener,
+  type TypedEventListenerObject,
+  type TypedEventListenerOrEventListenerObject,
 } from "./TypedEventTarget.js";
 
 export type { AnyDict, AnyFunc, Dict, DictKey } from "./types.js";
