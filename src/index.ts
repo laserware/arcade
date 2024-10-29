@@ -38,5 +38,11 @@ export { toReversed } from "./toReversed.js";
 export { toSorted } from "./toSorted.js";
 export { uniq } from "./uniq.js";
 export { uuid } from "./uuid.js";
+export {
+  TypedEventTarget,
+  type TypedEventListenerOrEventListenerObject,
+  type TypedEventListenerObject,
+  type TypedEventListener,
+} from "./TypedEventTarget.js";
 
 export type { AnyDict, AnyFunc, Dict, DictKey } from "./types.js";
