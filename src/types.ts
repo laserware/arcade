@@ -17,3 +17,8 @@ export type AnyDict = Record<DictKey, any>;
  * Function that takes any variable arguments and returns any value.
  */
 export type AnyFunc = (...args: any[]) => any;
+
+/**
+ * Any plain object with key/value pair of any type.
+ */
+export type AnyPlainObject = Record<any, any>;

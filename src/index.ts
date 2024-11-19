@@ -16,6 +16,7 @@ export { isValidNumber } from "./isValidNumber.js";
 export { kebabCase } from "./kebabCase.js";
 export { keyBy } from "./keyBy.js";
 export { noop } from "./noop.js";
+export { isPlainObject } from "./objects.js";
 export { omit } from "./omit.js";
 export { pause } from "./pause.js";
 export {
