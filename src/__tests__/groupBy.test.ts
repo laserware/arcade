@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { groupBy } from "../groupBy.js";
 
 describe("the groupBy function", () => {

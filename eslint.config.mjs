@@ -1,16 +1,22 @@
 import { fileURLToPath } from "node:url";
 
-import { getBaseConfigs } from "@laserware/eslint-config/base";
+import { filePatterns, getBaseConfigs } from "@laserware/eslint-config/base";
 
-const thisDirPath = fileURLToPath(new URL(".", import.meta.url));
+const rootDirPath = fileURLToPath(new URL(".", import.meta.url));
 
 const baseConfigs = getBaseConfigs({
-  tsConfigRootDir: thisDirPath,
+  tsConfigRootDir: rootDirPath,
   tsConfigFiles: ["./tsconfig.json", "./tsconfig.node.json"],
 });
 
 export default [
   ...baseConfigs,
+  {
+    files: filePatterns.typescript,
+    rules: {
+      "import/extensions": "off",
+    },
+  },
   {
     ignores: ["eslint.config.mjs"],
   },
