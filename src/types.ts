@@ -5,6 +5,9 @@ export type DictKey = string | number | symbol;
 
 /**
  * Key/value pair with key of valid {@link DictKey}.
+ *
+ * @template V Type of value in the object.
+ * @template K Type of key in the object.
  */
 export type Dict<V, K extends DictKey = string> = Record<K, V>;
 
@@ -22,3 +25,17 @@ export type AnyFunc = (...args: any[]) => any;
  * Any plain object with key/value pair of any type.
  */
 export type AnyPlainObject = Record<any, any>;
+
+/**
+ * Returns the keys of the specified object as an array.
+ *
+ * @template T Object with keys to extract.
+ */
+export type KeysOf<T extends Record<string, any>> = Extract<keyof T, string>[];
+
+/**
+ * Type is either a single item or array of items of type `T`.
+ *
+ * @template T Type of item or items.
+ */
+export type OneOrManyOf<T> = T | T[];
