@@ -1,8 +1,9 @@
 import { isNil } from "./isNil.js";
 
 /**
- * Returns true if the specified value is empty. The definition of empty in this
- * case is:
+ * Checks if the specified `value` is empty.
+ *
+ * The definition of empty in this case is:
  *  - The value is `null` or `undefined`.
  *  - If the value is a string, the value is an empty string (`""`).
  *  - If the value is an array, the array has no elements.
@@ -10,8 +11,12 @@ import { isNil } from "./isNil.js";
  *  - If the value is an object, it has no properties.
  *
  * @param value Value to check for emptiness.
+ *
+ * @returns `true` if the specified `value` meets the criteria for being empty.
+ *
+ * @category Utility
  */
-export function isEmpty(value: any): boolean {
+export const isEmpty = (value: any): boolean => {
   if (isNil(value)) {
     return true;
   }
@@ -33,4 +38,4 @@ export function isEmpty(value: any): boolean {
   } catch {
     return false;
   }
-}
+};

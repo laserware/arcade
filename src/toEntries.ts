@@ -11,9 +11,11 @@ import type { Dict } from "./types.js";
  * @returns Array of [key, value] pairs that adhere to the specified types.
  *
  * @deprecated Use {@linkcode entriesOf} instead.
+ *
+ * @category Object
  */
-export function toEntries<V, K = string>(dict: Dict<V>): [K, V][] {
+export const toEntries = <V, K = string>(dict: Dict<V>): [K, V][] => {
   const entries = Object.entries(dict);
 
   return entries as [K, V][];
-}
+};

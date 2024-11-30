@@ -43,9 +43,11 @@ import type { Dict } from "./types.js";
  * // This will *not* throw a TypeScript error:
  *   console.log(dict[key]);
  * }
+ *
+ * @category Object
  */
-export function entriesOf<V, K = string>(dict: Dict<V>): [K, V][] {
+export const entriesOf = <V, K = string>(dict: Dict<V>): [K, V][] => {
   const entries = Object.entries(dict);
 
   return entries as [K, V][];
-}
+};

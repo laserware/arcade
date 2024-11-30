@@ -25,13 +25,17 @@
  */
 
 /**
- * Converts the specified value to kebab-case. This was taken from the
- * {@link https://github.com/joakimbeng/kebab-case|kebab-case} library (it didn't
+ * Converts the specified `value` to kebab-case. This was taken from the
+ * [kebab-case](https://github.com/joakimbeng/kebab-case) library (it didn't
  * make sense to import another dependency for a few lines of code).
  *
  * @param value Value to convert to kebab-case.
+ *
+ * @returns The specified `value` in kebab-case.
+ *
+ * @category String
  */
-export function kebabCase(value: string): string {
+export const kebabCase = (value: string): string => {
   const KEBAB_REGEX = /[A-Z\u00C0-\u00D6\u00D8-\u00DE]/g;
 
   // If the value has any spaces, replace spaces with "-" and ensure the entire
@@ -49,4 +53,4 @@ export function kebabCase(value: string): string {
       // Replace words that start with a capital letter with `-<first letter>`:
       .replace(KEBAB_REGEX, (match) => "-" + match.toLowerCase())
   );
-}
+};

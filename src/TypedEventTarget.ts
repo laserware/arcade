@@ -23,49 +23,57 @@
  */
 
 /**
- * @file Most of this code was taken from the {@link https://github.com/DerZade/typescript-event-target|typescript-event-target} package.
- *       I didn't want to bring in another dependency for a library that's so few lines of code.
+ * Most of this code was taken from the {@link https://github.com/DerZade/typescript-event-target|typescript-event-target} package.
+ * I didn't want to bring in another dependency for a library that's so few lines of code.
  */
 
 /**
  * A function that can be passed to the `listener` parameter of
- * {@link TypedEventTarget.addEventListener} and {@link TypedEventTarget.removeEventListener}.
+ * {@linkcode TypedEventTarget.addEventListener} and {@linkcode TypedEventTarget.removeEventListener}.
  *
- * @template M A map of event types to their respective event classes.
- * @template T The type of event to listen for (has to be keyof `M`).
+ * @template M A map of event types to their respective Event classes.
+ * @template T The event type to listen for (has to be keyof `M`).
+ *
+ * @category Events
  */
 export type TypedEventListener<M, T extends keyof M> = (event: M[T]) => void;
 
 /**
  * An object that can be passed to the `listener` parameter of
- * {@link TypedEventTarget.addEventListener} and {@link TypedEventTarget.removeEventListener}.
+ * {@linkcode TypedEventTarget.addEventListener} and {@linkcode TypedEventTarget.removeEventListener}.
  *
- * @template M A map of event types to their respective event classes.
- * @template T The type of event to listen for (has to be keyof `M`).
+ * @template M A map of event types to their respective Event classes.
+ * @template T The event type to listen for (has to be keyof `M`).
+ *
+ * @category Events
  */
-export interface TypedEventListenerObject<M, K extends keyof M> {
-  handleEvent(object: M[K]): void;
+export interface TypedEventListenerObject<M, T extends keyof M> {
+  handleEvent(object: M[T]): void;
 }
 
 /**
- * Type of parameter `listener` in {@link TypedEventTarget.addEventListener}
- * and {@link TypedEventTarget.removeEventListener}.
+ * Type of parameter `listener` in {@linkcode TypedEventTarget.addEventListener}
+ * and {@linkcode TypedEventTarget.removeEventListener}.
  *
  * The object that receives a notification (an object that implements the Event
  * interface) when an event of the specified type occurs.
  *
  * Can be either an object with a handleEvent() method, or a JavaScript function.
  *
- * @template M A map of event types to their respective event classes.
- * @template T The type of event to listen for (has to be keyof `M`).
+ * @template M A map of event types to their respective Event classes.
+ * @template T The event type to listen for (has to be keyof `M`).
+ *
+ * @category Events
  */
-export type TypedEventListenerOrEventListenerObject<M, K extends keyof M> =
-  | TypedEventListener<M, K>
-  | TypedEventListenerObject<M, K>;
+export type TypedEventListenerOrEventListenerObject<M, T extends keyof M> =
+  | TypedEventListener<M, T>
+  | TypedEventListenerObject<M, T>;
 
 /**
  * Used to add type safety to event listeners on a class that extends `EventTarget`.
  * See the example below for additional details.
+ *
+ * @template M A map of event types to their respective event classes.
  *
  * @example
  * // Create an "event map" with the key equal to the name of the
@@ -109,50 +117,61 @@ export type TypedEventListenerOrEventListenerObject<M, K extends keyof M> =
  *
  * myInstance.dispatchOpen();
  *
+ * @category Events
+ *
  * @class
  */
 export class TypedEventTarget<
   M extends Record<string, Event | CustomEvent>,
 > extends EventTarget {
   /**
-   * Dispatches a synthetic event `event` to target and returns true if either
-   * event's cancelable attribute value is false or its `preventDefault()` method
-   * was not invoked, and false otherwise.
-   * @deprecated To ensure type safety use `dispatchTypedEvent` instead.
+   * Dispatches a synthetic `event` to the target and returns `true` if either
+   * event's cancelable attribute value is `false` or its `preventDefault()` method
+   * was not invoked, and `false` otherwise.
+   *
+   * @template T Type of event to dispatch.
+   *
+   * @deprecated To ensure type safety use {@linkcode dispatchTypedEvent} instead.
    */
   // @ts-ignore
-  public dispatchEvent<K extends keyof M>(event: M[K]): boolean {
+  public dispatchEvent<T extends keyof M>(event: M[T]): boolean {
     return super.dispatchEvent(event as Event);
   }
 
   /**
-   * Appends an event listener for events whose type attribute value is type.
-   * The callback argument sets the callback that will be invoked when the event
+   * Appends an event listener for events whose type attribute value is `type`.
+   * The `callback` argument sets the callback that will be invoked when the event
    * is dispatched.
    *
-   * The options argument sets listener-specific options. For compatibility this
+   * The `options` argument sets listener-specific options. For compatibility this
    * can be a boolean, in which case the method behaves exactly as if the value
    * was specified as `options.capture`.
    *
-   * When set to true, `options.capture` prevents callback from being invoked
-   * when the event's eventPhase attribute value is BUBBLING_PHASE. When false
-   * (or not present), callback will not be invoked when event's eventPhase
-   * attribute value is CAPTURING_PHASE. Either way, callback will be invoked if
-   * event's eventPhase attribute value is AT_TARGET.
+   * When set to `true`, `options.capture` prevents `callback` from being invoked
+   * when the event's `eventPhase` attribute value is `BUBBLING_PHASE`. When `false`
+   * (or not present), `callback` will not be invoked when event's `eventPhase`
+   * attribute value is `CAPTURING_PHASE`. Either way, `callback` will be invoked if
+   * event's `eventPhase` attribute value is `AT_TARGET`.
    *
-   * When set to true, `options.passive` indicates that the callback will not
-   * cancel the event by invoking preventDefault(). This is used to enable
-   * performance optimizations described in § 2.8 Observing event listeners.
+   * When set to `true`, `options.passive` indicates that the `callback` will not
+   * cancel the event by invoking `preventDefault()`. This is used to enable
+   * performance optimizations described in [§ 2.8 Observing event listeners](https://dom.spec.whatwg.org/#observing-event-listeners).
    *
-   * When set to true, `options.once` indicates that the callback will only be
+   * When set to `true`, `options.once` indicates that the `callback` will only be
    * invoked once after which the event listener will be removed.
    *
    * The event listener is appended to target's event listener list and is not
-   * appended if it has the same type, callback, and capture.
+   * appended if it has the same `type`, `callback`, and `capture`.
+   *
+   * @template T Event type to add event listener for.
+   *
+   * @param type Name of the event to associated with listener.
+   * @param callback Callback to fire with the event fires.
+   * @param options Options for creating the event listener.
    */
-  public addEventListener<K extends keyof M & string>(
-    type: K,
-    callback: TypedEventListenerOrEventListenerObject<M, K> | null,
+  public addEventListener<T extends keyof M & string>(
+    type: T,
+    callback: TypedEventListenerOrEventListenerObject<M, T> | null,
     options?: boolean | AddEventListenerOptions,
   ): void {
     super.addEventListener(
@@ -164,11 +183,13 @@ export class TypedEventTarget<
 
   /**
    * Removes the event listener in target's event listener list with the same
-   * type, callback, and options.
+   * `type`, `callback`, and `options`.
+   *
+   * @template T Event type to add event listener for.
    */
-  public removeEventListener<K extends keyof M & string>(
-    type: K,
-    callback: TypedEventListenerOrEventListenerObject<M, K> | null,
+  public removeEventListener<T extends keyof M & string>(
+    type: T,
+    callback: TypedEventListenerOrEventListenerObject<M, T> | null,
     options?: boolean | AddEventListenerOptions,
   ): void {
     super.removeEventListener(
@@ -182,6 +203,8 @@ export class TypedEventTarget<
    * Dispatches a synthetic event to `target` and returns true if either
    * event's cancelable attribute value is false or its `preventDefault()` method
    * was not invoked, and false otherwise.
+   *
+   * @template T Event type to dispatch.
    *
    * @param type Type of the event (i.e. key from the event map).
    * @param event Event or CustomEvent to dispatch.

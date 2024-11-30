@@ -22,15 +22,8 @@
  */
 
 /**
- * @file Strips indentation from multi-line template strings. This code was
- * taken directly from the {@link https://github.com/dmnd/dedent|dedent} package.
- * Some variables names were changed and explicit type annotations were added.
- *
- * Q: Why not just install it as a dependency and forward the export?
- * A: Because the entire library is less than 100 lines of code and it will
- *    probably never need to be updated.
+ * Options for the {@linkcode dedent} function.
  */
-
 interface DedentOptions {
   escapeSpecialCharacters?: boolean;
 }
@@ -42,7 +35,13 @@ export interface Dedent {
 }
 
 /**
- * Default dedent with no special options.
+ * Strips indentation from multi-line template strings. This code was
+ * taken directly from the [dedent](https://github.com/dmnd/dedent) package.
+ * Some variables names were changed and explicit type annotations were added.
+ *
+ * @returns Specified value with indentation removed.
+ *
+ * @category String
  */
 export const dedent: Dedent = createDedent({});
 

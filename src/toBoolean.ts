@@ -1,11 +1,15 @@
 /**
- * Converts the specified value to a boolean (note that it is case-insensitive).
+ * Converts the specified `value` to a boolean (note that it is case-insensitive).
  *
  * @param value Value to convert to a boolean.
+ *
+ * @returns Boolean representation of the specified `value`.
+ *
+ * @category Utility
  */
-export function toBoolean(
+export const toBoolean = (
   value: boolean | number | string | null | undefined,
-): boolean {
+): boolean => {
   if (typeof value === "boolean") {
     return value;
   }
@@ -19,4 +23,4 @@ export function toBoolean(
   }
 
   return false;
-}
+};

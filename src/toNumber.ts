@@ -1,13 +1,17 @@
 import { isNil } from "./isNil.js";
 
 /**
- * Attempts to coerce the specified value to a number. If the value cannot be
- * coerced to a valid number, returns the specified fallback value.
+ * Attempts to coerce the specified `value` to a number. If the value cannot be
+ * coerced to a valid number, returns the specified `fallback` value.
  *
  * @param value Value to coerce to a number.
  * @param fallback Value to return if the specified value cannot be coerced to a number.
+ *
+ * @returns The specified `value` as a number if valid, otherwise the specified `fallback`.
+ *
+ * @category Number
  */
-export function toNumber(value: unknown, fallback: number): number {
+export const toNumber = (value: unknown, fallback: number): number => {
   if (isNil(value)) {
     return fallback;
   }
@@ -19,4 +23,4 @@ export function toNumber(value: unknown, fallback: number): number {
   } else {
     return numericValue;
   }
-}
+};

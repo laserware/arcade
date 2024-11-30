@@ -10,7 +10,7 @@ export { dedent, type Dedent } from "./dedent.js";
 export { entriesOf } from "./entriesOf.js";
 export { gte, lte } from "./equality.js";
 export { joinFilePath, splitFilePath } from "./filePaths.js";
-export { groupBy } from "./groupBy.js";
+export { groupBy, type Iteratee } from "./groupBy.js";
 export { isEmpty } from "./isEmpty.js";
 export { isNil } from "./isNil.js";
 export { isNotNil } from "./isNotNil.js";
@@ -49,4 +49,12 @@ export {
   type TypedEventListenerOrEventListenerObject,
 } from "./TypedEventTarget.js";
 
-export type { AnyDict, AnyFunc, Dict, DictKey } from "./types.js";
+export type {
+  AnyDict,
+  AnyFunc,
+  AnyPlainObject,
+  Dict,
+  DictKey,
+  KeysOf,
+  OneOrManyOf,
+} from "./types.js";

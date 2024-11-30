@@ -1,23 +1,34 @@
 import type { AnyDict } from "./types.js";
 
 /**
- * Removes the specified key from the specified dictionary and returns a copy of
- * the updated dictionary.
+ * Removes the specified `key` from the specified `dict` and returns a copy of
+ * the updated object.
  *
- * @param dict Dictionary containing keys to omit.
- * @param key Key in the dictionary to omit.
+ * @param dict Object containing keys to omit.
+ * @param key Key in the object to omit.
+ *
+ * @returns Object `dict` with specified `key` omitted.
+ *
+ * @category Object
  */
 export function omit<T extends AnyDict>(dict: T, key: string): T;
 
 /**
- * Removes the specified keys from the specified dictionary and returns a copy
- * of the updated dictionary.
+ * Removes the specified `keys` from the specified `dict` and returns a copy
+ * of the updated object.
  *
- * @param dict Dictionary containing keys to omit.
- * @param keys Keys in the dictionary to omit.
+ * @param dict Object containing keys to omit.
+ * @param keys Keys in the object to omit.
+ *
+ * @returns Object `dict` with specified `keys` omitted.
+ *
+ * @category Object
  */
 export function omit<T extends AnyDict>(dict: T, keys: string[]): T;
 
+/**
+ * Removes entries from an object that correspond with specified key(s).
+ */
 export function omit<T extends AnyDict>(
   dict: T,
   keyOrKeys: string | string[],

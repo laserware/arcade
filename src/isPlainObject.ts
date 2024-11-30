@@ -1,11 +1,15 @@
 import type { AnyPlainObject } from "./types.js";
 
 /**
- * Returns true if the specified value is a plain object.
+ * Checks if the specified `value` is a plain object.
  *
  * @param value Value to check if plain object.
+ *
+ * @returns `true` if the `value` is a plain object.
+ *
+ * @category Object
  */
-export function isPlainObject(value: any): value is AnyPlainObject {
+export const isPlainObject = (value: any): value is AnyPlainObject => {
   if (value === null || value === undefined) {
     return false;
   }
@@ -19,4 +23,4 @@ export function isPlainObject(value: any): value is AnyPlainObject {
   }
 
   return Object.getPrototypeOf(value) === Object.prototype;
-}
+};

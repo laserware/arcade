@@ -1,13 +1,16 @@
 import type { AnyDict } from "./types.js";
 
 /**
- * Sums the values of the specified field in a collection of objects and returns
- * the result.
+ * Sums the values of the specified `field` in the specified `collection` of objects.
  *
  * @param collection Collection of objects containing a field with a number value.
  * @param field Field to get sum for.
+ *
+ * @returns Sum of the specified `field` from the specified `collection`.
+ *
+ * @category Collection
  */
-export function sumBy(collection: AnyDict[], field: string): number {
+export const sumBy = (collection: AnyDict[], field: string): number => {
   let total = 0;
 
   if (collection.length === 0) {
@@ -29,4 +32,4 @@ export function sumBy(collection: AnyDict[], field: string): number {
   }
 
   return total;
-}
+};

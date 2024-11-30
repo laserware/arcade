@@ -4,8 +4,6 @@ export default defineConfig({
   test: {
     globals: true,
     coverage: {
-      provider: "istanbul",
-      reporter: ["lcov"],
       exclude: [
         "**/__fakes__/**",
         "**/__mocks__/**",
@@ -14,6 +12,9 @@ export default defineConfig({
         "**/*.json",
         "**/*.js",
       ],
+      include: ["src/**/*.ts"],
+      provider: "istanbul",
+      reporter: ["lcov"],
     },
   },
 });

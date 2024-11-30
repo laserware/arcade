@@ -1,11 +1,18 @@
 /**
- * Returns true if the specified value is greater than or equal to the
- * other value.
+ * Checks if the specified `value` is greater than or equal to the specified
+ * `other` value.
  *
  * @param value Value to compare.
  * @param other Other value to compare.
+ *
+ * @returns `true` if the specified `value` is greater than or equal to `other`.
+ *
+ * @category Number
  */
-export function gte(value: number | string, other: number | string): boolean {
+export const gte = (
+  value: number | string,
+  other: number | string,
+): boolean => {
   if (typeof value === "string") {
     value = Number(value);
   }
@@ -15,16 +22,23 @@ export function gte(value: number | string, other: number | string): boolean {
   }
 
   return value >= other;
-}
+};
 
 /**
- * Returns true if the specified value is less than or equal to the
- * other value.
+ * Checks if the specified `value` is less than or equal to the specified
+ * `other` value.
  *
  * @param value Value to compare.
  * @param other Other value to compare.
+ *
+ * @returns `true` if the specified `value` is less than or equal to `other`.
+ *
+ * @category Number
  */
-export function lte(value: number | string, other: number | string): boolean {
+export const lte = (
+  value: number | string,
+  other: number | string,
+): boolean => {
   if (typeof value === "string") {
     value = Number(value);
   }
@@ -34,4 +48,4 @@ export function lte(value: number | string, other: number | string): boolean {
   }
 
   return value <= other;
-}
+};

@@ -52,7 +52,7 @@
 
 /**
  * Clamps specified value within the inclusive lower and upper bounds.
- * Taken from the {@link https://github.com/lodash/lodash/blob/main/src/clamp.ts|clamp}
+ * Taken from the [clamp](https://github.com/lodash/lodash/blob/main/src/clamp.ts)
  * implementation in lodash.
  *
  * @param value Value being clamped.
@@ -65,8 +65,12 @@
  *
  * clamp(10, -5, 5)
  * // 5
+ *
+ * @returns The clamped `value` within the specified bounds.
+ *
+ * @category Number
  */
-export function clamp(value: number, lower: number, upper: number): number {
+export const clamp = (value: number, lower: number, upper: number): number => {
   let clampedValue = Number(value);
   let validLower = Number(lower);
   let validUpper = Number(upper);
@@ -80,4 +84,4 @@ export function clamp(value: number, lower: number, upper: number): number {
   }
 
   return clampedValue;
-}
+};

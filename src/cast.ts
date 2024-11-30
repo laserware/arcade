@@ -7,7 +7,7 @@
  * @param value Value to cast to `T`.
  *
  * @returns The specified value as type `T`.
+ *
+ * @category Utility
  */
-export function cast<T>(value: any): T {
-  return value as unknown as T;
-}
+export const cast = <T>(value: any): T => value as unknown as T;

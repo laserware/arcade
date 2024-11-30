@@ -26,12 +26,16 @@
 
 /**
  * Transforms the specified string value to camelCase. This was taken from the
- * {@link https://github.com/stevenvachon/camelcase-css|camelcase-css} package
+ * [camelcase-css](https://github.com/stevenvachon/camelcase-css) package
  * and types were added.
  *
  * @param value Value to transform.
+ *
+ * @returns The specified `value` converted to camelCase.
+ *
+ * @category String
  */
-export function camelCase(value: string): string {
+export const camelCase = (value: string): string => {
   // RegExp for word boundaries or dashes:
   const pattern = /-(\w|$)/g;
 
@@ -39,4 +43,4 @@ export function camelCase(value: string): string {
   const replacer = (dash: string, char: string): string => char.toUpperCase();
 
   return value.toLowerCase().replace(pattern, replacer);
-}
+};

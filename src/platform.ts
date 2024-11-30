@@ -4,6 +4,8 @@
  * Possible platforms for the host. Note that Linux encompasses several different
  * distros. But for the purposes of this library, we only need to know the
  * specific OS distro.
+ *
+ * @category Platform
  */
 export type Platform = "unknown" | "linux" | "mac" | "windows";
 
@@ -11,30 +13,13 @@ export type Platform = "unknown" | "linux" | "mac" | "windows";
 let currentPlatform: Platform = "unknown";
 
 /**
- * Returns true if the specified platform matches the host.
+ * Gets the current OS/platform that the application is running on.
  *
- * @param platform Platform to check against the host.
+ * @returns The host platform.
+ *
+ * @category Platform
  */
-export function isPlatform(platform: Platform): boolean {
-  return getPlatform() === platform;
-}
-
-/**
- * Caches the platform, so it doesn't need to be checked on every call to
- * {@link getPlatform} and returns the current platform.
- */
-export function cachePlatform(): Platform {
-  if (currentPlatform === "unknown") {
-    currentPlatform = getPlatform();
-  }
-
-  return currentPlatform;
-}
-
-/**
- * Returns the current OS/platform that the application is running on.
- */
-export function getPlatform(): Platform {
+export const getPlatform = (): Platform => {
   // Check if the platform has already been cached first. If it was, return it!
   if (currentPlatform !== "unknown") {
     return currentPlatform;
@@ -57,7 +42,35 @@ export function getPlatform(): Platform {
   }
 
   return currentPlatform;
-}
+};
+
+/**
+ * Checks if the specified platform matches the host.
+ *
+ * @param platform Platform to check against the host.
+ *
+ * @returns `true` if the specified `platform` matches the host.
+ *
+ * @category Platform
+ */
+export const isPlatform = (platform: Platform): boolean =>
+  getPlatform() === platform;
+
+/**
+ * Caches the platform, so it doesn't need to be checked on every call to
+ * {@linkcode getPlatform} and returns the current platform.
+ *
+ * @returns The current host {@linkcode Platform}.
+ *
+ * @category Platform
+ */
+export const cachePlatform = (): Platform => {
+  if (currentPlatform === "unknown") {
+    currentPlatform = getPlatform();
+  }
+
+  return currentPlatform;
+};
 
 /**
  * Parses the platform string and returns the appropriate Platform enum.

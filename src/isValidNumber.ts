@@ -2,8 +2,10 @@
  * Returns true if the specified value is a valid number.
  *
  * @param value Value to check if valid number.
+ *
+ * @category Number
  */
-export function isValidNumber(value: unknown): value is number {
+export const isValidNumber = (value: unknown): value is number => {
   if (typeof value === "number") {
     return true;
   }
@@ -13,4 +15,4 @@ export function isValidNumber(value: unknown): value is number {
   }
 
   return !Number.isNaN(Number(value));
-}
+};

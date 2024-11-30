@@ -51,12 +51,14 @@
  */
 
 /**
- * Returns the specified value rounded to the specified precision
- * Taken from the {@link https://github.com/lodash/lodash/blob/main/src/round.ts|round}
+ * Rounds the specified `value` to the specified `precision`.
+ * Taken from the [round](https://github.com/lodash/lodash/blob/main/src/round.ts)
  * implementation in lodash.
  *
  * @param value The number to round.
  * @param [precision=0] The precision to round to.
+ *
+ * @returns Number rounded to the specified `precision`.
  *
  * @example
  * round(4.006);
@@ -67,8 +69,10 @@
  *
  * round(4060, -2);
  * // 4100
+ *
+ * @category Number
  */
-export function round(value: number, precision: number = 0): number {
+export const round = (value: number, precision: number = 0): number => {
   const validPrecision =
     precision >= 0 ? Math.min(precision, 292) : Math.max(precision, -292);
 
@@ -86,4 +90,4 @@ export function round(value: number, precision: number = 0): number {
   } else {
     return Math.round(value);
   }
-}
+};

@@ -4,11 +4,17 @@ import type { AnyFunc } from "./types.js";
  * Creates a debounced function that only invokes `func` at most once per
  * every `delay` milliseconds (or once per browser frame).
  *
+ * See [this article](https://blog.webdevsimplified.com/2022-03/debounce-vs-throttle/) for
+ * additional details.
+ *
  * @param func Function to debounce.
  * @param delay Delay in milliseconds.
- * @see https://blog.webdevsimplified.com/2022-03/debounce-vs-throttle/
+ *
+ * @returns The debounced function.
+ *
+ * @category Function
  */
-export function debounce(func: AnyFunc, delay: number): AnyFunc {
+export const debounce = (func: AnyFunc, delay: number): AnyFunc => {
   let timeout: NodeJS.Timeout | number;
 
   if (typeof func !== "function") {
@@ -22,4 +28,4 @@ export function debounce(func: AnyFunc, delay: number): AnyFunc {
       func(...args);
     }, delay);
   };
-}
+};

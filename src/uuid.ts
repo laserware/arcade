@@ -2,10 +2,15 @@
 const isNode = typeof window === "undefined" || typeof window?.crypto === "undefined";
 
 /**
- * Returns a V4 UUID either in the Node.js or browser context based on the
- * environment.
+ * Generates a V4 UUID using the [Node.js crypto.randomUUID](https://nodejs.org/api/crypto.html#cryptorandomuuidoptions)
+ * function or the browser's [crypto.randomUUID](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID)
+ * function. The correct one to use is determined automatically.
+ *
+ * @returns A UUID string.
+ *
+ * @category Utility
  */
-export function uuid(): string {
+export const uuid = (): string => {
   if (isNode) {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require("crypto").randomUUID();
@@ -16,4 +21,4 @@ export function uuid(): string {
   }
 
   throw new Error("Unable to generate UUID");
-}
+};
