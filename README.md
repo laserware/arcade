@@ -1,6 +1,6 @@
 # Arcade
 
-Miscellaneous utility functions.
+Miscellaneous utility functions. Check out the [documentation site](https://laserware.github.io/arcade/) for available functions.
 
 ## Overview
 
