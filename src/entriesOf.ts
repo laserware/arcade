@@ -17,7 +17,7 @@ import type { Dict } from "./types.js";
  * as the default).
  *
  * @template V Type of value in the specified `dict`.
- * @template K Type of key in the specified `key`.
+ * @template K Type of key in the specified `dict`.
  *
  * @param dict Object to extrapolate entries from.
  *

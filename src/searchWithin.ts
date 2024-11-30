@@ -5,6 +5,8 @@ import type { AnyDict } from "./types.js";
  * Returns an array of values in which the specified `fieldName` value matches the
  * specified `searchTerm` in the specified `collection`.
  *
+ * @template T Type of item in the specified `collection`.
+ *
  * @param collection Values to search.
  * @param searchTerm Search term to match.
  * @param fieldName Field name in the collection to search.

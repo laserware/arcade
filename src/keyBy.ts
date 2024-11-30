@@ -1,9 +1,11 @@
 import type { Dict } from "./types.js";
 
 /**
- * Converts a collection of `values` to keyed by the specified `field` name.
+ * Converts a collection of `items` to keyed by the specified `field` name.
  *
- * @param values Array of objects.
+ * @template T Type of item in the specified `items` array.
+ *
+ * @param items Array of objects.
  * @param field Field to key by.
  *
  * @returns Object with key of the `field` name and value of the entry that corresponds to `field`.
@@ -18,16 +20,16 @@ import type { Dict } from "./types.js";
  *
  * @category Collection
  */
-export function keyBy<T>(values: T[], field: string): Dict<T> {
-  const keyedValues = values as (T & { [field: string]: unknown })[];
-  const valueCount = keyedValues.length;
+export function keyBy<T>(items: T[], field: string): Dict<T> {
+  const keyedItems = items as (T & { [field: string]: unknown })[];
+  const itemCount = keyedItems.length;
 
   const dict: Dict<T> = {};
 
   // Using an old-school for loop here to make it snappy. Using the `reduce`
   // method allocates extra arrays:
-  for (let index = 0; index < valueCount; index++) {
-    const value = keyedValues[index];
+  for (let index = 0; index < itemCount; index++) {
+    const value = keyedItems[index];
 
     const key = value[field] as string;
     if (key === undefined) {

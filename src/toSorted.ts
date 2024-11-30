@@ -1,23 +1,25 @@
 import { isNil } from "./isNil.js";
 
 /**
- * Creates a copy of the specified array of `values` sorted by the optional
+ * Creates a copy of the specified array of `items` sorted by the optional
  * `compareFunc`. This is done because the native sort function mutates the array.
  *
- * @param values Array to sort.
+ * @template T Type of item in the specified `items` array.
+ *
+ * @param items Array to sort.
  * @param [compareFunc] Optional compare function to use for sorting.
  *
- * @returns Array of values sorted naturally or by the specified `compareFunc`.
+ * @returns Array of items sorted naturally or by the specified `compareFunc`.
  *
  * @deprecated Use the [toSorted](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted) built-in method on arrays.
  *
  * @category Array
  */
 export function toSorted<T>(
-  values: T[],
+  items: T[],
   compareFunc?: (a: T, z: T) => number,
 ): T[] {
-  const copy = [...values];
+  const copy = [...items];
 
   if (!isNil(compareFunc)) {
     copy.sort(compareFunc);

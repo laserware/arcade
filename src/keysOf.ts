@@ -10,6 +10,8 @@ import type { KeysOf } from "./types.js";
  * any extra keys (which is probably the case most of the time if you're using
  * plain JS objects).
  *
+ * @template T Type of the specified `dict` object.
+ *
  * @param dict Object to extrapolate keys from.
  *
  * @returns Array of keys that are typed for the specified `dict`.

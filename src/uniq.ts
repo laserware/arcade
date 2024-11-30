@@ -1,12 +1,14 @@
 /**
- * Removes any duplicate values from the specified `values` array.
+ * Removes any duplicate values from the specified `items` array.
  *
- * @param values Array to remove duplicates from.
+ * @template T Type of item in the specified `items` array.
  *
- * @returns Array of values with duplicates removed.
+ * @param items Array to remove duplicates from.
+ *
+ * @returns Array of items with duplicates removed.
  *
  * @category Utility
  */
-export function uniq<T>(values: T[]): T[] {
-  return [...new Set(values)];
+export function uniq<T>(items: T[]): T[] {
+  return [...new Set(items)];
 }

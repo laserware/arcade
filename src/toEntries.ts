@@ -8,6 +8,9 @@ import type { Dict } from "./types.js";
  * object key since TypeScript defaults to only allowing a string (but it
  * could be a string enum).
  *
+ * @template V Type of value in the specified `dict`.
+ * @template K Type of key in the specified `dict`.
+ *
  * @param dict Object to extrapolate entries from.
  *
  * @returns Array of [key, value] pairs that adhere to the specified types.
