@@ -1,3 +1,5 @@
+/* istanbul ignore file -- @preserve: No functionality to test. */
+
 /**
  * Does nothing. Useful for initializing function variables or properties
  * before assigning values. Note that it returns `any` instead of `void` and

@@ -1,3 +1,5 @@
+/* istanbul ignore file -- @preserve: Since this is vendored, we're skipping tests. */
+
 /*
  * MIT License
  *
@@ -46,8 +48,8 @@ export interface Dedent {
 export const dedent: Dedent = createDedent({});
 
 /**
- * Returns an object that adheres to the {@link Dedent} interface with the
- * specified options. See {@link https://github.com/dmnd/dedent#options|dedent options}
+ * Returns an object that adheres to the {@linkcode Dedent} interface with the
+ * specified `options`. See [dedent options](https://github.com/dmnd/dedent#options)
  * for additional details.
  *
  * @param options Options for the dedenter.

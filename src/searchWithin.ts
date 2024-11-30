@@ -1,3 +1,4 @@
+import { isNil } from "./isNil.js";
 import type { AnyDict } from "./types.js";
 
 /**
@@ -17,6 +18,10 @@ export const searchWithin = <T extends AnyDict>(
   searchTerm: string,
   fieldName: string,
 ): T[] =>
-  collection.filter((value) =>
-    value[fieldName].toLowerCase().includes(searchTerm.toLowerCase()),
-  );
+  collection.filter((value) => {
+    if (isNil(value[fieldName])) {
+      return false;
+    }
+
+    return value[fieldName].toLowerCase().includes(searchTerm.toLowerCase());
+  });

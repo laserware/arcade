@@ -8,6 +8,7 @@ export { clamp } from "./clamp.js";
 export { debounce } from "./debounce.js";
 export { dedent, type Dedent } from "./dedent.js";
 export { entriesOf } from "./entriesOf.js";
+export { isRunningInBrowser, isRunningInNode } from "./environment.js";
 export { gte, lte } from "./equality.js";
 export { joinFilePath, splitFilePath } from "./filePaths.js";
 export { groupBy, type Iteratee } from "./groupBy.js";

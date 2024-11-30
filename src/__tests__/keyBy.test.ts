@@ -1,7 +1,7 @@
 import { keyBy } from "../keyBy.js";
 
-describe("the keyBy function", () => {
-  it("converts an array of objects to an object keyed by the specified field", () => {
+describe.concurrent("the keyBy function", () => {
+  it("converts an array of objects to an object keyed by the specified field", async () => {
     const input = [
       { id: "a", value: "A" },
       { id: "b", value: "B" },
@@ -16,7 +16,7 @@ describe("the keyBy function", () => {
     expect(result).toEqual(expected);
   });
 
-  it("throws an error if the key field is invalid", () => {
+  it("throws an error if the key field is invalid", async () => {
     const input = [
       { id: "a", value: "A" },
       { id: "b", value: "B" },

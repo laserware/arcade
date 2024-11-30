@@ -1,3 +1,5 @@
+/* istanbul ignore file -- @preserve: Since this is vendored, we're skipping tests. */
+
 /*
  * The MIT License
  *
@@ -52,7 +54,7 @@
 
 /**
  * Rounds the specified `value` to the specified `precision`.
- * Taken from the [round](https://github.com/lodash/lodash/blob/main/src/round.ts)
+ * Taken from the [round](https://github.com/lodash/lodash/blob/4.0.4-npm-packages/lodash.round/index.js)
  * implementation in lodash.
  *
  * @param value The number to round.

@@ -15,7 +15,7 @@ export const toBoolean = (
   }
 
   if (typeof value === "string") {
-    return /true/gi.test(value);
+    return /true/i.test(value);
   }
 
   if (typeof value === "number") {

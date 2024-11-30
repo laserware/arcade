@@ -29,5 +29,5 @@ export const joinFilePath = (...pathElements: string[]): string => {
 export const splitFilePath = (filePath: string): string[] => {
   const separator = isPlatform("windows") ? "\\" : "/";
 
-  return filePath.split(separator);
+  return filePath.split(separator).filter(Boolean);
 };

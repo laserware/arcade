@@ -33,9 +33,5 @@ export const isEmpty = (value: any): boolean => {
     return value.size === 0;
   }
 
-  try {
-    return Object.keys(value).length === 0;
-  } catch {
-    return false;
-  }
+  return Object.keys(value).length === 0;
 };

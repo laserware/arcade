@@ -1,5 +1,6 @@
-// prettier-ignore
-const isNode = typeof window === "undefined" || typeof window?.crypto === "undefined";
+/* istanbul ignore file -- @preserve: This just picks which `randomUUID` to use based on the env. */
+
+import { isRunningInNode } from "./environment.js";
 
 /**
  * Generates a V4 UUID using the [Node.js crypto.randomUUID](https://nodejs.org/api/crypto.html#cryptorandomuuidoptions)
@@ -11,12 +12,12 @@ const isNode = typeof window === "undefined" || typeof window?.crypto === "undef
  * @category Utility
  */
 export const uuid = (): string => {
-  if (isNode) {
+  if (isRunningInNode()) {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    return require("crypto").randomUUID();
+    return require("node:crypto").randomUUID();
   }
 
-  if (typeof window !== "undefined") {
+  if (typeof window !== "undefined" && "crypto" in window) {
     return window.crypto.randomUUID();
   }
 

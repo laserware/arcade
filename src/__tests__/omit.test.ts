@@ -1,7 +1,7 @@
 import { omit } from "../omit.js";
 
-describe("the omit function", () => {
-  it("removes the specified key from the specified dictionary", () => {
+describe.concurrent("the omit function", () => {
+  it("removes the specified key from the specified object", async () => {
     const input = { a: "1", b: "2" };
 
     const result = omit(input, "a");
@@ -10,10 +10,28 @@ describe("the omit function", () => {
     expect(Object.is(input, result)).toBeFalsy();
   });
 
-  it("returns the input if the specified key isn't in the specified dictionary", () => {
+  it("returns the input if the specified key isn't in the specified object", async () => {
     const input = { a: "1", b: "2" };
 
     const result = omit(input, "c");
+
+    expect(result).toEqual({ a: "1", b: "2" });
+    expect(Object.is(input, result)).toBeFalsy();
+  });
+
+  it("removes the specified keys from the specified object", async () => {
+    const input = { a: "1", b: "2", c: "3" };
+
+    const result = omit(input, ["a", "b"]);
+
+    expect(result).toEqual({ c: "3" });
+    expect(Object.is(input, result)).toBeFalsy();
+  });
+
+  it("returns the input if the specified keys aren't in the specified object", async () => {
+    const input = { a: "1", b: "2" };
+
+    const result = omit(input, ["c", "d"]);
 
     expect(result).toEqual({ a: "1", b: "2" });
     expect(Object.is(input, result)).toBeFalsy();

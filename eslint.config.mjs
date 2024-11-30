@@ -18,6 +18,13 @@ export default [
     },
   },
   {
+    files: filePatterns.tests,
+    rules: {
+      "vitest/prefer-to-be-falsy": "off",
+      "vitest/prefer-to-be-truthy": "off",
+    },
+  },
+  {
     ignores: ["eslint.config.mjs"],
   },
 ];

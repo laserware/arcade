@@ -8,6 +8,8 @@ import type { AnyDict } from "./types.js";
  *
  * @returns Sum of the specified `field` from the specified `collection`.
  *
+ * @throws [TypeError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError) if any of the values in the `collection` are not valid numbers.
+ *
  * @category Collection
  */
 export const sumBy = (collection: AnyDict[], field: string): number => {
@@ -23,12 +25,14 @@ export const sumBy = (collection: AnyDict[], field: string): number => {
     throw new Error(`Field "${field}" does not exist in collection`);
   }
 
-  if (Number.isNaN(firstValue)) {
-    throw new Error(`Field "${field}" is not a valid number`);
-  }
-
   for (const item of collection) {
-    total += item[field];
+    const value = Number(item[field]);
+
+    if (Number.isNaN(value)) {
+      throw new TypeError(`Field "${field}" is not a valid number`);
+    }
+
+    total += value;
   }
 
   return total;
