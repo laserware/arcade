@@ -1,10 +1,8 @@
 /** @type {Partial<import("typedoc").TypeDocOptions>} */
 const config = {
-  categorizeByGroup: false,
   cleanOutputDir: true,
   defaultCategory: "Utility",
   entryPoints: ["./src/index.ts"],
-  entryPointStrategy: "expand",
   exclude: ["**/**test.ts"],
   excludeInternal: true,
   excludeNotDocumented: true,
@@ -25,7 +23,6 @@ const config = {
   },
   out: "site",
   readme: "./README.md",
-  useFirstParagraphOfCommentAsSummary: true,
 };
 
 export default config;

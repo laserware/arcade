@@ -8,7 +8,7 @@
  *
  * @category Array
  */
-export const sortBy = <T>(values: T[], field: string): T[] => {
+export function sortBy<T>(values: T[], field: string): T[] {
   if (values.length < 2) {
     return values;
   }
@@ -24,4 +24,4 @@ export const sortBy = <T>(values: T[], field: string): T[] => {
   } else {
     return values.toSorted((a, z) => (a[key] as number) - (z[key] as number));
   }
-};
+}

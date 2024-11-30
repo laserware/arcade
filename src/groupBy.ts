@@ -36,9 +36,6 @@ export function groupBy<T>(values: T[], property: string): Dict<T[]>;
  */
 export function groupBy<T>(values: T[], iteratee: Iteratee<T>): Dict<T[]>;
 
-/**
- * Groups values by a property or return value of an iterator function.
- */
 export function groupBy<T>(
   values: T[],
   iterateeOrProperty: Iteratee<T> | string,

@@ -9,10 +9,10 @@
  *
  * @category Array
  */
-export const toReversed = <T>(values: T[]): T[] => {
+export function toReversed<T>(values: T[]): T[] {
   const copy = [...values];
 
   copy.reverse();
 
   return copy;
-};
+}

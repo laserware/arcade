@@ -7,4 +7,6 @@
  *
  * @category Utility
  */
-export const uniq = <T>(values: T[]): T[] => [...new Set(values)];
+export function uniq<T>(values: T[]): T[] {
+  return [...new Set(values)];
+}

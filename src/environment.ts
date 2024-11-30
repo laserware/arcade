@@ -7,7 +7,9 @@
  *
  * @category Utility
  */
-export const isRunningInBrowser = (): boolean => typeof window !== "undefined";
+export function isRunningInBrowser(): boolean {
+  return typeof window !== "undefined";
+}
 
 /**
  * Checks if the program is running in Node.js.
@@ -16,8 +18,8 @@ export const isRunningInBrowser = (): boolean => typeof window !== "undefined";
  *
  * @category Utility
  */
-export const isRunningInNode = (): boolean => {
+export function isRunningInNode(): boolean {
   const globalNavigator = globalThis.navigator as { userAgent: string };
 
   return /node/i.test(globalNavigator.userAgent);
-};
+}

@@ -7,9 +7,9 @@
  *
  * @category Utility
  */
-export const toBoolean = (
+export function toBoolean(
   value: boolean | number | string | null | undefined,
-): boolean => {
+): boolean {
   if (typeof value === "boolean") {
     return value;
   }
@@ -23,4 +23,4 @@ export const toBoolean = (
   }
 
   return false;
-};
+}

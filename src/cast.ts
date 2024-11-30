@@ -10,4 +10,6 @@
  *
  * @category Utility
  */
-export const cast = <T>(value: any): T => value as unknown as T;
+export function cast<T>(value: any): T {
+  return value as unknown as T;
+}

@@ -5,5 +5,6 @@
  *
  * @category Utility
  */
-export const pause = (duration: number): Promise<void> =>
-  new Promise((resolve) => setTimeout(resolve, duration));
+export function pause(duration: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, duration));
+}

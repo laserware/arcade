@@ -7,9 +7,9 @@
  *
  * @category Utility
  */
-export const isNil = (
+export function isNil(
   value: unknown | null | undefined,
-): value is null | undefined => {
+): value is null | undefined {
   // eslint-disable-next-line eqeqeq
   return value == null;
-};
+}

@@ -9,7 +9,7 @@ import type { AnyPlainObject } from "./types.js";
  *
  * @category Object
  */
-export const isPlainObject = (value: any): value is AnyPlainObject => {
+export function isPlainObject(value: any): value is AnyPlainObject {
   if (value === null || value === undefined) {
     return false;
   }
@@ -23,4 +23,4 @@ export const isPlainObject = (value: any): value is AnyPlainObject => {
   }
 
   return Object.getPrototypeOf(value) === Object.prototype;
-};
+}

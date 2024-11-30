@@ -26,9 +26,6 @@ export function omit<T extends AnyDict>(dict: T, key: string): T;
  */
 export function omit<T extends AnyDict>(dict: T, keys: string[]): T;
 
-/**
- * Removes entries from an object that correspond with specified key(s).
- */
 export function omit<T extends AnyDict>(
   dict: T,
   keyOrKeys: string | string[],

@@ -35,7 +35,7 @@
  *
  * @category String
  */
-export const kebabCase = (value: string): string => {
+export function kebabCase(value: string): string {
   const KEBAB_REGEX = /[A-Z\u00C0-\u00D6\u00D8-\u00DE]/g;
 
   // If the value has any spaces, replace spaces with "-" and ensure the entire
@@ -53,4 +53,4 @@ export const kebabCase = (value: string): string => {
       // Replace words that start with a capital letter with `-<first letter>`:
       .replace(KEBAB_REGEX, (match) => "-" + match.toLowerCase())
   );
-};
+}

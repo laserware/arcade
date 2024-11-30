@@ -11,7 +11,7 @@ import { isNil } from "./isNil.js";
  *
  * @category Number
  */
-export const toNumber = (value: unknown, fallback: number): number => {
+export function toNumber(value: unknown, fallback: number): number {
   if (isNil(value)) {
     return fallback;
   }
@@ -23,4 +23,4 @@ export const toNumber = (value: unknown, fallback: number): number => {
   } else {
     return numericValue;
   }
-};
+}

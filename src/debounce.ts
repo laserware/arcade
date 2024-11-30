@@ -14,7 +14,7 @@ import type { AnyFunc } from "./types.js";
  *
  * @category Function
  */
-export const debounce = (func: AnyFunc, delay: number): AnyFunc => {
+export function debounce(func: AnyFunc, delay: number): AnyFunc {
   let timeout: NodeJS.Timeout | number;
 
   if (typeof func !== "function") {
@@ -28,4 +28,4 @@ export const debounce = (func: AnyFunc, delay: number): AnyFunc => {
       func(...args);
     }, delay);
   };
-};
+}

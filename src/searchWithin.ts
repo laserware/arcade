@@ -13,15 +13,16 @@ import type { AnyDict } from "./types.js";
  *
  * @category Collection
  */
-export const searchWithin = <T extends AnyDict>(
+export function searchWithin<T extends AnyDict>(
   collection: T[],
   searchTerm: string,
   fieldName: string,
-): T[] =>
-  collection.filter((value) => {
+): T[] {
+  return collection.filter((value) => {
     if (isNil(value[fieldName])) {
       return false;
     }
 
     return value[fieldName].toLowerCase().includes(searchTerm.toLowerCase());
   });
+}

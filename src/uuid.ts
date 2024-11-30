@@ -11,7 +11,7 @@ import { isRunningInNode } from "./environment.js";
  *
  * @category Utility
  */
-export const uuid = (): string => {
+export function uuid(): string {
   if (isRunningInNode()) {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require("node:crypto").randomUUID();
@@ -22,4 +22,4 @@ export const uuid = (): string => {
   }
 
   throw new Error("Unable to generate UUID");
-};
+}

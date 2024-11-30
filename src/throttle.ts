@@ -13,7 +13,7 @@ import type { AnyFunc } from "./types.js";
  *
  * @category Function
  */
-export const throttle = (func: AnyFunc, delay: number): AnyFunc => {
+export function throttle(func: AnyFunc, delay: number): AnyFunc {
   let shouldWait = false;
 
   if (typeof func !== "function") {
@@ -33,4 +33,4 @@ export const throttle = (func: AnyFunc, delay: number): AnyFunc => {
       shouldWait = false;
     }, delay);
   };
-};
+}

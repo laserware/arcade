@@ -9,10 +9,7 @@
  *
  * @category Number
  */
-export const gte = (
-  value: number | string,
-  other: number | string,
-): boolean => {
+export function gte(value: number | string, other: number | string): boolean {
   if (typeof value === "string") {
     value = Number(value);
   }
@@ -22,7 +19,7 @@ export const gte = (
   }
 
   return value >= other;
-};
+}
 
 /**
  * Checks if the specified `value` is less than or equal to the specified
@@ -35,10 +32,7 @@ export const gte = (
  *
  * @category Number
  */
-export const lte = (
-  value: number | string,
-  other: number | string,
-): boolean => {
+export function lte(value: number | string, other: number | string): boolean {
   if (typeof value === "string") {
     value = Number(value);
   }
@@ -48,4 +42,4 @@ export const lte = (
   }
 
   return value <= other;
-};
+}

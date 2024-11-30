@@ -31,5 +31,6 @@ import type { KeysOf } from "./types.js";
  *
  * @category Object
  */
-export const keysOf = <T extends Record<any, any>>(dict: T): KeysOf<T> =>
-  Object.keys(dict) as KeysOf<T>;
+export function keysOf<T extends Record<any, any>>(dict: T): KeysOf<T> {
+  return Object.keys(dict) as KeysOf<T>;
+}

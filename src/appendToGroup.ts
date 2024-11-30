@@ -50,6 +50,9 @@ export function appendToGroup<V, K extends DictKey = string>(
  * array. The object is mutated for performance reasons, and the mutated
  * `groupedArray` is returned.
  *
+ * @template V Type of values in the specified `groupedArray`.
+ * @template K Key of the values in the specified array (i.e. `number`).
+ *
  * @param groupedArray Array of arrays (with specified index as the key).
  * @param index Index of the array to update group values.
  * @param value Value that gets appended to the array in the dictionary.
@@ -84,10 +87,6 @@ export function appendToGroup<V, K = number>(
   value: V,
 ): V[][];
 
-/**
- * Appends a specified value to an object or array using a specified key (for
- * objects) or index (for arrays).
- */
 export function appendToGroup<V, K extends DictKey | number>(
   dictOrGroupedArray: K extends number ? V[][] : Record<K, V[]>,
   keyOrIndex: K,

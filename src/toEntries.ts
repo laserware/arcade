@@ -16,8 +16,8 @@ import type { Dict } from "./types.js";
  *
  * @category Object
  */
-export const toEntries = <V, K = string>(dict: Dict<V>): [K, V][] => {
+export function toEntries<V, K = string>(dict: Dict<V>): [K, V][] {
   const entries = Object.entries(dict);
 
   return entries as [K, V][];
-};
+}

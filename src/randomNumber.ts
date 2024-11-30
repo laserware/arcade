@@ -8,8 +8,8 @@
  *
  * @category Number
  */
-export const randomNumber = (minimum: number, maximum: number): number => {
+export function randomNumber(minimum: number, maximum: number): number {
   const result = Math.random() * (maximum - minimum) + minimum;
 
   return Math.floor(result);
-};
+}

@@ -9,5 +9,6 @@ import { isNil } from "./isNil.js";
  *
  * @category Utility
  */
-export const isNotNil = <T>(value: T | null | undefined): value is T =>
-  !isNil(value);
+export function isNotNil<T>(value: T | null | undefined): value is T {
+  return !isNil(value);
+}

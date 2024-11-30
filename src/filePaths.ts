@@ -10,11 +10,11 @@ import { isPlatform } from "./platform.js";
  *
  * @category File System
  */
-export const joinFilePath = (...pathElements: string[]): string => {
+export function joinFilePath(...pathElements: string[]): string {
   const separator = isPlatform("windows") ? "\\" : "/";
 
   return pathElements.join(separator);
-};
+}
 
 /**
  * Splits the specified `filePath` into separate elements based on the host
@@ -26,8 +26,8 @@ export const joinFilePath = (...pathElements: string[]): string => {
  *
  * @category File System
  */
-export const splitFilePath = (filePath: string): string[] => {
+export function splitFilePath(filePath: string): string[] {
   const separator = isPlatform("windows") ? "\\" : "/";
 
   return filePath.split(separator).filter(Boolean);
-};
+}

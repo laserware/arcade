@@ -13,10 +13,10 @@ import { isNil } from "./isNil.js";
  *
  * @category Array
  */
-export const toSorted = <T>(
+export function toSorted<T>(
   values: T[],
   compareFunc?: (a: T, z: T) => number,
-): T[] => {
+): T[] {
   const copy = [...values];
 
   if (!isNil(compareFunc)) {
@@ -26,4 +26,4 @@ export const toSorted = <T>(
   }
 
   return copy;
-};
+}

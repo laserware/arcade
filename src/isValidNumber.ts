@@ -10,7 +10,7 @@ import { isNil } from "./isNil.js";
  *
  * @category Number
  */
-export const isValidNumber = (value: unknown): value is number => {
+export function isValidNumber(value: unknown): value is number {
   if (isNil(value)) {
     return false;
   }
@@ -24,4 +24,4 @@ export const isValidNumber = (value: unknown): value is number => {
   }
 
   return !Number.isNaN(Number(value));
-};
+}

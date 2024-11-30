@@ -107,7 +107,7 @@ const postProcess = (value: string): string => {
  *
  * @category String
  */
-export const camelCase = (value: string): string => {
+export function camelCase(value: string): string {
   // noinspection SuspiciousTypeOfGuard
   if (typeof value !== "string") {
     throw new TypeError("Expected the value to be string");
@@ -135,4 +135,4 @@ export const camelCase = (value: string): string => {
   casedValue = casedValue.toLowerCase();
 
   return postProcess(casedValue);
-};
+}

@@ -70,7 +70,7 @@
  *
  * @category Number
  */
-export const clamp = (value: number, lower: number, upper: number): number => {
+export function clamp(value: number, lower: number, upper: number): number {
   let clampedValue = Number(value);
   let validLower = Number(lower);
   let validUpper = Number(upper);
@@ -84,4 +84,4 @@ export const clamp = (value: number, lower: number, upper: number): number => {
   }
 
   return clampedValue;
-};
+}

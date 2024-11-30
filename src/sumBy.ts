@@ -12,7 +12,7 @@ import type { AnyDict } from "./types.js";
  *
  * @category Collection
  */
-export const sumBy = (collection: AnyDict[], field: string): number => {
+export function sumBy(collection: AnyDict[], field: string): number {
   let total = 0;
 
   if (collection.length === 0) {
@@ -36,4 +36,4 @@ export const sumBy = (collection: AnyDict[], field: string): number => {
   }
 
   return total;
-};
+}

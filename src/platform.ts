@@ -22,7 +22,7 @@ let currentPlatform: Platform = "unknown";
  *
  * @category Platform
  */
-export const getPlatform = (): Platform => {
+export function getPlatform(): Platform {
   // Check if the platform has already been cached first. If it was, return it!
   if (currentPlatform !== "unknown") {
     return currentPlatform;
@@ -45,7 +45,7 @@ export const getPlatform = (): Platform => {
   }
 
   return "unknown";
-};
+}
 
 /**
  * Checks if the specified platform matches the host.
@@ -56,8 +56,9 @@ export const getPlatform = (): Platform => {
  *
  * @category Platform
  */
-export const isPlatform = (platform: Platform): boolean =>
-  getPlatform() === platform;
+export function isPlatform(platform: Platform): boolean {
+  return getPlatform() === platform;
+}
 
 /**
  * Caches the platform, so it doesn't need to be checked on every call to
@@ -67,13 +68,13 @@ export const isPlatform = (platform: Platform): boolean =>
  *
  * @category Platform
  */
-export const cachePlatform = (): Platform => {
+export function cachePlatform(): Platform {
   if (currentPlatform === "unknown") {
     currentPlatform = getPlatform();
   }
 
   return currentPlatform;
-};
+}
 
 /**
  * Parses the platform string and returns the appropriate Platform enum.

@@ -7,5 +7,6 @@
  *
  * @category String
  */
-export const capitalize = (value: string): string =>
-  value.charAt(0).toUpperCase().concat(value.slice(1));
+export function capitalize(value: string): string {
+  return value.charAt(0).toUpperCase().concat(value.slice(1));
+}
