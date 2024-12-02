@@ -7,7 +7,7 @@
  *
  * @returns Array of items with duplicates removed.
  *
- * @category Utility
+ * @category Array
  */
 export function uniq<T>(items: T[]): T[] {
   return [...new Set(items)];

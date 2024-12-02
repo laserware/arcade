@@ -1,7 +1,7 @@
 /* istanbul ignore file -- @preserve: This file is super hard to test because we're using global built-ins. */
 // noinspection JSDeprecatedSymbols
 
-import { isRunningInBrowser, isRunningInNode } from "./environment.js";
+import { isRunningIn } from "./runtime.js";
 
 /**
  * Possible platforms for the host. Note that Linux encompasses several different
@@ -28,7 +28,7 @@ export function getPlatform(): Platform {
     return currentPlatform;
   }
 
-  if (isRunningInBrowser()) {
+  if (isRunningIn("browser")) {
     const anyNavigator = navigator as any;
 
     // navigator.userAgentData.platform is the 2022 way of detecting.
@@ -40,7 +40,7 @@ export function getPlatform(): Platform {
   }
 
   // Usable from Node.js:
-  if (isRunningInNode()) {
+  if (isRunningIn("node")) {
     return parsePlatform(process.platform);
   }
 

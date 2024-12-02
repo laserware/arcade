@@ -14,4 +14,9 @@ Most of Lodash's functions aren't needed anymore. [You probably don't need Lodas
 
 > Why did you vendor some libraries instead of just installing and re-exporting them?
 
-I have grown weary of constantly managing dependency updates. If a library is less than 100 lines of code, I'm going to just copy the code, give props, and include the license.
+To avoid constantly managing dependency updates. If a library is less than 100 lines of code, I'm going to just copy the code, give props, and include the license.
+
+> Why did you install and re-export some libraries?
+
+For the same reason that I vendor them: to avoid constantly managing dependency updates for libraries that are used in several projects.
+I just need to update it _here_ and publish a new version, then I only need to update one dependency (this one) in the affected projects.

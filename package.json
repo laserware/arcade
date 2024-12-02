@@ -35,7 +35,7 @@
     "preversion": "npm run eslint && npm run typecheck",
     "version": "npm run prettier && git add -A src",
     "postversion": "git push && git push --tags",
-    "docs:generate": "typedoc  --options typedoc.config.mjs",
+    "docs:generate": "typedoc  --options typedoc.json",
     "docs:serve": "mkdir -p ./site && cd ./site && ../node_modules/.bin/vite",
     "typecheck": "tsc --noEmit",
     "prettier": "prettier --cache --write src",
