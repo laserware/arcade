@@ -1,3 +1,5 @@
+/* istanbul ignore file -- @preserve: Since this is a forwarded export, we're skipping tests. */
+
 import { deepEqual } from "fast-equals";
 
 /**
