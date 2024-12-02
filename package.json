@@ -1,6 +1,6 @@
 {
   "name": "@laserware/arcade",
-  "version": "3.9.0",
+  "version": "3.10.0",
   "description": "Miscellaneous utility functions.",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
