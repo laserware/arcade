@@ -18,9 +18,7 @@ export function isRunningIn(runtime: Runtime): boolean {
     }
 
     case "node": {
-      const globalNavigator = globalThis.navigator as { userAgent: string };
-
-      return /node/i.test(globalNavigator.userAgent);
+      return typeof window === "undefined" && typeof process !== "undefined";
     }
 
     default:

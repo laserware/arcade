@@ -9,7 +9,7 @@
   "hideGenerator": true,
   "navigation": {
     "compactFolders": true,
-    "excludeReferences": false,
+    "excludeReferences": true,
     "includeCategories": true,
     "includeFolders": true,
     "includeGroups": false
