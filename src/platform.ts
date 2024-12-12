@@ -1,7 +1,7 @@
 /* istanbul ignore file -- @preserve: This file is super hard to test because we're using global built-ins. */
 // noinspection JSDeprecatedSymbols
 
-import { isRunningIn } from "./runtime.js";
+import { isRunningIn } from "./isRunningIn.js";
 
 /**
  * Possible platforms for the host. Note that Linux encompasses several different

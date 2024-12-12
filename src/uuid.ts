@@ -1,6 +1,6 @@
 /* istanbul ignore file -- @preserve: This just picks which `randomUUID` to use based on the env. */
 
-import { isRunningIn } from "./runtime.js";
+import { isRunningIn } from "./isRunningIn.js";
 
 /**
  * Generates a V4 UUID using the [Node.js crypto.randomUUID](https://nodejs.org/api/crypto.html#cryptorandomuuidoptions)
