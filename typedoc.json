@@ -16,5 +16,6 @@
   },
   "navigationLinks": { "GitHub": "https://github.com/laserware/arcade" },
   "out": "site",
-  "readme": "./README.md"
+  "readme": "./README.md",
+  "useFirstParagraphOfCommentAsSummary": true
 }
