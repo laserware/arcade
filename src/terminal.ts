@@ -42,7 +42,7 @@ export type TerminalStyleFormatter = (input: string) => string;
  * @category Terminal
  */
 // prettier-ignore
-type TerminalStyle =
+export type TerminalStyle =
   | "reset"
   // Text Decoration:
   | "bold" | "dim" | "italic" | "underline" | "inverse" | "hidden" | "strikethrough"

@@ -67,7 +67,7 @@ import { isNotNil } from "./isNotNil.js";
  * @category Utility
  */
 export namespace runtime {
-  const runtimeCache = new Map<Runtime, boolean>();
+  const cache = new Map<Runtime, boolean>();
 
   /**
    * Runtime environment in which the code is executing.
@@ -120,24 +120,18 @@ export namespace runtime {
    * @category Utility
    */
   export function isBrowser(): boolean {
-    if (runtimeCache.has("browser")) {
-      return runtimeCache.get("browser")!;
-    }
+    const entry = asCacheEntry("browser");
 
-    let isEnv = false;
+    if (entry.exists()) {
+      return entry.value();
+    }
 
     // For Electron:
     if (typeof process !== "undefined" && "type" in process) {
-      isEnv = process.type === "renderer";
+      return entry.set(process.type === "renderer");
     }
 
-    if (!isEnv) {
-      isEnv = typeof window !== "undefined";
-    }
-
-    runtimeCache.set("browser", isEnv);
-
-    return isEnv;
+    return entry.set(typeof window !== "undefined");
   }
 
   /**
@@ -148,18 +142,17 @@ export namespace runtime {
    * @category Utility
    */
   export function isWebWorker(): boolean {
-    if (runtimeCache.has("worker")) {
-      return runtimeCache.get("worker")!;
+    const entry = asCacheEntry("worker");
+
+    if (entry.exists()) {
+      return entry.value();
     }
 
-    const isEnv =
+    return entry.set(
       typeof self === "object" &&
-      self.constructor &&
-      self.constructor.name === "DedicatedWorkerGlobalScope";
-
-    runtimeCache.set("worker", isEnv);
-
-    return isEnv;
+        self.constructor &&
+        self.constructor.name === "DedicatedWorkerGlobalScope",
+    );
   }
 
   /**
@@ -170,25 +163,21 @@ export namespace runtime {
    * @category Utility
    */
   export function isNode(): boolean {
-    if (runtimeCache.has("node")) {
-      return runtimeCache.get("node")!;
-    }
+    const entry = asCacheEntry("node");
 
-    let isEnv = false;
+    if (entry.exists()) {
+      return entry.value();
+    }
 
     // For Electron:
     if (typeof process !== "undefined" && "type" in process) {
       // It is so weird that Electron calls the main process "browser":
-      isEnv = process.type === "browser" || process.type === "utility";
+      // prettier-ignore
+      return entry.set(process.type === "browser" || process.type === "utility");
     }
 
-    if (!isEnv) {
-      isEnv = typeof window === "undefined" && typeof process !== "undefined";
-    }
-
-    runtimeCache.set("node", isEnv);
-
-    return isEnv;
+    // prettier-ignore
+    return entry.set(typeof window === "undefined" && typeof process !== "undefined");
   }
 
   /**
@@ -199,21 +188,15 @@ export namespace runtime {
    * @category Utility
    */
   export function isDeno(): boolean {
-    if (runtimeCache.has("deno")) {
-      return runtimeCache.get("deno")!;
+    const entry = asCacheEntry("deno");
+
+    if (entry.exists()) {
+      return entry.value();
     }
 
-    const isEnv =
-      // @ts-expect-error
-      typeof Deno !== "undefined" &&
-      // @ts-expect-error
-      typeof Deno.version !== "undefined" &&
-      // @ts-expect-error
-      typeof Deno.version.deno !== "undefined";
-
-    runtimeCache.set("deno", isEnv);
-
-    return isEnv;
+    // @ts-expect-error
+    // prettier-ignore
+    return entry.set(typeof Deno !== "undefined" && isNotNil(Deno?.version?.deno));
   }
 
   /**
@@ -226,16 +209,14 @@ export namespace runtime {
    * @category Utility
    */
   export function isBun(): boolean {
-    if (runtimeCache.has("bun")) {
-      return runtimeCache.get("bun")!;
+    const entry = asCacheEntry("bun");
+
+    if (entry.exists()) {
+      return entry.value();
     }
 
     // prettier-ignore
-    const isEnv = typeof process !== "undefined" && isNotNil(process.versions?.bun);
-
-    runtimeCache.set("bun", isEnv);
-
-    return isEnv;
+    return entry.set(typeof process !== "undefined" && isNotNil(process.versions?.bun));
   }
 
   /**
@@ -249,17 +230,53 @@ export namespace runtime {
    * @category Utility
    */
   export function isJSDOM(): boolean {
+    const entry = asCacheEntry("jsdom");
+
+    if (entry.exists()) {
+      return entry.value();
+    }
+
     if (typeof window !== "undefined" && window.name === "nodejs") {
-      return true;
+      return entry.set(true);
     }
 
     if (typeof navigator === "undefined") {
-      return false;
+      return entry.set(false);
     }
 
     const userAgent = navigator?.userAgent ?? "";
 
-    return /Node\.js|jsdom/.test(userAgent);
+    return entry.set(/Node\.js|jsdom/.test(userAgent));
+  }
+
+  /**
+   * Wrapper around cached runtime entries from the cache map.
+   *
+   * @internal
+   */
+  interface CacheEntry {
+    /** Returns true if the entry exists in the cache. */
+    exists(): boolean;
+    /** Value of the cache entry. */
+    value(): boolean;
+    /** Updates value of cache entry. */
+    set(value: boolean): boolean;
+  }
+
+  function asCacheEntry(runtime: Runtime): CacheEntry {
+    return {
+      exists(): boolean {
+        return cache.has(runtime);
+      },
+      value(): boolean {
+        return cache.get(runtime)!;
+      },
+      set(value: boolean): boolean {
+        cache.set(runtime, value);
+
+        return value;
+      },
+    };
   }
 }
 

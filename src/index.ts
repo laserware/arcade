@@ -1,4 +1,5 @@
 export { appendToGroup } from "./appendToGroup.js";
+export { asNumber } from "./asNumber.js";
 export { camelCase } from "./camelCase.js";
 export { capitalize } from "./capitalize.js";
 export { cast } from "./cast.js";
@@ -38,12 +39,13 @@ export { sumBy } from "./sumBy.js";
 export {
   createTerminalStyles,
   terminalStyles,
+  type TerminalStyle,
   type TerminalStyleFormatter,
   type TerminalStyles,
 } from "./terminal.js";
 export { throttle } from "./throttle.js";
 export { toBoolean } from "./toBoolean.js";
-export { asNumber, toNumber } from "./toNumber.js";
+export { toNumber } from "./toNumber.js";
 export { toEntries } from "./toEntries.js";
 export { toReversed } from "./toReversed.js";
 export { toSorted } from "./toSorted.js";
