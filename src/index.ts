@@ -31,7 +31,7 @@ export { randomNumber } from "./randomNumber.js";
 export { removeAtIndex } from "./removeAtIndex.js";
 export { round } from "./round.js";
 export { isRunningIn } from "./runtime.js";
-export * as runtime from "./runtime.js";
+export { runtime } from "./runtime.js";
 export { searchWithin } from "./searchWithin.js";
 export { sortBy } from "./sortBy.js";
 export { sumBy } from "./sumBy.js";

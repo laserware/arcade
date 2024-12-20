@@ -14,12 +14,9 @@ describe("the kebabCase function", () => {
       value: "space Separated",
       expected: "space-separated",
     },
-  ])(
-    "returns the correct value for a $value string",
-    async ({ value, expected }) => {
-      const result = kebabCase(value);
+  ])("returns the correct value for a $value string", async ({ value, expected }) => {
+    const result = kebabCase(value);
 
-      expect(result).toBe(expected);
-    },
-  );
+    expect(result).toBe(expected);
+  });
 });
