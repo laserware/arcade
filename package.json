@@ -59,6 +59,18 @@
     "vitest": "^2.1.8"
   },
   "prettier": {
-    "trailingComma": "all"
+    "trailingComma": "all",
+    "overrides": [
+      {
+        "files": [
+          "*.e2e.ts",
+          "*.fakes.ts",
+          "*.test.ts"
+        ],
+        "options": {
+          "printWidth": 100
+        }
+      }
+    ]
   }
 }

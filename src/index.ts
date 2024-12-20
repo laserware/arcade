@@ -19,7 +19,6 @@ export { keyBy } from "./keyBy.js";
 export { keysOf } from "./keysOf.js";
 export { noop } from "./noop.js";
 export { isPlainObject } from "./isPlainObject.js";
-export { isRunningIn } from "./isRunningIn.js";
 export { omit } from "./omit.js";
 export { pause } from "./pause.js";
 export {
@@ -31,12 +30,20 @@ export {
 export { randomNumber } from "./randomNumber.js";
 export { removeAtIndex } from "./removeAtIndex.js";
 export { round } from "./round.js";
+export { isRunningIn } from "./runtime.js";
+export * as runtime from "./runtime.js";
 export { searchWithin } from "./searchWithin.js";
 export { sortBy } from "./sortBy.js";
 export { sumBy } from "./sumBy.js";
+export {
+  createTerminalStyles,
+  terminalStyles,
+  type TerminalStyleFormatter,
+  type TerminalStyles,
+} from "./terminal.js";
 export { throttle } from "./throttle.js";
 export { toBoolean } from "./toBoolean.js";
-export { toNumber } from "./toNumber.js";
+export { asNumber, toNumber } from "./toNumber.js";
 export { toEntries } from "./toEntries.js";
 export { toReversed } from "./toReversed.js";
 export { toSorted } from "./toSorted.js";

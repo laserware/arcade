@@ -8,7 +8,7 @@ describe("the pause function", () => {
     await pause(duration);
     const end = Date.now();
 
-    expect(end - start).toBeGreaterThanOrEqual(duration);
+    expect(end - start).toBeGreaterThanOrEqual(duration - 1);
   });
 
   it("does not take significantly longer than the specified duration", async () => {

@@ -15,6 +15,7 @@ export default [
     files: filePatterns.typescript,
     rules: {
       "import/extensions": "off",
+      "max-params": ["error", 4],
     },
   },
   {
