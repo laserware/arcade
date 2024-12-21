@@ -4,6 +4,7 @@ export { camelCase } from "./camelCase.js";
 export { capitalize } from "./capitalize.js";
 export { cast } from "./cast.js";
 export { clamp } from "./clamp.js";
+export { dateFormat, type DateFormatMaskOption } from "./dateFormat.js";
 export { debounce } from "./debounce.js";
 export { dedent, type Dedent } from "./dedent.js";
 export { entriesOf } from "./entriesOf.js";
