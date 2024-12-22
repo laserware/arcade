@@ -34,8 +34,10 @@ import { isNotNil } from "./isNotNil.js";
  *
  * @category Runtime
  */
-export type Runtime = "browser" | "bun" | "deno" | "jsdom" | "node" | "worker";
+export type Runtime = "browser" | "bun" | "deno" | "node" | "worker";
 
+// We cache the runtime on the first lookup since we only need to perform the
+// check once:
 let cachedRuntime: Runtime | null = null;
 
 /**
@@ -72,18 +74,6 @@ export function getRuntime(): Runtime {
   }
 
   if (typeof window !== "undefined") {
-    /**
-     * Checks if currently running in JSDOM environment. This is useful for testing.
-     * Taken from [JSDOM GitHub issue](https://github.com/jsdom/jsdom/issues/1537#issuecomment-229405327).
-     */
-    if (typeof navigator !== "undefined") {
-      const userAgent = navigator?.userAgent ?? "";
-
-      if (/Node\.js|jsdom/.test(userAgent)) {
-        return setCachedRuntime("jsdom");
-      }
-    }
-
     return setCachedRuntime("browser");
   }
 
@@ -101,9 +91,11 @@ export function getRuntime(): Runtime {
       return setCachedRuntime("bun");
     }
 
-    // Electron has a `process` object available in global scope in the browser
-    // (i.e. "renderer") process, so we need to run an extra check to get the
-    // correct runtime:
+    /**
+     * Electron has a `process` object available in global scope in the browser
+     * (i.e. "renderer") process, so we need to run an extra check to get the
+     * correct runtime.
+     */
     if ("type" in process && isNotNil(process.versions?.electron)) {
       if (process.type === "worker") {
         return setCachedRuntime("worker");
@@ -119,11 +111,7 @@ export function getRuntime(): Runtime {
     return setCachedRuntime("node");
   }
 
-  if (cachedRuntime === null) {
-    throw new Error("Unable to get runtime");
-  } else {
-    return cachedRuntime;
-  }
+  throw new Error("Unable to get runtime");
 }
 
 function setCachedRuntime(runtime: Runtime): Runtime {

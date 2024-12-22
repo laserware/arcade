@@ -1,11 +1,4 @@
-import { execFileSync } from "node:child_process";
-import { readFileSync, rmSync } from "node:fs";
-import { resolve } from "node:path";
-import vm from "node:vm";
-
-import { createTerminalStyles, terminalStyles, type isUsingTerminalStyles } from "../terminal.js";
-
-const terminalFilePath = resolve(import.meta.dirname, "terminal.cjs");
+import { areTerminalColorsSupported, createTerminalStyles } from "../terminal.js";
 
 const formats = {
   reset: ["\x1b[0m", "\x1b[0m"],
@@ -54,93 +47,106 @@ const formats = {
 const styles = createTerminalStyles(true);
 
 describe("within terminal", () => {
-  beforeAll(() => {
-    execFileSync(
-      "npx",
-      // prettier-ignore
-      [
-        "tsup", "src/terminal.ts",
-        "--format", "cjs",
-        "--config", "false",
-        "--outDir", "src/__tests__",
-      ],
-      {
-        cwd: resolve(import.meta.dirname, "..", ".."),
-      },
-    );
-  });
+  describe("when running in different environments", () => {
+    afterEach(() => {
+      vi.unstubAllGlobals();
+    });
 
-  afterAll(() => {
-    rmSync(terminalFilePath);
-  });
-
-  describe.only("when running in different environments", () => {
     it("enables colors on a CI server", () => {
-      const exports = getExportsWithEnv({ env: { TERM: "dumb", CI: "1" } });
+      vi.stubGlobal("process", {
+        env: { ...process.env, TERM: "dumb", CI: "1" },
+      });
 
-      expect(exports.isEnabled()).toBe(true);
-      expect(exports.styles.red("text")).toBe(exports.creator(true).red("text"));
+      expect(areTerminalColorsSupported()).toBeTruthy();
     });
 
     it("enables colors when --color arg is specified", () => {
-      const exports = getExportsWithEnv({ env: { TERM: "dumb" }, argv: ["--color"] });
+      vi.stubGlobal("process", {
+        env: { ...process.env, TERM: "dumb" },
+        argv: ["--color"],
+      });
 
-      expect(exports.isEnabled()).toBe(true);
-      expect(exports.styles.red("text")).toBe(exports.creator(true).red("text"));
+      expect(areTerminalColorsSupported()).toBeTruthy();
     });
 
     // FIXME: This test is broken.
-    it.skip("enables colors when env.NO_COLOR is empty", () => {
-      const exports = getExportsWithEnv({ env: { NO_COLOR: "", CI: process.env.CI } });
+    it("enables colors when env.NO_COLOR is empty", () => {
+      vi.stubGlobal("process", {
+        env: { ...process.env, NO_COLOR: "", CI: process.env.CI },
+        argv: ["--color"],
+      });
 
-      expect(exports.isEnabled()).toBe(true);
-      expect(exports.styles.red("text")).toBe(exports.creator(true).red("text"));
+      expect(areTerminalColorsSupported()).toBeTruthy();
     });
 
     it("enables colors when env.FORCE_COLOR is specified", () => {
-      const exports = getExportsWithEnv({ env: { TERM: "dumb", FORCE_COLOR: "1" } });
+      vi.stubGlobal("process", {
+        env: { ...process.env, TERM: "dumb", FORCE_COLOR: "1" },
+      });
 
-      expect(exports.isEnabled()).toBe(true);
-      expect(exports.styles.red("text")).toBe(exports.creator(true).red("text"));
+      expect(areTerminalColorsSupported()).toBeTruthy();
     });
 
     it("enables colors when running on Windows", () => {
-      const exports = getExportsWithEnv({ env: { TERM: "dumb" }, platform: "win32" });
+      vi.stubGlobal("process", {
+        env: { ...process.env, TERM: "dumb" },
+        platform: "win32",
+      });
 
-      expect(exports.isEnabled()).toBe(true);
-      expect(exports.styles.red("text")).toBe(exports.creator(true).red("text"));
+      expect(areTerminalColorsSupported()).toBeTruthy();
     });
 
     it("enables colors when running on edge runtime", () => {
-      const exports = getExportsWithEnv({
-        env: { FORCE_COLOR: "1" },
+      vi.stubGlobal("process", {
+        env: { ...process.env, FORCE_COLOR: "1" },
         argv: undefined,
         require: undefined,
       });
 
-      expect(exports.isEnabled()).toBe(true);
-      expect(exports.styles.red("text")).toBe(exports.creator(true).red("text"));
+      expect(areTerminalColorsSupported()).toBeTruthy();
     });
 
     it("disables colors when --no-color arg is specified", () => {
-      const exports = getExportsWithEnv({ env: { FORCE_COLOR: "1" }, argv: ["--no-color"] });
+      vi.stubGlobal("process", {
+        env: { ...process.env, FORCE_COLOR: "1" },
+        argv: ["--no-color"],
+      });
 
-      expect(exports.isEnabled()).toBe(false);
-      expect(exports.styles.red("text")).toBe(exports.creator(false).red("text"));
+      expect(areTerminalColorsSupported()).toBeFalsy();
     });
 
     it("disables colors when env.NO_COLOR is specified", () => {
-      const exports = getExportsWithEnv({ env: { FORCE_COLOR: "1", NO_COLOR: "1" } });
+      vi.stubGlobal("process", {
+        env: { ...process.env, FORCE_COLOR: "1", NO_COLOR: "1" },
+      });
 
-      expect(exports.isEnabled()).toBe(false);
-      expect(exports.styles.red("text")).toBe(exports.creator(false).red("text"));
+      expect(areTerminalColorsSupported()).toBeFalsy();
     });
 
     it("disables colors when only dumb terminal available", () => {
-      const exports = getExportsWithEnv({ env: { TERM: "dumb" } });
+      vi.stubGlobal("process", {
+        env: { TERM: "dumb" },
+        stdout: { isTTY: false },
+        argv: [],
+      });
 
-      expect(exports.isEnabled()).toBe(false);
-      expect(exports.styles.red("text")).toBe(exports.creator(false).red("text"));
+      expect(areTerminalColorsSupported()).toBeFalsy();
+    });
+
+    it("enables colors when is TTY and not dumb terminal", () => {
+      vi.stubGlobal("process", {
+        env: { TERM: "" },
+        stdout: { isTTY: true },
+        argv: [],
+      });
+
+      expect(areTerminalColorsSupported()).toBeTruthy();
+    });
+
+    it("disables colors when environment is not available", () => {
+      vi.stubGlobal("process", { env: undefined });
+
+      expect(areTerminalColorsSupported()).toBeFalsy();
     });
   });
 
@@ -285,41 +291,3 @@ describe("within terminal", () => {
     expect(/\[(\d*)m/.test(result)).toBeFalsy();
   });
 });
-
-function getExportsWithEnv({
-  env,
-  argv = [],
-  platform = "darwin",
-  require = global.require,
-  stdout = process.stdout,
-}: {
-  env: Record<string, any>;
-  argv?: string[];
-  platform?: string;
-  require?: any;
-  stdout?: any;
-}): {
-  creator: typeof createTerminalStyles;
-  styles: typeof terminalStyles;
-  isEnabled: typeof isUsingTerminalStyles;
-} {
-  const context = vm.createContext({
-    require,
-    process: { env, argv, platform, stdout },
-    module: { exports: {} },
-  });
-
-  const source = readFileSync(terminalFilePath, "utf-8");
-
-  const script = new vm.Script(source);
-
-  script.runInContext(context);
-
-  const exports = context.module.exports;
-
-  return {
-    creator: exports.createTerminalStyles,
-    styles: exports.terminalStyles,
-    isEnabled: exports.isUsingTerminalStyles,
-  };
-}

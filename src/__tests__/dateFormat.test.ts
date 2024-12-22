@@ -45,10 +45,10 @@ describe("the dateFormat function", () => {
     { date: "2020-10-22T22:10:59.736", mask: "h",    expected: "10" },
     { date: "2020-10-13T13:30:41.278", mask: "h",    expected: "1" },
     { date: "1993-02-19T03:18:18.711", mask: "h",    expected: "3" },
-    { date: "2134-01-25T02:20:42.816", mask: "h",    expected: "2" },
+    { date: "2134-01-25T12:20:42.816", mask: "h",    expected: "12" },
     { date: "1987-02-11T11:03:16.637", mask: "hh",   expected: "11" },
     { date: "2014-09-28T04:29:52.509", mask: "hh",   expected: "04" },
-    { date: "2001-08-02T19:14:19.263", mask: "hh",   expected: "07" },
+    { date: "2001-08-02T12:14:19.263", mask: "hh",   expected: "12" },
     { date: "1872-01-22T19:26:01.744", mask: "hh",   expected: "07" },
     { date: "1883-03-22T07:35:26.419", mask: "H",    expected: "7" },
     { date: "2012-11-07T14:39:48.988", mask: "H",    expected: "14" },
@@ -159,6 +159,30 @@ describe("the dateFormat function", () => {
     expect(result).toMatch(/^[+-]\d{2}:\d{2}$/);
   });
 
+  it("adds timezone for a Z mask when not using UTC", () => {
+    const date = new Date();
+
+    const result = dateFormat(date, "Z");
+
+    expect(result).not.toBe("UTC");
+  });
+
+  it("uses current date if date missing from date string", () => {
+    const expected = new Date().getDate().toString();
+
+    const actual = dateFormat("2020--22T23:04:09.358", "d");
+
+    expect(actual).toBe(expected);
+  });
+
+  it("uses current year if year missing from date string", () => {
+    const expected = new Date().getFullYear().toString();
+
+    const actual = dateFormat("1-22-22T23:04:09.358", "yyyy");
+
+    expect(actual).toBe(expected);
+  });
+
   // prettier-ignore
   it.each([
     { offset: -1, mask: "DDDD", expected: "Yesterday" },
@@ -167,10 +191,26 @@ describe("the dateFormat function", () => {
     { offset: 0,  mask: "DDD",  expected: "Tdy" },
     { offset: 1,  mask: "DDDD", expected: "Tomorrow" },
     { offset: 1,  mask: "DDD",  expected: "Tmw" },
-  ])("returns $expected for relative day using mask $mask", ({ offset, mask, expected }) => {
+  ])("returns $expected for relative day using mask $mask when not using UTC", ({ offset, mask, expected }) => {
     const date = getOffsetDate(offset);
 
     const result = dateFormat(date, mask);
+
+    expect(result).toBe(expected);
+  });
+
+  // prettier-ignore
+  it.each([
+    { offset: -1, mask: "DDDD", expected: "Yesterday" },
+    { offset: -1, mask: "DDD",  expected: "Ysd" },
+    { offset: 0,  mask: "DDDD", expected: "Today" },
+    { offset: 0,  mask: "DDD",  expected: "Tdy" },
+    { offset: 1,  mask: "DDDD", expected: "Tomorrow" },
+    { offset: 1,  mask: "DDD",  expected: "Tmw" },
+  ])("returns $expected for relative day using mask $mask when using UTC", ({ offset, mask, expected }) => {
+    const date = getOffsetDate(offset);
+
+    const result = dateFormat(date, mask, true);
 
     expect(result).toBe(expected);
   });
@@ -321,6 +361,7 @@ describe("the dateFormat function", () => {
       { date: "1763-12-02",              mask: "yyyy", expected: "1763" },
       { date: "0999-01-01",              mask: "yyyy", expected: "0999" },
       { date: "0002-12-11",              mask: "yyyy", expected: "0002" },
+      { date: "2020-08-29T00:32:00.101", mask: "Z",    expected: "UTC" },
     ])("returns $expected for the $mask mask in $date", ({ date, expected, mask }) => {
       const result = dateFormat(date, mask, true);
 

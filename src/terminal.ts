@@ -22,8 +22,6 @@
 import { isNotNil } from "./isNotNil.js";
 import { isRuntime } from "./runtime.js";
 
-let areTerminalStylesEnabled = false;
-
 /**
  * Callback that takes an `input` string and returns the result with formatting
  * applied.
@@ -87,11 +85,9 @@ export const terminalStyles = createTerminalStyles();
  * @category Terminal
  */
 export function createTerminalStyles(
-  enabled = isColorSupported(),
+  enabled = areTerminalColorsSupported(),
 ): TerminalStyles {
   const formatter = enabled ? getFormatter : () => String;
-
-  areTerminalStylesEnabled = enabled;
 
   return {
     reset: formatter("\x1b[0m", "\x1b[0m"),
@@ -143,18 +139,6 @@ export function createTerminalStyles(
 }
 
 /**
- * Checks if terminal styles are supported.
- *
- * This should only be used for testing purposes.
- *
- * @internal
- */
-/* istanbul ignore next -- @preserve: Only needed for testing. */
-export function isUsingTerminalStyles(): boolean {
-  return areTerminalStylesEnabled;
-}
-
-/**
  * Returns the formatter function used to format the log message.
  */
 function getFormatter(
@@ -190,19 +174,27 @@ function replaceClose(
   return result + value.substring(cursor);
 }
 
-function isColorSupported(): boolean {
+/**
+ * Checks if terminal colors are supported based on runtime, environment
+ * variables, and argv passed into application.
+ *
+ * Use for testing purposes only!
+ *
+ * @internal
+ */
+export function areTerminalColorsSupported(): boolean {
   if (isRuntime("browser") || isRuntime("worker")) {
     return true;
   }
 
-  console.log(globalThis);
+  /* istanbul ignore if -- @preserve: This should never technically get hit, but it's here to make TypeScript happy. */
+  if (typeof process === "undefined") {
+    return false;
+  }
 
-  const nodeProcess = process ?? {};
-  const env: Record<string, any> = nodeProcess.env ?? {};
-  const argv = nodeProcess.argv ?? [];
-  const isTTY = (nodeProcess.stdout ?? {}).isTTY;
-
-  console.log(argv);
+  const env = process.env ?? {};
+  const argv = process.argv ?? [];
+  const isTTY = process.stdout?.isTTY ?? false;
 
   switch (true) {
     case (env.NO_COLOR ?? "") !== "":
@@ -211,7 +203,7 @@ function isColorSupported(): boolean {
 
     case isNotNil(env.FORCE_COLOR):
     case argv.includes("--color"):
-    case nodeProcess.platform === "win32":
+    case process?.platform === "win32":
     case isTTY && env.TERM !== "dumb":
     case isNotNil(env.CI):
       return true;

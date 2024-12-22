@@ -191,21 +191,6 @@ export function dateFormat(
   // through 7 (for Sunday):
   const N = D === 0 ? 7 : D;
 
-  const S = (): string => {
-    const suffixes = ["th", "st", "nd", "rd"];
-
-    // Ensure we don't exceed the bounds of the suffixes array:
-    if (d % 10 > 3) {
-      return suffixes[0];
-    }
-
-    const multiplier = (d % 100) - (d % 10) !== 10 ? 1 : 0;
-
-    const index = (multiplier * d) % 10;
-
-    return suffixes[index];
-  };
-
   const utcOffsetPrefix = o > 0 ? "-" : "+";
 
   const utcOffsetHours = Math.floor(Math.abs(o) / 60);
@@ -243,7 +228,7 @@ export function dateFormat(
     Z: () => (utc ? "UTC" : formatTimeZone(date)),
     o: () => utcOffsetPrefix + pad(utcOffsetHours * 100 + (Math.abs(o) % 60), 4),
     p: () => utcOffsetPrefix + pad(utcOffsetHours) + ":" + pad(utcOffsetMinutes),
-    S: () => S(),
+    S: () => getDaySuffix(d),
     W: () => String(W),
     WW: () => pad(W),
     N: () => String(N),
@@ -357,12 +342,12 @@ function getFormatOptions(
 }
 
 function parseDate(value: string, utc: boolean): Date {
-  const now = new Date();
+  const wrapped = wrapDate(new Date(), utc);
 
   const result = REG_EXP_DATE_TIME_FORM.exec(value);
 
   if (result === null || result.groups === undefined) {
-    return now;
+    return wrapped.date;
   }
 
   type ParsedGroup = {
@@ -384,13 +369,18 @@ function parseDate(value: string, utc: boolean): Date {
 
   // We add 1 to the return value of the get month method to ensure we have
   // the month _number_ and not the month _index_.
-  const thisMonth = (utc ? now.getUTCMonth() : now.getMonth()) + 1;
+  const thisMonth = wrapped.getMonth() + 1;
 
   // Since the date passed in as a string is almost certainly using the month
   // number and not the index, we convert back to an index:
   const monthIndex = (toDatePartField(group.month) ?? thisMonth) - 1;
 
-  const thisYear = utc ? now.getUTCFullYear() : now.getFullYear();
+  // Technically, we should never need to fall back to `getFullYear` here,
+  // because the result of the `exec` function from the RegExp above would
+  // be `null` if the year was invalid, but we're including this here to catch
+  // any weird edge cases I haven't thought of.
+  /* istanbul ignore next -- @preserve: We'll probably never have an undefined `group.year` here. */
+  const year = toDatePartField(group.year) ?? wrapped.getFullYear();
 
   type DateParts = [
     /* Year   */ number,
@@ -403,7 +393,7 @@ function parseDate(value: string, utc: boolean): Date {
   ];
 
   const parts: DateParts = [
-    toDatePartField(group.year) ?? thisYear,
+    year,
     monthIndex,
     toDatePartField(group.day),
     toDatePartField(group.hour),
@@ -431,6 +421,41 @@ function toDatePartField(value?: string): number | undefined {
 
 function pad(value: unknown, length: number = 2): string {
   return String(value).padStart(length, "0");
+}
+
+/**
+ * Gets the suffix of the day based on the date number in the month.
+ *
+ * @param day Day of month for which to get suffix.
+ *
+ * @example
+ * getDaySuffix(4);
+ * // "th" (for 4th)
+ *
+ * getDaySuffix(3);
+ * // "rd" (for 3rd)
+ *
+ * getDaySuffix(2);
+ * // "nd" (for 2nd)
+ *
+ * getDaySuffix(1);
+ * // "st" (for 1st)
+ *
+ * @internal
+ */
+function getDaySuffix(day: number): string {
+  const suffixes = ["th", "st", "nd", "rd"];
+
+  // Ensure we don't exceed the bounds of the suffixes array:
+  if (day % 10 > 3) {
+    return suffixes[0];
+  }
+
+  const multiplier = (day % 100) - (day % 10) !== 10 ? 1 : 0;
+
+  const index = (multiplier * day) % 10;
+
+  return suffixes[index];
 }
 
 /**

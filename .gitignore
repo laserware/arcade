@@ -55,4 +55,3 @@ site
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 .idea
-__tests__/terminal.cjs

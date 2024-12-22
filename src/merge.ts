@@ -21,16 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
+ * The merge code was taken from the [deepmerge](https://github.com/TehShrike/deepmerge)
+ * repository on GitHub and the mergeable object check was taken from the
+ * [is-mergeable-object](https://github.com/TehShrike/is-mergeable-object)
+ * repository on GitHub. The code was heavily refactored and the `options`
+ * object was removed.
  */
 
 import { isNil } from "./isNil.js";
 import type { AnyPlainObject, OneOrManyOf } from "./types.js";
-
-// See https://github.com/facebook/react/blob/b5ac963fb791d1298e7f396236383bc955f916c1/src/isomorphic/classic/element/ReactElement.js#L21-L25:
-const REACT_ELEMENT_TYPE =
-  typeof Symbol === "function" && Symbol.for
-    ? Symbol.for("react.element")
-    : 0xeac7;
 
 export type Mergeable = AnyPlainObject | any[];
 
@@ -80,11 +79,13 @@ export function merge<T extends Mergeable, S extends Mergeable = T>(
 
   if (isSourceArray !== isTargetArray) {
     return cloneValue<T & S>(source);
-  } else if (isSourceArray) {
-    return mergeArray(target, source) as T & S;
-  } else {
-    return mergeObject(target, source) as T & S;
   }
+
+  if (isSourceArray) {
+    return mergeArray(target, source) as T & S;
+  }
+
+  return mergeObject(target, source) as T & S;
 }
 
 function mergeArray(target: Mergeable, source: Mergeable): Mergeable[] {
@@ -105,6 +106,7 @@ function mergeObject(
   }
 
   getKeys(source).forEach((key) => {
+    // TODO: Find out a way to test this, I'm not sure what to do here.
     if (isPropertyUnsafe(target, key)) {
       return;
     }
@@ -143,10 +145,13 @@ function isMergeableObject(value: any): value is Mergeable {
 
   const stringValue = Object.prototype.toString.call(value);
 
+  // See https://github.com/facebook/react/blob/b5ac963fb791d1298e7f396236383bc955f916c1/src/isomorphic/classic/element/ReactElement.js#L21-L25:
+  const isReactElement = value.$$typeof === Symbol.for("react.element");
+
   const isSpecial =
     stringValue === "[object RegExp]" ||
     stringValue === "[object Date]" ||
-    value.$$typeof === REACT_ELEMENT_TYPE;
+    isReactElement;
 
   return typeof value === "object" && !isSpecial;
 }
@@ -156,15 +161,14 @@ function emptyTarget(value: OneOrManyOf<Mergeable>): Mergeable {
 }
 
 function getEnumerableOwnPropertySymbols(target: any): string[] {
-  if ("getOwnPropertySymbols" in Object) {
-    const symbols = Object.getOwnPropertySymbols(target).filter((symbol) =>
-      Object.propertyIsEnumerable.call(target, symbol),
-    );
+  // Note that the original implementation had a check to ensure `getOwnPropertySymbols`
+  // was defined on `Object`, but this has been supported in browsers and
+  // Node.js since 2015.
+  const symbols = Object.getOwnPropertySymbols(target).filter((symbol) =>
+    Object.propertyIsEnumerable.call(target, symbol),
+  );
 
-    return symbols as unknown as string[];
-  } else {
-    return [];
-  }
+  return symbols as unknown as string[];
 }
 
 function getKeys(target: Mergeable): string[] {
