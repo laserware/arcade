@@ -68,14 +68,10 @@ export function getRuntime(): Runtime {
     self.constructor &&
     self.constructor.name === "DedicatedWorkerGlobalScope"
   ) {
-    cachedRuntime = "worker";
-
-    return cachedRuntime;
+    return setCachedRuntime("worker");
   }
 
   if (typeof window !== "undefined") {
-    cachedRuntime = "browser";
-
     /**
      * Checks if currently running in JSDOM environment. This is useful for testing.
      * Taken from [JSDOM GitHub issue](https://github.com/jsdom/jsdom/issues/1537#issuecomment-229405327).
@@ -84,20 +80,16 @@ export function getRuntime(): Runtime {
       const userAgent = navigator?.userAgent ?? "";
 
       if (/Node\.js|jsdom/.test(userAgent)) {
-        cachedRuntime = "jsdom";
-
-        return cachedRuntime;
+        return setCachedRuntime("jsdom");
       }
     }
 
-    return cachedRuntime;
+    return setCachedRuntime("browser");
   }
 
   // @ts-ignore
   if (typeof Deno !== "undefined" && isNotNil(Deno?.version?.deno)) {
-    cachedRuntime = "deno";
-
-    return cachedRuntime;
+    return setCachedRuntime("deno");
   }
 
   if (typeof process !== "undefined") {
@@ -106,34 +98,38 @@ export function getRuntime(): Runtime {
      * Taken from [Bun documentation](https://bun.sh/guides/util/detect-bun).
      */
     if (isNotNil(process.versions?.bun)) {
-      cachedRuntime = "bun";
-
-      return cachedRuntime;
+      return setCachedRuntime("bun");
     }
 
-    // For Electron:
+    // Electron has a `process` object available in global scope in the browser
+    // (i.e. "renderer") process, so we need to run an extra check to get the
+    // correct runtime:
     if ("type" in process && isNotNil(process.versions?.electron)) {
       if (process.type === "worker") {
-        cachedRuntime = "worker";
+        return setCachedRuntime("worker");
       } else if (process.type === "renderer") {
-        cachedRuntime = "browser";
+        return setCachedRuntime("browser");
       } else {
-        cachedRuntime = "node";
+        return setCachedRuntime("node");
       }
-
-      return cachedRuntime;
     }
 
-    cachedRuntime = "node";
-
-    return cachedRuntime;
+    // Fall back to Node, since the browser shouldn't have a `process` object
+    // available in global scope:
+    return setCachedRuntime("node");
   }
 
   if (cachedRuntime === null) {
     throw new Error("Unable to get runtime");
+  } else {
+    return cachedRuntime;
   }
+}
 
-  return cachedRuntime;
+function setCachedRuntime(runtime: Runtime): Runtime {
+  cachedRuntime = runtime;
+
+  return runtime;
 }
 
 /**

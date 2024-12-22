@@ -74,7 +74,7 @@ describe("within terminal", () => {
     rmSync(terminalFilePath);
   });
 
-  describe("when running in different environments", () => {
+  describe.only("when running in different environments", () => {
     it("enables colors on a CI server", () => {
       const exports = getExportsWithEnv({ env: { TERM: "dumb", CI: "1" } });
 

@@ -149,6 +149,7 @@ export function createTerminalStyles(
  *
  * @internal
  */
+/* istanbul ignore next -- @preserve: Only needed for testing. */
 export function isUsingTerminalStyles(): boolean {
   return areTerminalStylesEnabled;
 }
@@ -194,10 +195,14 @@ function isColorSupported(): boolean {
     return true;
   }
 
+  console.log(globalThis);
+
   const nodeProcess = process ?? {};
   const env: Record<string, any> = nodeProcess.env ?? {};
   const argv = nodeProcess.argv ?? [];
   const isTTY = (nodeProcess.stdout ?? {}).isTTY;
+
+  console.log(argv);
 
   switch (true) {
     case (env.NO_COLOR ?? "") !== "":

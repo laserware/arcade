@@ -1,5 +1,3 @@
-/* istanbul ignore file -- @preserve: Since this is vendored, we're skipping tests. */
-
 /*
  * MIT License
  *
@@ -22,12 +20,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ *
+ * Most of this code was taken from the [typescript-event-target](https://github.com/DerZade/typescript-event-target)
+ * package.
  */
 
-/**
- * Most of this code was taken from the [typescript-event-target](https://github.com/DerZade/typescript-event-target) package.
- * I didn't want to bring in another dependency for a library that's so few lines of code.
- */
+/* istanbul ignore file -- @preserve: Since this is vendored, we're skipping tests. */
 
 /**
  * A function that can be passed to the `listener` parameter of
