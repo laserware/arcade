@@ -21,6 +21,9 @@
  * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * This code was taken directly from the [dedent](https://github.com/dmnd/dedent) package.
+ * Some variables names were changed and explicit type annotations were added.
  */
 
 /**
@@ -37,9 +40,7 @@ export interface Dedent {
 }
 
 /**
- * Strips indentation from multi-line template strings. This code was
- * taken directly from the [dedent](https://github.com/dmnd/dedent) package.
- * Some variables names were changed and explicit type annotations were added.
+ * Strips indentation from multi-line template strings.
  *
  * @returns Specified value with indentation removed.
  *

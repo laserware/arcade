@@ -22,12 +22,13 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ *
+ * This was taken from the [kebab-case](https://github.com/joakimbeng/kebab-case)
+ * repository on GitHub.
  */
 
 /**
- * Converts the specified `value` to kebab-case. This was taken from the
- * [kebab-case](https://github.com/joakimbeng/kebab-case) library (it didn't
- * make sense to import another dependency for a few lines of code).
+ * Converts the specified `value` to kebab-case.
  *
  * @param value Value to convert to kebab-case.
  *

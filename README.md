@@ -7,16 +7,31 @@ Miscellaneous utility functions. Check out the [documentation site](https://lase
 This is a collection of utility functions commonly used in other `@laserware` (and non-`@laserware`) projects.
 It's essentially a combination of "Diet Lodash", TypeScript helpers, and helper functions for performing certain tasks based on the execution environment (i.e. Node.js versus the browser).
 
-> Why don't use just use Lodash?
+The package contains a lot of random utilities that are often required in most projects once they hit a certain size.
+It goes against the whole _small self-contained package that perform a single operation well_ approach prevalent in the npm universe and opts to include a jubilee of utilities.
 
-Lodash is super beefy. If you don't want to ship a lot of unused extra code, you have to use [`lodash-es`](https://www.npmjs.com/package/lodash-es).
-Most of Lodash's functions aren't needed anymore. [You probably don't need Lodash](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore).
+How many times have you needed to do the following in a project?
 
-> Why did you vendor some libraries instead of just installing and re-exporting them?
+- Turn an array into a keyed object
+- Check whether your code is running in Node.js or the browser
+- Check which platform your code is running on
+- Use colors and extra styles when logging to the terminal
+- Check if two objects or arrays contain the same values (i.e. value equality)
+- Deeply merge two objects or arrays
+- Format a date
 
-To avoid constantly managing dependency updates. If a library is less than 100 lines of code, I'm going to just copy the code, give props, and include the license.
+This library can do all that and more! All utilities can be safely used in Node.js or the browser.
+It's fully tree-shakeable, so any functions you don't use will be excluded from the bundle (if you're using ESM).
 
-> Why did you install and re-export some libraries?
+Rather than install dependencies and forward the exports, the code from the following libraries was vendored and refactored to match a common coding style:
 
-For the same reason that I vendor them: to avoid constantly managing dependency updates for libraries that are used in several projects.
-I just need to update it _here_ and publish a new version, then I only need to update one dependency (this one) in the affected projects.
+- [camelcase](https://github.com/sindresorhus/camelcase)
+- [dedent](https://github.com/dmnd/dedent)
+- [deepmerge](https://github.com/TehShrike/deepmerge)
+- [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal)
+- [is-mergeable-object](https://github.com/TehShrike/is-mergeable-object)
+- [kebab-case](https://github.com/joakimbeng/kebab-case)
+- [lodash/clamp](https://github.com/lodash/lodash/blob/11eb817cdfacf56c02d7005cbe520ffbeb0fe59a/clamp.js)
+- [lodash/round](https://github.com/lodash/lodash/blob/11eb817cdfacf56c02d7005cbe520ffbeb0fe59a/round.js)
+- [node-dateformat](https://github.com/felixge/node-dateformat)
+- [typescript-event-target](https://github.com/DerZade/typescript-event-target)

@@ -41,7 +41,7 @@ describe.concurrent("the toBoolean function", () => {
 
   it("returns false for invalid strings", async () => {
     expect(toBoolean("")).toBe(false);
-    expect(toBoolean("randomstring")).toBe(false);
+    expect(toBoolean("random-string")).toBe(false);
     expect(toBoolean("0")).toBe(false);
   });
 });

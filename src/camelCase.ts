@@ -22,6 +22,9 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ * This was taken from the [camelcase](https://github.com/sindresorhus/camelcase) package.
+ * Type annotations were added and options were removed.
  */
 
 const REG_EXP_UPPERCASE = /[\p{Lu}]/u;
@@ -36,9 +39,7 @@ const REG_EXP_SEPARATORS_AND_IDENTIFIER = new RegExp(REG_EXP_SEPARATORS.source +
 const REG_EXP_NUMBERS_AND_IDENTIFIER = new RegExp("\\d+" + REG_EXP_IDENTIFIER.source, "gu");
 
 /**
- * Transforms the specified string value to camelCase. This was taken from the
- * [camelcase](https://github.com/sindresorhus/camelcase) package. Type
- * annotations were added and options were removed.
+ * Transforms the specified string value to camelCase.
  *
  * @param value Value to transform.
  *

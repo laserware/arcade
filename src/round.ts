@@ -50,12 +50,13 @@
  * maintained libraries used by this software which have their own
  * licenses; we recommend you read them, as their terms may differ from the
  * terms above.
+ *
+ * This was taken from the [round](https://github.com/lodash/lodash/blob/11eb817cdfacf56c02d7005cbe520ffbeb0fe59a/round.js)
+ * implementation in the lodash GitHub repository.
  */
 
 /**
  * Rounds the specified `value` to the specified `precision`.
- * Taken from the [round](https://github.com/lodash/lodash/blob/4.0.4-npm-packages/lodash.round/index.js)
- * implementation in lodash.
  *
  * @param value The number to round.
  * @param [precision=0] The precision to round to.

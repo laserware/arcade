@@ -48,12 +48,13 @@
  * maintained libraries used by this software which have their own
  * licenses; we recommend you read them, as their terms may differ from the
  * terms above.
+ *
+ * Taken from the [clamp](https://github.com/lodash/lodash/blob/11eb817cdfacf56c02d7005cbe520ffbeb0fe59a/clamp.js)
+ * implementation in the lodash GitHub repository.
  */
 
 /**
  * Clamps specified value within the inclusive lower and upper bounds.
- * Taken from the [clamp](https://github.com/lodash/lodash/blob/main/src/clamp.ts)
- * implementation in lodash.
  *
  * @param value Value being clamped.
  * @param lower Lower bounds for the value.
