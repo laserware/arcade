@@ -1,7 +1,7 @@
 /* istanbul ignore file -- @preserve: This file is super hard to test because we're using global built-ins. */
 // noinspection JSDeprecatedSymbols
 
-import { runtime } from "./runtime.js";
+import { isRuntime } from "./runtime.js";
 
 /**
  * Possible platforms for the host. Note that Linux encompasses several different
@@ -13,7 +13,7 @@ import { runtime } from "./runtime.js";
 export type Platform = "unknown" | "linux" | "mac" | "windows";
 
 // We cache this, so we only have to check the platform once:
-let currentPlatform: Platform = "unknown";
+let cachedPlatform: Platform = "unknown";
 
 /**
  * Gets the current OS/platform that the application is running on.
@@ -24,11 +24,11 @@ let currentPlatform: Platform = "unknown";
  */
 export function getPlatform(): Platform {
   // Check if the platform has already been cached first. If it was, return it!
-  if (currentPlatform !== "unknown") {
-    return currentPlatform;
+  if (cachedPlatform !== "unknown") {
+    return cachedPlatform;
   }
 
-  if (runtime.isBrowser()) {
+  if (isRuntime("browser")) {
     const anyNavigator = navigator as any;
 
     // navigator.userAgentData.platform is the 2022 way of detecting.
@@ -36,19 +36,23 @@ export function getPlatform(): Platform {
     const platformString =
       anyNavigator?.userAgentData?.platform ?? anyNavigator?.platform ?? "";
 
-    return parsePlatform(platformString);
+    cachedPlatform = parsePlatform(platformString);
+
+    return cachedPlatform;
   }
 
   // Usable from Node.js:
-  if (runtime.isNode()) {
-    return parsePlatform(process.platform);
+  if (isRuntime("node")) {
+    cachedPlatform = parsePlatform(process.platform);
+
+    return cachedPlatform;
   }
 
   return "unknown";
 }
 
 /**
- * Checks if the specified platform matches the host.
+ * Checks if the specified `platform` matches the host.
  *
  * @param platform Platform to check against the host.
  *
@@ -58,22 +62,6 @@ export function getPlatform(): Platform {
  */
 export function isPlatform(platform: Platform): boolean {
   return getPlatform() === platform;
-}
-
-/**
- * Caches the platform, so it doesn't need to be checked on every call to
- * {@linkcode getPlatform} and returns the current platform.
- *
- * @returns The current host {@linkcode Platform}.
- *
- * @category Platform
- */
-export function cachePlatform(): Platform {
-  if (currentPlatform === "unknown") {
-    currentPlatform = getPlatform();
-  }
-
-  return currentPlatform;
 }
 
 /**

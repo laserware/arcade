@@ -20,7 +20,7 @@
  * were renamed.
  */
 import { isNotNil } from "./isNotNil.js";
-import { runtime } from "./runtime.js";
+import { isRuntime } from "./runtime.js";
 
 let areTerminalStylesEnabled = false;
 
@@ -190,7 +190,7 @@ function replaceClose(
 }
 
 function isColorSupported(): boolean {
-  if (runtime.isBrowser() || runtime.isWebWorker()) {
+  if (isRuntime("browser") || isRuntime("worker")) {
     return true;
   }
 

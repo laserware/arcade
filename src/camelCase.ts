@@ -24,75 +24,16 @@
  * THE SOFTWARE.
  */
 
-const UPPERCASE = /[\p{Lu}]/u;
-const LOWERCASE = /[\p{Ll}]/u;
-const IDENTIFIER = /([\p{Alpha}\p{N}_]|$)/u;
-const SEPARATORS = /[_.\- ]+/;
+const REG_EXP_UPPERCASE = /[\p{Lu}]/u;
+const REG_EXP_LOWERCASE = /[\p{Ll}]/u;
+const REG_EXP_IDENTIFIER = /([\p{Alpha}\p{N}_]|$)/u;
+const REG_EXP_SEPARATORS = /[_.\- ]+/;
 
-const LEADING_SEPARATORS = new RegExp("^" + SEPARATORS.source);
+const REG_EXP_LEADING_SEPARATORS = new RegExp("^" + REG_EXP_SEPARATORS.source);
 // prettier-ignore
-const SEPARATORS_AND_IDENTIFIER = new RegExp(SEPARATORS.source + IDENTIFIER.source, "gu");
-const NUMBERS_AND_IDENTIFIER = new RegExp("\\d+" + IDENTIFIER.source, "gu");
-
-const preserveCamelCase = (value: string): string => {
-  let isLastCharLower = false;
-  let isLastCharUpper = false;
-  let isLastLastCharUpper = false;
-
-  for (let index = 0; index < value.length; index++) {
-    const character = value[index];
-
-    if (isLastCharLower && UPPERCASE.test(character)) {
-      value = value.slice(0, index) + "-" + value.slice(index);
-      isLastCharLower = false;
-      isLastLastCharUpper = isLastCharUpper;
-      isLastCharUpper = true;
-
-      index++;
-
-      continue;
-    }
-
-    /* istanbul ignore next -- @preserve: Vendored, no need to test. */
-    if (isLastCharUpper && isLastLastCharUpper && LOWERCASE.test(character)) {
-      value = value.slice(0, index - 1) + "-" + value.slice(index - 1);
-
-      isLastLastCharUpper = isLastCharUpper;
-      isLastCharUpper = false;
-      isLastCharLower = true;
-
-      continue;
-    }
-
-    isLastCharLower =
-      character.toLowerCase() === character &&
-      character.toUpperCase() !== character;
-
-    isLastLastCharUpper = isLastCharUpper;
-
-    isLastCharUpper =
-      character.toUpperCase() === character &&
-      character.toLowerCase() !== character;
-  }
-
-  return value;
-};
-
-/* istanbul ignore next -- @preserve: Vendored, no need to test. */
-const postProcess = (value: string): string => {
-  SEPARATORS_AND_IDENTIFIER.lastIndex = 0;
-  NUMBERS_AND_IDENTIFIER.lastIndex = 0;
-
-  return value
-    .replaceAll(NUMBERS_AND_IDENTIFIER, (match, pattern, offset) =>
-      ["_", "-"].includes(value.charAt(offset + match.length))
-        ? match
-        : match.toUpperCase(),
-    )
-    .replaceAll(SEPARATORS_AND_IDENTIFIER, (match, identifier) =>
-      identifier.toUpperCase(),
-    );
-};
+const REG_EXP_SEPARATORS_AND_IDENTIFIER = new RegExp(REG_EXP_SEPARATORS.source + REG_EXP_IDENTIFIER.source, "gu");
+// prettier-ignore
+const REG_EXP_NUMBERS_AND_IDENTIFIER = new RegExp("\\d+" + REG_EXP_IDENTIFIER.source, "gu");
 
 /**
  * Transforms the specified string value to camelCase. This was taken from the
@@ -120,7 +61,7 @@ export function camelCase(value: string): string {
   }
 
   if (casedValue.length === 1) {
-    if (SEPARATORS.test(casedValue)) {
+    if (REG_EXP_SEPARATORS.test(casedValue)) {
       return "";
     }
   }
@@ -131,8 +72,69 @@ export function camelCase(value: string): string {
     casedValue = preserveCamelCase(casedValue);
   }
 
-  casedValue = casedValue.replace(LEADING_SEPARATORS, "");
+  casedValue = casedValue.replace(REG_EXP_LEADING_SEPARATORS, "");
   casedValue = casedValue.toLowerCase();
 
   return postProcess(casedValue);
+}
+
+function preserveCamelCase(value: string): string {
+  let isLastCharLower = false;
+  let isLastCharUpper = false;
+  let isLastLastCharUpper = false;
+
+  for (let index = 0; index < value.length; index++) {
+    const character = value[index];
+
+    if (isLastCharLower && REG_EXP_UPPERCASE.test(character)) {
+      value = value.slice(0, index) + "-" + value.slice(index);
+      isLastCharLower = false;
+      isLastLastCharUpper = isLastCharUpper;
+      isLastCharUpper = true;
+
+      index++;
+
+      continue;
+    }
+
+    /* istanbul ignore next -- @preserve: Vendored, no need to test. */
+    // prettier-ignore
+    if (isLastCharUpper && isLastLastCharUpper && REG_EXP_LOWERCASE.test(character)) {
+      value = value.slice(0, index - 1) + "-" + value.slice(index - 1);
+
+      isLastLastCharUpper = isLastCharUpper;
+      isLastCharUpper = false;
+      isLastCharLower = true;
+
+      continue;
+    }
+
+    isLastCharLower =
+      character.toLowerCase() === character &&
+      character.toUpperCase() !== character;
+
+    isLastLastCharUpper = isLastCharUpper;
+
+    isLastCharUpper =
+      character.toUpperCase() === character &&
+      character.toLowerCase() !== character;
+  }
+
+  return value;
+}
+
+/* istanbul ignore next -- @preserve: Vendored, no need to test. */
+function postProcess(value: string): string {
+  REG_EXP_SEPARATORS_AND_IDENTIFIER.lastIndex = 0;
+  REG_EXP_NUMBERS_AND_IDENTIFIER.lastIndex = 0;
+
+  return value
+    .replaceAll(REG_EXP_NUMBERS_AND_IDENTIFIER, (match, pattern, offset) =>
+      ["_", "-"].includes(value.charAt(offset + match.length))
+        ? match
+        : match.toUpperCase(),
+    )
+    .replaceAll(REG_EXP_SEPARATORS_AND_IDENTIFIER, (match, identifier) =>
+      identifier.toUpperCase(),
+    );
 }

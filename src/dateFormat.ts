@@ -82,9 +82,9 @@ const i18n = {
  * | `d`              | Day of the month as digits; no leading zero for single-digit days.                                                                                            |
  * | `dd`             | Day of the month as digits; leading zero for single-digit days.                                                                                               |
  * | `ddd`            | Day of the week as a three-letter abbreviation.                                                                                                               |
- * | `DDD`            | "Ysd", "Tdy" or "Tmw" if date lies within these three days. Else fall back to ddd.                                                                            |
+ * | `DDD`            | "Ysd", "Tdy" or "Tmw" if date lies within these three days. Else fall back to `ddd`.                                                                          |
  * | `dddd`           | Day of the week as its full name.                                                                                                                             |
- * | `DDDD`           | "Yesterday", "Today" or "Tomorrow" if date lies within these three days. Else fall back to dddd.                                                              |
+ * | `DDDD`           | "Yesterday", "Today" or "Tomorrow" if date lies within these three days. Else fall back to `dddd`.                                                            |
  * | `m`              | Month as digits; no leading zero for single-digit months.                                                                                                     |
  * | `mm`             | Month as digits; leading zero for single-digit months.                                                                                                        |
  * | `mmm`            | Month as a three-letter abbreviation.                                                                                                                         |
@@ -114,7 +114,7 @@ const i18n = {
  * | `Z`              | US timezone abbreviation, e.g. EST or MDT. For non-US timezones, the GMT/UTC offset is returned, e.g. GMT-0500.                                               |
  * | `'...'`, `"..."` | Literal character sequence. Surrounding quotes are removed.                                                                                                   |
  *
- * @category Dates
+ * @category Date
  */
 // prettier-ignore
 export type DateFormatMaskOption =
@@ -140,7 +140,7 @@ export type DateFormatMaskOption =
  *
  * @returns The formatted date.
  *
- * @category Dates
+ * @category Date
  */
 export function dateFormat(
   date: Date | DateFormatMaskOption | number | string,
@@ -156,7 +156,7 @@ export function dateFormat(
  *
  * @returns The formatted date.
  *
- * @category Dates
+ * @category Date
  */
 export function dateFormat(
   mask: DateFormatMaskOption | string,
@@ -206,10 +206,13 @@ export function dateFormat(
     return suffixes[index];
   };
 
-  const offsetPrefix = o > 0 ? "-" : "+";
-  const offsetHours = Math.floor(Math.abs(o) / 60);
-  const offsetMinutes = Math.floor(Math.abs(o) % 60);
+  const utcOffsetPrefix = o > 0 ? "-" : "+";
 
+  const utcOffsetHours = Math.floor(Math.abs(o) / 60);
+
+  const utcOffsetMinutes = Math.floor(Math.abs(o) % 60);
+
+  // prettier-ignore
   const flags: Record<string, () => string> = {
     d: () => String(d),
     dd: () => pad(d),
@@ -238,8 +241,8 @@ export function dateFormat(
     T: () => (H < 12 ? i18n.timeNames[4] : i18n.timeNames[5]),
     TT: () => (H < 12 ? i18n.timeNames[6] : i18n.timeNames[7]),
     Z: () => (utc ? "UTC" : formatTimeZone(date)),
-    o: () => offsetPrefix + pad(offsetHours * 100 + (Math.abs(o) % 60), 4),
-    p: () => offsetPrefix + pad(offsetHours) + ":" + pad(offsetMinutes),
+    o: () => utcOffsetPrefix + pad(utcOffsetHours * 100 + (Math.abs(o) % 60), 4),
+    p: () => utcOffsetPrefix + pad(utcOffsetHours) + ":" + pad(utcOffsetMinutes),
     S: () => S(),
     W: () => String(W),
     WW: () => pad(W),
