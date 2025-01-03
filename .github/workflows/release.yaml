@@ -22,10 +22,15 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+        # Ensure a new version doesn't get published to npm if it doesn't
+        # pass all required checks/validation:
+      - name: Run Checks
+        run: npm run typecheck && npm run prettier:ci && npm run eslint && npm run vitest -- --run
+
       - name: Build
         run: npm run build
 
       - name: Publish to npm
-        uses: @laserware/propellant@ac29dc383db0220ff02dba078fafeb6b18b98d1c
+        uses: laserware/propellant@v1.0.2
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
