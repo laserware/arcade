@@ -33,7 +33,7 @@ export function keyBy<T>(items: T[], field: string): Dict<T> {
 
     const key = value[field] as string;
     if (key === undefined) {
-      // prettier-ignore
+      // biome-ignore format:
       throw new Error(`Unable to convert array to dictionary, key field ${field} not found`);
     }
 

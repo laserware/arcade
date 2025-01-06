@@ -46,12 +46,12 @@ export function kebabCase(value: string): string {
   }
 
   return (
-    // prettier-ignore
+    // biome-ignore format:
     value
       // Ensure that the first letter is lowercase, otherwise an additional
       // "-" is added to the front of the string:
       .charAt(0).toLowerCase().concat(value.slice(1))
       // Replace words that start with a capital letter with `-<first letter>`:
-      .replace(KEBAB_REGEX, (match) => "-" + match.toLowerCase())
+      .replace(KEBAB_REGEX, (match) => `-${match.toLowerCase()}`)
   );
 }

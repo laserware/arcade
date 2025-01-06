@@ -38,6 +38,6 @@ describe("the toNumber function", () => {
   });
 
   it("returns the fallback for NaN input", () => {
-    expect(toNumber(NaN, 0)).toBe(0);
+    expect(toNumber(Number.NaN, 0)).toBe(0);
   });
 });

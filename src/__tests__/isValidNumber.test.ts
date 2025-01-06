@@ -10,7 +10,7 @@ describe.concurrent("the isValidNumber function", () => {
   });
 
   it("returns false when NaN is provided", async () => {
-    expect(isValidNumber(NaN)).toBe(false);
+    expect(isValidNumber(Number.NaN)).toBe(false);
   });
 
   it("returns false when an object is provided", async () => {

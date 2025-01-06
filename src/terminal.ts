@@ -39,7 +39,7 @@ export type TerminalStyleFormatter = (input: string) => string;
  *
  * @category Terminal
  */
-// prettier-ignore
+// biome-ignore format:
 export type TerminalStyle =
   | "reset"
   // Text Decoration:
@@ -147,6 +147,7 @@ function getFormatter(
   replace: string = open,
 ): TerminalStyleFormatter {
   return (input: string): string => {
+    // biome-ignore lint/style/useTemplate:
     const string = "" + input;
     const index = string.indexOf(close, open.length);
 

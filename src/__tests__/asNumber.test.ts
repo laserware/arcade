@@ -49,6 +49,6 @@ describe("the asNumber function", () => {
   });
 
   it("returns the fallback for NaN input", () => {
-    expect(asNumber(NaN, 0)).toBe(0);
+    expect(asNumber(Number.NaN, 0)).toBe(0);
   });
 });

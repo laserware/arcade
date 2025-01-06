@@ -75,7 +75,7 @@
  *
  * @category Number
  */
-export function round(value: number, precision: number = 0): number {
+export function round(value: number, precision = 0): number {
   const validPrecision =
     precision >= 0 ? Math.min(precision, 292) : Math.max(precision, -292);
 

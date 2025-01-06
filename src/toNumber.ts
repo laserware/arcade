@@ -11,7 +11,7 @@ import { isNil } from "./isNil.js";
  *
  * @category Number
  */
-export function toNumber(value: unknown, fallback: number = 0): number {
+export function toNumber(value: unknown, fallback = 0): number {
   if (isNil(value)) {
     return fallback;
   }

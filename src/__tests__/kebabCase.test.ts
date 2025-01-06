@@ -1,6 +1,7 @@
 import { kebabCase } from "../kebabCase.js";
 
 describe("the kebabCase function", () => {
+  // biome-ignore format:
   it.concurrent.each([
     {
       value: "TitleCase",

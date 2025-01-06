@@ -32,10 +32,10 @@
 import { isNil } from "./isNil.js";
 
 // Cached regular expressions:
-// prettier-ignore
+// biome-ignore format:
 const REG_EXP_TOKEN = /d{1,4}|D{3,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|W{1,2}|[LlopSZN]|"[^"]*"|'[^']*'/g;
 
-// prettier-ignore
+// biome-ignore format:
 const REG_EXP_TIMEZONE = /\b(?:[A-Z]{1,3}[A-Z][TC])(?:[-+]\d{4})?|((?:Australian )?(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time)\b/g;
 
 const REG_EXP_TIMEZONE_CLIP = /[^-+\dA-Z]/g;
@@ -51,10 +51,10 @@ const REG_EXP_TIMEZONE_CLIP = /[^-+\dA-Z]/g;
  * > compatibility.
  * > See [Broken Parser – A Web Reality Issue](http://archive.today/KdrMv).
  */
-// prettier-ignore
+// biome-ignore format:
 const REG_EXP_DATE_ONLY_FORM = /^(\d.*)[-/]?(\d.*)?[-/]?(\d)$/
 
-// prettier-ignore
+// biome-ignore format:
 const REG_EXP_DATE_TIME_FORM = /^(?<year>\d{4})[-/]?(?<month>\d{1,2})?[-/]?(?<day>\d{0,2})[Tt\s]*(?<hour>\d{1,2})?:?(?<minute>\d{1,2})?:?(?<second>\d{1,2})?[.:]?(?<millis>\d+)?(?<timezone>.*)$/;
 
 const DEFAULT_MASK = "ddd mmm dd yyyy HH:MM:ss";
@@ -62,7 +62,7 @@ const DEFAULT_MASK = "ddd mmm dd yyyy HH:MM:ss";
 /**
  * Internationalization strings.
  */
-// prettier-ignore
+// biome-ignore format:
 const i18n = {
   dayNames: [
     "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
@@ -116,7 +116,7 @@ const i18n = {
  *
  * @category Date
  */
-// prettier-ignore
+// biome-ignore format:
 export type DateFormatMaskOption =
   | "d" | "dd" | "ddd" | "DDD" | "dddd" | "DDDD"
   | "m" | "mm" | "mmm" | "mmmm"
@@ -197,7 +197,7 @@ export function dateFormat(
 
   const utcOffsetMinutes = Math.floor(Math.abs(o) % 60);
 
-  // prettier-ignore
+  // biome-ignore format:
   const flags: Record<string, () => string> = {
     d: () => String(d),
     dd: () => pad(d),
@@ -227,7 +227,7 @@ export function dateFormat(
     TT: () => (H < 12 ? i18n.timeNames[6] : i18n.timeNames[7]),
     Z: () => (utc ? "UTC" : formatTimeZone(date)),
     o: () => utcOffsetPrefix + pad(utcOffsetHours * 100 + (Math.abs(o) % 60), 4),
-    p: () => utcOffsetPrefix + pad(utcOffsetHours) + ":" + pad(utcOffsetMinutes),
+    p: () => `${utcOffsetPrefix + pad(utcOffsetHours)}:${pad(utcOffsetMinutes)}`,
     S: () => getDaySuffix(d),
     W: () => String(W),
     WW: () => pad(W),
@@ -419,7 +419,7 @@ function toDatePartField(value?: string): number | undefined {
   }
 }
 
-function pad(value: unknown, length: number = 2): string {
+function pad(value: unknown, length = 2): string {
   return String(value).padStart(length, "0");
 }
 
@@ -528,17 +528,17 @@ function getWeek(date: Date): number {
   const firstThursday = new Date(targetThursday.getFullYear(), 0, 4);
 
   // Change date to Thursday same week:
-  // prettier-ignore
+  // biome-ignore format:
   firstThursday.setDate(firstThursday.getDate() - ((firstThursday.getDay() + 6) % 7) + 3);
 
   // Check if daylight-saving-time-switch occurred and correct for it:
-  // prettier-ignore
+  // biome-ignore format:
   const isDST = targetThursday.getTimezoneOffset() - firstThursday.getTimezoneOffset();
 
   targetThursday.setHours(targetThursday.getHours() - isDST);
 
   // Number of weeks between target Thursday and first Thursday:
-  // prettier-ignore
+  // biome-ignore format:
   const weekDiff = (targetThursday.getTime() - firstThursday.getTime()) / (86400000 * 7);
 
   return 1 + Math.floor(weekDiff);

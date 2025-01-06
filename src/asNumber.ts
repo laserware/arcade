@@ -22,7 +22,7 @@ import { isValidNumber } from "./isValidNumber.js";
  *
  * @category Number
  */
-export function asNumber(value: unknown, fallback: number = 0): number {
+export function asNumber(value: unknown, fallback = 0): number {
   if (isValidNumber(value)) {
     return value;
   }

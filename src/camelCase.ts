@@ -32,11 +32,11 @@ const REG_EXP_LOWERCASE = /[\p{Ll}]/u;
 const REG_EXP_IDENTIFIER = /([\p{Alpha}\p{N}_]|$)/u;
 const REG_EXP_SEPARATORS = /[_.\- ]+/;
 
-const REG_EXP_LEADING_SEPARATORS = new RegExp("^" + REG_EXP_SEPARATORS.source);
-// prettier-ignore
+const REG_EXP_LEADING_SEPARATORS = new RegExp(`^${REG_EXP_SEPARATORS.source}`);
+// biome-ignore format:
 const REG_EXP_SEPARATORS_AND_IDENTIFIER = new RegExp(REG_EXP_SEPARATORS.source + REG_EXP_IDENTIFIER.source, "gu");
-// prettier-ignore
-const REG_EXP_NUMBERS_AND_IDENTIFIER = new RegExp("\\d+" + REG_EXP_IDENTIFIER.source, "gu");
+// biome-ignore format:
+const REG_EXP_NUMBERS_AND_IDENTIFIER = new RegExp(`\\d+${REG_EXP_IDENTIFIER.source}`, "gu");
 
 /**
  * Transforms the specified string value to camelCase.
@@ -88,7 +88,7 @@ function preserveCamelCase(value: string): string {
     const character = value[index];
 
     if (isLastCharLower && REG_EXP_UPPERCASE.test(character)) {
-      value = value.slice(0, index) + "-" + value.slice(index);
+      value = `${value.slice(0, index)}-${value.slice(index)}`;
       isLastCharLower = false;
       isLastLastCharUpper = isLastCharUpper;
       isLastCharUpper = true;
@@ -99,9 +99,9 @@ function preserveCamelCase(value: string): string {
     }
 
     /* istanbul ignore next -- @preserve: Vendored, no need to test. */
-    // prettier-ignore
+    // biome-ignore format:
     if (isLastCharUpper && isLastLastCharUpper && REG_EXP_LOWERCASE.test(character)) {
-      value = value.slice(0, index - 1) + "-" + value.slice(index - 1);
+      value = `${value.slice(0, index - 1)}-${value.slice(index - 1)}`;
 
       isLastLastCharUpper = isLastCharUpper;
       isLastCharUpper = false;

@@ -61,7 +61,7 @@ export function isEqual(left: any, right: any): boolean {
 
   if (areBothObjects) {
     let length: number;
-    let index;
+    let index: any;
 
     if (Array.isArray(left)) {
       length = left.length;
@@ -159,5 +159,6 @@ export function isEqual(left: any, right: any): boolean {
   }
 
   // Return true if both NaN, false otherwise:
+  // biome-ignore lint/suspicious/noSelfCompare: Copied fom source
   return left !== left && right !== right;
 }

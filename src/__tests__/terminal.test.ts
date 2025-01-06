@@ -1,4 +1,7 @@
-import { areTerminalColorsSupported, createTerminalStyles } from "../terminal.js";
+import {
+  areTerminalColorsSupported,
+  createTerminalStyles,
+} from "../terminal.js";
 
 const formats = {
   reset: ["\x1b[0m", "\x1b[0m"],
@@ -152,7 +155,7 @@ describe("within terminal", () => {
 
   describe("the terminalStyles object", () => {
     it.concurrent.each(
-      // prettier-ignore
+      // biome-ignore format:
       Object.entries(styles).map(([name, formatter]) => ({ name, formatter })),
     )("applies $name style to input text", async ({ formatter }) => {
       const result = formatter("Test");
@@ -160,18 +163,20 @@ describe("within terminal", () => {
       expect(/\[(\d*)m/.test(result)).toBeTruthy();
     });
 
-    it.concurrent.each(Object.entries(formats).map(([name, codes]) => ({ name, codes })))(
-      "wraps input with correct codes for $name",
-      async ({ name, codes }) => {
-        // @ts-ignore
-        const result = styles[name]("string");
+    it.concurrent.each(
+      Object.entries(formats).map(([name, codes]) => ({ name, codes })),
+    )("wraps input with correct codes for $name", async ({ name, codes }) => {
+      // @ts-ignore
+      const result = styles[name]("string");
 
-        expect(result).toBe(codes[0] + "string" + codes[1]);
-      },
-    );
+      // biome-ignore lint/style/useTemplate: <explanation>
+      expect(result).toBe(codes[0] + "string" + codes[1]);
+    });
 
     it("handles color nesting", () => {
-      const result = styles.bold(`BOLD ${styles.red(`RED ${styles.dim("DIM")} RED`)} BOLD`);
+      const result = styles.bold(
+        `BOLD ${styles.red(`RED ${styles.dim("DIM")} RED`)} BOLD`,
+      );
 
       const expected = [
         formats.bold[0],
@@ -206,7 +211,9 @@ describe("within terminal", () => {
     });
 
     it("handles complex wrapping", () => {
-      const result = styles.bold(styles.yellow(styles.bgRed(styles.italic("==TEST=="))));
+      const result = styles.bold(
+        styles.yellow(styles.bgRed(styles.italic("==TEST=="))),
+      );
 
       const expected = [
         formats.bold[0],
@@ -223,7 +230,7 @@ describe("within terminal", () => {
       expect(result).toBe(expected);
     });
 
-    // prettier-ignore
+    // biome-ignore format:
     it.concurrent.each([
       {
         input: styles.red(`foo ${styles.yellow("bar")} baz`),
@@ -243,24 +250,48 @@ describe("within terminal", () => {
 
     it.concurrent.each([
       // @ts-ignore
-      { input: styles.red(), expected: formats.red[0] + "undefined" + formats.red[1] },
+      {
+        input: styles.red(),
+        expected: `${formats.red[0]}undefined${formats.red[1]}`,
+      },
       // @ts-ignore
-      { input: styles.red(undefined), expected: formats.red[0] + "undefined" + formats.red[1] },
+      {
+        input: styles.red(undefined),
+        expected: `${formats.red[0]}undefined${formats.red[1]}`,
+      },
       // @ts-ignore
-      { input: styles.red(0), expected: formats.red[0] + "0" + formats.red[1] },
+      { input: styles.red(0), expected: `${formats.red[0]}0${formats.red[1]}` },
       // @ts-ignore
-      { input: styles.red(NaN), expected: formats.red[0] + "NaN" + formats.red[1] },
+      {
+        input: styles.red(Number.NaN),
+        expected: `${formats.red[0]}NaN${formats.red[1]}`,
+      },
       // @ts-ignore
-      { input: styles.red(null), expected: formats.red[0] + "null" + formats.red[1] },
+      {
+        input: styles.red(null),
+        expected: `${formats.red[0]}null${formats.red[1]}`,
+      },
       // @ts-ignore
-      { input: styles.red(true), expected: formats.red[0] + "true" + formats.red[1] },
+      {
+        input: styles.red(true),
+        expected: `${formats.red[0]}true${formats.red[1]}`,
+      },
       // @ts-ignore
-      { input: styles.red(false), expected: formats.red[0] + "false" + formats.red[1] },
+      {
+        input: styles.red(false),
+        expected: `${formats.red[0]}false${formats.red[1]}`,
+      },
       // @ts-ignore
-      { input: styles.red(Infinity), expected: formats.red[0] + "Infinity" + formats.red[1] },
-    ])("handles non-string input when input is $input", ({ input, expected }) => {
-      expect(input).toBe(expected);
-    });
+      {
+        input: styles.red(Number.POSITIVE_INFINITY),
+        expected: `${formats.red[0]}Infinity${formats.red[1]}`,
+      },
+    ])(
+      "handles non-string input when input is $input",
+      ({ input, expected }) => {
+        expect(input).toBe(expected);
+      },
+    );
 
     it("doesn't overflow when coloring already colored large text", () => {
       expect(() => {
@@ -271,7 +302,7 @@ describe("within terminal", () => {
 
   describe("the createTerminalStyles function", () => {
     it.concurrent.each(
-      // prettier-ignore
+      // biome-ignore format:
       Object.entries(createTerminalStyles(true)).map(([name, formatter]) => ({ name, formatter })),
     )(
       "returns an object that applies $name style to input text with colors enabled",
