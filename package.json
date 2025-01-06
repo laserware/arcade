@@ -35,13 +35,13 @@
     "preversion": "bun run lint && bun run typecheck",
     "version": "bun run format && git add -A src",
     "postversion": "git push && git push --tags",
+    "ci": "biome ci src",
     "docs:generate": "typedoc  --options typedoc.json",
-    "docs:serve": "mkdir -p ./site && cd ./site && ../node_modules/.bin/vite",
-    "typecheck": "tsc --noEmit",
+    "docs:serve": "mkdir -p ./site && cd ./site && bunx vite",
     "format": "biome format --write src",
     "lint": "biome lint src",
     "test": "bun test",
-    "ci": "biome ci src"
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

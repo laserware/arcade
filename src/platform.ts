@@ -32,16 +32,15 @@ export function getPlatform(): Platform {
 
     // navigator.userAgentData.platform is the 2022 way of detecting.
     // Note that this userAgentData feature is available only in secure contexts (HTTPS):
-    const platformString =
-      anyNavigator?.userAgentData?.platform ?? anyNavigator?.platform ?? "";
+    // biome-ignore format:
+    const platformString = anyNavigator?.userAgentData?.platform ?? anyNavigator?.platform ?? "";
 
     cachedPlatform = parsePlatform(platformString);
 
     return cachedPlatform;
   }
 
-  // Usable from Node.js:
-  if (isRuntime("node")) {
+  if (typeof process !== "undefined" && "platform" in process) {
     cachedPlatform = parsePlatform(process.platform);
 
     return cachedPlatform;
