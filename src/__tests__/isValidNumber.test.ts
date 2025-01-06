@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { isValidNumber } from "../isValidNumber.js";
 
-describe.concurrent("the isValidNumber function", () => {
+describe("the isValidNumber function", () => {
   it("returns true when a valid number is provided", async () => {
     expect(isValidNumber(100)).toBe(true);
   });

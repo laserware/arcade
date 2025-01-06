@@ -1,5 +1,3 @@
-/* istanbul ignore file -- @preserve: Since this is vendored, we're skipping tests. */
-
 /*
  * The MIT License
  *

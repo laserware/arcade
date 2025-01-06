@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { capitalize } from "../capitalize.js";
 
-describe.concurrent("the capitalize function", () => {
+describe("the capitalize function", () => {
   it("capitalizes the first letter of a lowercase string", async () => {
     const result = capitalize("test");
 

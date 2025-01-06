@@ -25,8 +25,6 @@
  * repository on GitHub. The code was refactored and comments were added.
  */
 
-/* istanbul ignore file -- @preserve: Functions are based on environment, which is tricky to mock. */
-
 import { isNotNil } from "./isNotNil.js";
 
 /**

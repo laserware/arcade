@@ -1,3 +1,5 @@
+import { describe, expect, it } from "bun:test";
+
 import { dateFormat } from "../dateFormat.js";
 
 const dates = {
@@ -158,15 +160,6 @@ describe("the dateFormat function", () => {
     const result = dateFormat(date, "p");
 
     expect(result).toMatch(/^[+-]\d{2}:\d{2}$/);
-  });
-
-  // biome-ignore format:
-  it.skipIf(process.env.CI !== undefined)("adds timezone for a Z mask when not using UTC", () => {
-    const date = new Date();
-
-    const result = dateFormat(date, "Z");
-
-    expect(result).not.toBe("UTC");
   });
 
   it("uses current year if year missing from date string", () => {

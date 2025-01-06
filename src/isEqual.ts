@@ -28,8 +28,6 @@
  * added, and the formatting was tweaked.
  */
 
-/* istanbul ignore file -- @preserve: Since this is a forwarded export, we're skipping tests. */
-
 import { isNotNil } from "./isNotNil.js";
 
 /**

@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { sortBy } from "../sortBy.js";
 
-describe.concurrent("the sortBy function", () => {
+describe("the sortBy function", () => {
   it("sorts array of objects by a string field", async () => {
     const data = [
       { name: "Zebra", age: 5 },

@@ -1,3 +1,5 @@
+import { describe, expect, it } from "bun:test";
+
 import { toSorted } from "../toSorted.js";
 
 describe("the toSorted function", () => {

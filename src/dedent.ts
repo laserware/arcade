@@ -1,4 +1,4 @@
-/* istanbul ignore file -- @preserve: Since this is vendored, we're skipping tests. */
+// Not covered in tests because this is vendored:
 
 /*
  * MIT License

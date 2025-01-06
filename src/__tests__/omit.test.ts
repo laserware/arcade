@@ -1,12 +1,14 @@
+import { describe, expect, it } from "bun:test";
+
 import { omit } from "../omit.js";
 
-describe.concurrent("the omit function", () => {
+describe("the omit function", () => {
   it("removes the specified key from the specified object", async () => {
     const input = { a: "1", b: "2" };
 
     const result = omit(input, "a");
 
-    expect(result).toEqual({ b: "2" });
+    expect(result).toEqual({ b: "2" } as any);
     expect(Object.is(input, result)).toBeFalsy();
   });
 
@@ -24,7 +26,7 @@ describe.concurrent("the omit function", () => {
 
     const result = omit(input, ["a", "b"]);
 
-    expect(result).toEqual({ c: "3" });
+    expect(result).toEqual({ c: "3" } as any);
     expect(Object.is(input, result)).toBeFalsy();
   });
 

@@ -16,7 +16,7 @@
     "strict": true,
     "strictNullChecks": true,
     "target": "ESNext",
-    "types": ["vitest/globals"],
+    "types": ["bun"],
     "verbatimModuleSyntax": true
   },
   "include": ["src", "./tsup.config.ts"],

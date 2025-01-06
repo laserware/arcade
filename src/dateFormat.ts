@@ -1,4 +1,3 @@
-/* eslint-disable max-params */
 // noinspection SpellCheckingInspection
 
 /*
@@ -379,7 +378,6 @@ function parseDate(value: string, utc: boolean): Date {
   // because the result of the `exec` function from the RegExp above would
   // be `null` if the year was invalid, but we're including this here to catch
   // any weird edge cases I haven't thought of.
-  /* istanbul ignore next -- @preserve: We'll probably never have an undefined `group.year` here. */
   const year = toDatePartField(group.year) ?? wrapped.getFullYear();
 
   type DateParts = [

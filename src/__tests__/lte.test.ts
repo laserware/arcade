@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { lte } from "../lte.js";
 
-describe.concurrent("the lte function", () => {
+describe("the lte function", () => {
   it("returns true when first number is less than the second number", async () => {
     expect(lte(3, 5)).toBe(true);
   });

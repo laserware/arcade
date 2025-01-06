@@ -98,7 +98,7 @@ function preserveCamelCase(value: string): string {
       continue;
     }
 
-    /* istanbul ignore next -- @preserve: Vendored, no need to test. */
+    // Not covered in tests because this is vendored:
     // biome-ignore format:
     if (isLastCharUpper && isLastLastCharUpper && REG_EXP_LOWERCASE.test(character)) {
       value = `${value.slice(0, index - 1)}-${value.slice(index - 1)}`;
@@ -124,7 +124,7 @@ function preserveCamelCase(value: string): string {
   return value;
 }
 
-/* istanbul ignore next -- @preserve: Vendored, no need to test. */
+// Not covered in tests because this is vendored:
 function postProcess(value: string): string {
   REG_EXP_SEPARATORS_AND_IDENTIFIER.lastIndex = 0;
   REG_EXP_NUMBERS_AND_IDENTIFIER.lastIndex = 0;

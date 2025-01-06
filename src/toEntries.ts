@@ -1,5 +1,3 @@
-/* istanbul ignore file -- @preserve: Tests already written for toEntries. */
-
 import type { Dict } from "./types.js";
 
 /**

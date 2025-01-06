@@ -1,3 +1,5 @@
+import { describe, expect, it } from "bun:test";
+
 import { toNumber } from "../toNumber.js";
 
 describe("the toNumber function", () => {

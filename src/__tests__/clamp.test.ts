@@ -1,7 +1,9 @@
+import { describe, expect, it } from "bun:test";
+
 import { clamp } from "../clamp.js";
 
 describe("the clamp function", () => {
-  it.concurrent.each([
+  it.each([
     { value: 4, upper: 10, lower: -1, expected: 4 },
     { value: 100, upper: 10, lower: -1, expected: 10 },
     { value: -50, upper: 10, lower: -1, expected: -1 },

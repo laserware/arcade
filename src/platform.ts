@@ -1,4 +1,3 @@
-/* istanbul ignore file -- @preserve: This file is super hard to test because we're using global built-ins. */
 // noinspection JSDeprecatedSymbols
 
 import { isRuntime } from "./runtime.js";

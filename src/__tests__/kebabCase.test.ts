@@ -1,8 +1,10 @@
+import { describe, expect, it } from "bun:test";
+
 import { kebabCase } from "../kebabCase.js";
 
 describe("the kebabCase function", () => {
   // biome-ignore format:
-  it.concurrent.each([
+  it.each([
     {
       value: "TitleCase",
       expected: "title-case",

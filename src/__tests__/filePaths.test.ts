@@ -1,12 +1,13 @@
-import { joinFilePath, splitFilePath } from "../filePaths.js";
-import { isPlatform } from "../platform.js";
+import { describe, expect, it, mock } from "bun:test";
 
-vi.mock("../platform.js");
+import { joinFilePath, splitFilePath } from "../filePaths.js";
 
 describe("within filePaths", () => {
-  describe.concurrent("the joinFilePath function", () => {
+  describe("the joinFilePath function", () => {
     it("joins multiple path elements with forward slash on non-Windows platforms", async () => {
-      vi.mocked(isPlatform).mockReturnValueOnce(false);
+      mock.module("../platform.js", () => ({
+        isPlatform: () => false,
+      }));
 
       const result = joinFilePath("folder", "subfolder", "file.txt");
 
@@ -14,7 +15,9 @@ describe("within filePaths", () => {
     });
 
     it("joins multiple path elements with backslash on Windows platforms", async () => {
-      vi.mocked(isPlatform).mockReturnValueOnce(true);
+      mock.module("../platform.js", () => ({
+        isPlatform: () => true,
+      }));
 
       const result = joinFilePath("folder", "subfolder", "file.txt");
 
@@ -22,7 +25,9 @@ describe("within filePaths", () => {
     });
 
     it("returns an empty string when no path elements are provided", async () => {
-      vi.mocked(isPlatform).mockReturnValueOnce(false);
+      mock.module("../platform.js", () => ({
+        isPlatform: () => false,
+      }));
 
       const result = joinFilePath();
 
@@ -30,7 +35,9 @@ describe("within filePaths", () => {
     });
 
     it("returns the single path element joined when only one path element is provided", async () => {
-      vi.mocked(isPlatform).mockReturnValueOnce(false);
+      mock.module("../platform.js", () => ({
+        isPlatform: () => false,
+      }));
 
       const result = joinFilePath("singlePathElement");
 
@@ -38,9 +45,11 @@ describe("within filePaths", () => {
     });
   });
 
-  describe.concurrent("the splitFilePath function", () => {
+  describe("the splitFilePath function", () => {
     it("splits Unix-like path into elements", async () => {
-      vi.mocked(isPlatform).mockReturnValueOnce(false);
+      mock.module("../platform.js", () => ({
+        isPlatform: () => false,
+      }));
 
       const result = splitFilePath("folder/subfolder/file.txt");
 
@@ -48,7 +57,9 @@ describe("within filePaths", () => {
     });
 
     it("splits Windows path into elements", async () => {
-      vi.mocked(isPlatform).mockReturnValueOnce(true);
+      mock.module("../platform.js", () => ({
+        isPlatform: () => true,
+      }));
 
       const result = splitFilePath("folder\\subfolder\\file.txt");
 
@@ -56,7 +67,9 @@ describe("within filePaths", () => {
     });
 
     it("returns an empty array for an empty string input", async () => {
-      vi.mocked(isPlatform).mockReturnValueOnce(false);
+      mock.module("../platform.js", () => ({
+        isPlatform: () => false,
+      }));
 
       const result = splitFilePath("");
 

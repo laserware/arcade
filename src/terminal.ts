@@ -188,7 +188,7 @@ export function areTerminalColorsSupported(): boolean {
     return true;
   }
 
-  /* istanbul ignore if -- @preserve: This should never technically get hit, but it's here to make TypeScript happy. */
+  // Not covered in tests because this will probably never get hit:
   if (typeof process === "undefined") {
     return false;
   }

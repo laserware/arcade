@@ -30,7 +30,7 @@
   },
   "sideEffects": false,
   "scripts": {
-    "build": "tsup && cd dist && npx prettier --write .",
+    "build": "tsup && cd dist && bunx prettier --write .",
     "prepublishOnly": "bun run build",
     "preversion": "bun run lint && bun run typecheck",
     "version": "bun run format && git add -A src",
@@ -40,18 +40,14 @@
     "typecheck": "tsc --noEmit",
     "format": "biome format --write src",
     "lint": "biome lint src",
-    "vitest": "vitest --config vitest.config.ts"
+    "test": "bun test"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@types/bun": "latest",
     "@types/node": "^22",
-    "@vitest/coverage-istanbul": "^2.1.8",
-    "eslint": "^9.17.0",
-    "jsdom": "^25.0.1",
     "tsup": "^8.3.5",
     "typedoc": "^0.27.6",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "typescript": "^5.7.2"
   }
 }

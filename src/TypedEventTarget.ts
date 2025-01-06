@@ -27,8 +27,6 @@
  * package.
  */
 
-/* istanbul ignore file -- @preserve: Since this is vendored, we're skipping tests. */
-
 /**
  * A function that can be passed to the `listener` parameter of
  * {@linkcode TypedEventTarget.addEventListener} and {@linkcode TypedEventTarget.removeEventListener}.

@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { appendToGroup } from "../appendToGroup.js";
 
-describe.concurrent("the appendToGroup function", () => {
+describe("the appendToGroup function", () => {
   it("adds a new entry to an object which doesn't contain the key", async () => {
     const input = {};
 
@@ -25,6 +27,7 @@ describe.concurrent("the appendToGroup function", () => {
     let result = appendToGroup<unknown>(input, 0, 1);
     result = appendToGroup<unknown>(result, 3, 8);
 
+    // @ts-ignore
     expect(result).toEqual([[1], undefined, undefined, [8]]);
   });
 
