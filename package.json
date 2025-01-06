@@ -41,7 +41,7 @@
     "format": "biome format --write src",
     "lint": "biome lint src",
     "test": "bun test",
-    "ci": "biome ci"
+    "ci": "biome ci src"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
