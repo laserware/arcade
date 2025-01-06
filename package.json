@@ -30,7 +30,7 @@
   },
   "sideEffects": false,
   "scripts": {
-    "build": "tsup && cd dist && bunx prettier --write .",
+    "build": "tsup",
     "prepublishOnly": "bun run build",
     "preversion": "bun run lint && bun run typecheck",
     "version": "bun run format && git add -A src",
@@ -40,7 +40,8 @@
     "typecheck": "tsc --noEmit",
     "format": "biome format --write src",
     "lint": "biome lint src",
-    "test": "bun test"
+    "test": "bun test",
+    "ci": "biome ci"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
