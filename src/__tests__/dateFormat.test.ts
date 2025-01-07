@@ -16,7 +16,7 @@ const dates = {
 const ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 describe("the dateFormat function", () => {
-  // biome-ignore format:
+  // prettier-ignore
   it.each([
     { dayOfWeek: 1, date: dates.monday },
     { dayOfWeek: 2, date: dates.tuesday },
@@ -31,7 +31,7 @@ describe("the dateFormat function", () => {
     expect(result).toBe(dayOfWeek.toString());
   });
 
-  // biome-ignore format:
+  // prettier-ignore
   it.each([
     { date: "1993-03-12",              mask: "d",    expected: "12" },
     { date: "2020-11-1",               mask: "d",    expected: "1" },
@@ -170,7 +170,7 @@ describe("the dateFormat function", () => {
     expect(actual).toBe(expected);
   });
 
-  // biome-ignore format:
+  // prettier-ignore
   it.each([
     { offset: -1, mask: "DDDD", expected: "Yesterday" },
     { offset: -1, mask: "DDD",  expected: "Ysd" },
@@ -186,7 +186,7 @@ describe("the dateFormat function", () => {
     expect(result).toBe(expected);
   });
 
-  // biome-ignore format:
+  // prettier-ignore
   it.each([
     { offset: -1, mask: "DDDD", expected: "Yesterday" },
     { offset: -1, mask: "DDD",  expected: "Ysd" },
@@ -222,7 +222,7 @@ describe("the dateFormat function", () => {
     expect(result).toBe(result);
   });
 
-  // biome-ignore format:
+  // prettier-ignore
   it.each([
     { date: "1984-02-7",  mask: "W",  expected: "6" },
     { date: "2013-01-3",  mask: "W",  expected: "1" },
@@ -239,7 +239,7 @@ describe("the dateFormat function", () => {
   });
 
   describe("when UTC is specified", () => {
-    // biome-ignore format:
+    // prettier-ignore
     it.each([
       { date: "1993-03-12",              mask: "d",    expected: "12" },
       { date: "2020-11-1",               mask: "d",    expected: "1" },

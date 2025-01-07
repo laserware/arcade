@@ -1,9 +1,6 @@
 import { describe, expect, it } from "bun:test";
 
-import {
-  areTerminalColorsSupported,
-  createTerminalStyles,
-} from "../terminal.js";
+import { areTerminalColorsSupported, createTerminalStyles } from "../terminal.js";
 
 const formats = {
   reset: ["\x1b[0m", "\x1b[0m"],
@@ -87,7 +84,6 @@ describe("within terminal", () => {
       unstub();
     });
 
-    // FIXME: This test is broken.
     it("enables colors when env.NO_COLOR is empty", () => {
       const unstub = stubGlobal("process", {
         env: { ...process.env, NO_COLOR: "", CI: process.env.CI },
@@ -179,13 +175,14 @@ describe("within terminal", () => {
   });
 
   describe("the terminalStyles object", () => {
-    // biome-ignore format:
-    it.each(Object.entries(styles).map(([name, formatter]) => ({ name, formatter })),)(
-      "applies $name style to input text", async ({ formatter }) => {
-      const result = formatter("Test");
+    it.each(Object.entries(styles).map(([name, formatter]) => ({ name, formatter })))(
+      "applies $name style to input text",
+      async ({ formatter }) => {
+        const result = formatter("Test");
 
-      expect(/\[(\d*)m/.test(result)).toBeTruthy();
-    });
+        expect(/\[(\d*)m/.test(result)).toBeTruthy();
+      },
+    );
 
     it.each(Object.entries(formats).map(([name, codes]) => ({ name, codes })))(
       "wraps input with correct codes for $name",
@@ -193,15 +190,13 @@ describe("within terminal", () => {
         // @ts-ignore
         const result = styles[name]("string");
 
-        // biome-ignore lint/style/useTemplate: <explanation>
+        // biome-ignore lint/style/useTemplate:
         expect(result).toBe(codes[0] + "string" + codes[1]);
       },
     );
 
     it("handles color nesting", () => {
-      const result = styles.bold(
-        `BOLD ${styles.red(`RED ${styles.dim("DIM")} RED`)} BOLD`,
-      );
+      const result = styles.bold(`BOLD ${styles.red(`RED ${styles.dim("DIM")} RED`)} BOLD`);
 
       const expected = [
         formats.bold[0],
@@ -236,9 +231,7 @@ describe("within terminal", () => {
     });
 
     it("handles complex wrapping", () => {
-      const result = styles.bold(
-        styles.yellow(styles.bgRed(styles.italic("==TEST=="))),
-      );
+      const result = styles.bold(styles.yellow(styles.bgRed(styles.italic("==TEST=="))));
 
       const expected = [
         formats.bold[0],
@@ -255,7 +248,7 @@ describe("within terminal", () => {
       expect(result).toBe(expected);
     });
 
-    // biome-ignore format:
+    // prettier-ignore
     it.each([
       {
         input: styles.red(`foo ${styles.yellow("bar")} baz`),
@@ -273,14 +266,16 @@ describe("within terminal", () => {
       expect(input).toBe(expected.join(""));
     });
 
-    // biome-ignore format:
+    // prettier-ignore
     it.each([
       // @ts-ignore
       { input: styles.red(), expected: `${formats.red[0]}undefined${formats.red[1]}` },
       // @ts-ignore
       { input: styles.red(undefined), expected: `${formats.red[0]}undefined${formats.red[1]}` },
-      /* @ts-ignore */
-      { input: styles.red(0), expected: `${formats.red[0]}0${formats.red[1]}` },/* @ts-ignore */ { input: styles.red(Number.NaN), expected: `${formats.red[0]}NaN${formats.red[1]}` },
+      // @ts-ignore
+      { input: styles.red(0), expected: `${formats.red[0]}0${formats.red[1]}` },
+      // @ts-ignore
+      { input: styles.red(Number.NaN), expected: `${formats.red[0]}NaN${formats.red[1]}` },
       // @ts-ignore
       { input: styles.red(null), expected: `${formats.red[0]}null${formats.red[1]}` },
       // @ts-ignore
@@ -304,8 +299,11 @@ describe("within terminal", () => {
   });
 
   describe("the createTerminalStyles function", () => {
-    // biome-ignore format:
-    it.each(Object.entries(createTerminalStyles(true)).map(([name, formatter]) => ({ name, formatter })))(
+    const styles = createTerminalStyles(true);
+
+    const testCases = Object.entries(styles).map(([name, formatter]) => ({ name, formatter }));
+
+    it.each(testCases)(
       "returns an object that applies $name style to input text with colors enabled",
       async ({ formatter }) => {
         const result = formatter("Test");
