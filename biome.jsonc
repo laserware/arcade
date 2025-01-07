@@ -14,6 +14,14 @@
     "indentStyle": "space",
     "lineWidth": 80
   },
+  "overrides": [
+    {
+      "include": ["src/**/*.test.ts"],
+      "formatter": {
+        "lineWidth": 100
+      }
+    }
+  ],
   "organizeImports": {
     "enabled": true
   },
@@ -34,13 +42,5 @@
     "formatter": {
       "quoteStyle": "double"
     }
-  },
-  "overrides": [
-    {
-      "include": ["src/**/*.test.ts"],
-      "formatter": {
-        "lineWidth": 100
-      }
-    }
-  ]
+  }
 }
