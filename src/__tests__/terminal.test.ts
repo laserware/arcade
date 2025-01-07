@@ -248,7 +248,7 @@ describe("within terminal", () => {
       expect(result).toBe(expected);
     });
 
-    // prettier-ignore
+    // biome-ignore format:
     it.each([
       {
         input: styles.red(`foo ${styles.yellow("bar")} baz`),
@@ -266,7 +266,7 @@ describe("within terminal", () => {
       expect(input).toBe(expected.join(""));
     });
 
-    // prettier-ignore
+    // biome-ignore format:
     it.each([
       // @ts-ignore
       { input: styles.red(), expected: `${formats.red[0]}undefined${formats.red[1]}` },

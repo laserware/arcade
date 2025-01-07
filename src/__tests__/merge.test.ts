@@ -44,7 +44,6 @@ describe("within merge", () => {
 
       const result = merge(target, source);
 
-      // prettier-ignore
       expect(target).toEqual({ key1: { subkey1: "value1", subkey2: "value2" } });
       expect(result).toEqual(expected);
     });
@@ -159,7 +158,6 @@ describe("within merge", () => {
       const target = ["a1", "a2", "c1", "f1", "p1"];
       const source = ["t1", "s1", "c2", "r1", "p2", "p3"];
 
-      // prettier-ignore
       const expected = ["a1", "a2", "c1", "f1", "p1", "t1", "s1", "c2", "r1", "p2", "p3"];
 
       expect(merge(target, source)).toEqual(expected);
@@ -187,7 +185,6 @@ describe("within merge", () => {
     });
 
     it("works on array of objects", () => {
-      // prettier-ignore
       const source = [{ key1: ["one", "three"], key2: ["one"] }, { key3: ["five"] }];
       const target = [{ key1: ["one", "two"] }, { key3: ["four"] }];
 
@@ -240,7 +237,6 @@ describe("within merge", () => {
       const source = { value: undefined };
 
       const hasUndefinedProperty = (object: AnyPlainObject): void => {
-        // prettier-ignore
         expect(Object.prototype.hasOwnProperty.call(object, "value")).toBeTruthy();
         expect(typeof object.value).toBe("undefined");
       };
@@ -272,7 +268,6 @@ describe("within merge", () => {
       const result = merge(target, source);
 
       expect(result[SYMBOL_FAKE]).toBe("value1");
-      // prettier-ignore
       expect(Object.getOwnPropertySymbols(result)).toEqual(Object.getOwnPropertySymbols(source));
     });
 

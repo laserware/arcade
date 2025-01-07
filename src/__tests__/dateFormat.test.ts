@@ -16,7 +16,6 @@ const dates = {
 const ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 describe("the dateFormat function", () => {
-  // prettier-ignore
   it.each([
     { dayOfWeek: 1, date: dates.monday },
     { dayOfWeek: 2, date: dates.tuesday },
@@ -31,7 +30,7 @@ describe("the dateFormat function", () => {
     expect(result).toBe(dayOfWeek.toString());
   });
 
-  // prettier-ignore
+  // biome-ignore format:
   it.each([
     { date: "1993-03-12",              mask: "d",    expected: "12" },
     { date: "2020-11-1",               mask: "d",    expected: "1" },
@@ -170,37 +169,47 @@ describe("the dateFormat function", () => {
     expect(actual).toBe(expected);
   });
 
-  // prettier-ignore
-  it.each([
-    { offset: -1, mask: "DDDD", expected: "Yesterday" },
-    { offset: -1, mask: "DDD",  expected: "Ysd" },
-    { offset: 0,  mask: "DDDD", expected: "Today" },
-    { offset: 0,  mask: "DDD",  expected: "Tdy" },
-    { offset: 1,  mask: "DDDD", expected: "Tomorrow" },
-    { offset: 1,  mask: "DDD",  expected: "Tmw" },
-  ])("returns $expected for relative day using mask $mask when not using UTC", ({ offset, mask, expected }) => {
-    const date = getOffsetDate(offset);
+  it.each(
+    // biome-ignore format:
+    [
+      { offset: -1, mask: "DDDD", expected: "Yesterday" },
+      { offset: -1, mask: "DDD",  expected: "Ysd" },
+      { offset: 0,  mask: "DDDD", expected: "Today" },
+      { offset: 0,  mask: "DDD",  expected: "Tdy" },
+      { offset: 1,  mask: "DDDD", expected: "Tomorrow" },
+      { offset: 1,  mask: "DDD",  expected: "Tmw" },
+    ],
+  )(
+    "returns $expected for relative day using mask $mask when not using UTC",
+    ({ offset, mask, expected }) => {
+      const date = getOffsetDate(offset);
 
-    const result = dateFormat(date, mask);
+      const result = dateFormat(date, mask);
 
-    expect(result).toBe(expected);
-  });
+      expect(result).toBe(expected);
+    },
+  );
 
-  // prettier-ignore
-  it.each([
-    { offset: -1, mask: "DDDD", expected: "Yesterday" },
-    { offset: -1, mask: "DDD",  expected: "Ysd" },
-    { offset: 0,  mask: "DDDD", expected: "Today" },
-    { offset: 0,  mask: "DDD",  expected: "Tdy" },
-    { offset: 1,  mask: "DDDD", expected: "Tomorrow" },
-    { offset: 1,  mask: "DDD",  expected: "Tmw" },
-  ])("returns $expected for relative day using mask $mask when using UTC", ({ offset, mask, expected }) => {
-    const date = getOffsetDate(offset);
+  it.each(
+    // biome-ignore format:
+    [
+      { offset: -1, mask: "DDDD", expected: "Yesterday" },
+      { offset: -1, mask: "DDD",  expected: "Ysd" },
+      { offset: 0,  mask: "DDDD", expected: "Today" },
+      { offset: 0,  mask: "DDD",  expected: "Tdy" },
+      { offset: 1,  mask: "DDDD", expected: "Tomorrow" },
+      { offset: 1,  mask: "DDD",  expected: "Tmw" },
+    ],
+  )(
+    "returns $expected for relative day using mask $mask when using UTC",
+    ({ offset, mask, expected }) => {
+      const date = getOffsetDate(offset);
 
-    const result = dateFormat(date, mask, true);
+      const result = dateFormat(date, mask, true);
 
-    expect(result).toBe(expected);
-  });
+      expect(result).toBe(expected);
+    },
+  );
 
   it("returns the day name for relative format if not today, tomorrow, or yesterday", () => {
     const date = getOffsetDate(2);
@@ -222,24 +231,26 @@ describe("the dateFormat function", () => {
     expect(result).toBe(result);
   });
 
-  // prettier-ignore
-  it.each([
-    { date: "1984-02-7",  mask: "W",  expected: "6" },
-    { date: "2013-01-3",  mask: "W",  expected: "1" },
-    { date: "2034-11-22", mask: "W",  expected: "47" },
-    { date: "2002-02-1",  mask: "W",  expected: "5" },
-    { date: "1876-03-22", mask: "WW", expected: "12" },
-    { date: "2013-12-11", mask: "WW", expected: "50" },
-    { date: "2020-08-29", mask: "WW", expected: "35" },
-    { date: "2020-09-22", mask: "WW", expected: "39" },
-  ])("returns the week of year $expected for $date", ({ date, mask, expected }) => {
+  it.each(
+    // biome-ignore format:
+    [
+      { date: "1984-02-7",  mask: "W",  expected: "6" },
+      { date: "2013-01-3",  mask: "W",  expected: "1" },
+      { date: "2034-11-22", mask: "W",  expected: "47" },
+      { date: "2002-02-1",  mask: "W",  expected: "5" },
+      { date: "1876-03-22", mask: "WW", expected: "12" },
+      { date: "2013-12-11", mask: "WW", expected: "50" },
+      { date: "2020-08-29", mask: "WW", expected: "35" },
+      { date: "2020-09-22", mask: "WW", expected: "39" },
+    ],
+  )("returns the week of year $expected for $date", ({ date, mask, expected }) => {
     const result = dateFormat(date, mask);
 
     expect(result).toBe(expected);
   });
 
   describe("when UTC is specified", () => {
-    // prettier-ignore
+    // biome-ignore format:
     it.each([
       { date: "1993-03-12",              mask: "d",    expected: "12" },
       { date: "2020-11-1",               mask: "d",    expected: "1" },

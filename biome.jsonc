@@ -12,10 +12,7 @@
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "lineWidth": 80,
-    // We use Prettier to format test files because we can't override the line
-    // width based on directory/extension:
-    "ignore": ["**/*.test.ts"]
+    "lineWidth": 80
   },
   "organizeImports": {
     "enabled": true
@@ -37,5 +34,13 @@
     "formatter": {
       "quoteStyle": "double"
     }
-  }
+  },
+  "overrides": [
+    {
+      "include": ["src/**/*.test.ts"],
+      "formatter": {
+        "lineWidth": 100
+      }
+    }
+  ]
 }
