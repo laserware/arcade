@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { keyBy } from "../keyBy.js";
 
-describe.concurrent("the keyBy function", () => {
+describe("the keyBy function", () => {
   it("converts an array of objects to an object keyed by the specified field", async () => {
     const input = [
       { id: "a", value: "A" },

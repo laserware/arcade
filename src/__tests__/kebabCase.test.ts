@@ -1,7 +1,10 @@
+import { describe, expect, it } from "bun:test";
+
 import { kebabCase } from "../kebabCase.js";
 
 describe("the kebabCase function", () => {
-  it.concurrent.each([
+  // prettier-ignore
+  it.each([
     {
       value: "TitleCase",
       expected: "title-case",

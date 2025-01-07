@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { toReversed } from "../toReversed.js";
 
-describe.concurrent("the toReversed function", () => {
+describe("the toReversed function", () => {
   it("reverses a non-empty array of numbers", async () => {
     const input = [1, 2, 3, 4, 5];
     const result = toReversed(input);

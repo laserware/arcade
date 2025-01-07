@@ -1,5 +1,3 @@
-/* istanbul ignore file -- @preserve: This just picks which `randomUUID` to use based on the env. */
-
 import { isRuntime } from "./runtime.js";
 
 /**
@@ -14,7 +12,6 @@ import { isRuntime } from "./runtime.js";
 export function uuid(): string {
   if (isRuntime("node")) {
     // TODO: Find out if using `require` here will cause issues with Node.js/ESM.
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require("node:crypto").randomUUID();
   }
 

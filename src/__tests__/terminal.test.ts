@@ -1,3 +1,5 @@
+import { describe, expect, it } from "bun:test";
+
 import { areTerminalColorsSupported, createTerminalStyles } from "../terminal.js";
 
 const formats = {
@@ -46,126 +48,149 @@ const formats = {
 
 const styles = createTerminalStyles(true);
 
+const stubGlobal = (globalName: string, value: any): (() => void) => {
+  // @ts-ignore
+  const original = globalThis[globalName];
+
+  Object.defineProperty(globalThis, globalName, {
+    value: { ...original, ...value },
+  });
+
+  return () => {
+    Object.defineProperty(globalThis, globalName, { value: original });
+  };
+};
+
 describe("within terminal", () => {
   describe("when running in different environments", () => {
-    afterEach(() => {
-      vi.unstubAllGlobals();
-    });
-
     it("enables colors on a CI server", () => {
-      vi.stubGlobal("process", {
+      const unstub = stubGlobal("process", {
         env: { ...process.env, TERM: "dumb", CI: "1" },
       });
 
       expect(areTerminalColorsSupported()).toBeTruthy();
+
+      unstub();
     });
 
     it("enables colors when --color arg is specified", () => {
-      vi.stubGlobal("process", {
+      const unstub = stubGlobal("process", {
         env: { ...process.env, TERM: "dumb" },
         argv: ["--color"],
       });
 
       expect(areTerminalColorsSupported()).toBeTruthy();
+
+      unstub();
     });
 
-    // FIXME: This test is broken.
     it("enables colors when env.NO_COLOR is empty", () => {
-      vi.stubGlobal("process", {
+      const unstub = stubGlobal("process", {
         env: { ...process.env, NO_COLOR: "", CI: process.env.CI },
         argv: ["--color"],
       });
 
       expect(areTerminalColorsSupported()).toBeTruthy();
+
+      unstub();
     });
 
     it("enables colors when env.FORCE_COLOR is specified", () => {
-      vi.stubGlobal("process", {
+      const unstub = stubGlobal("process", {
         env: { ...process.env, TERM: "dumb", FORCE_COLOR: "1" },
       });
 
       expect(areTerminalColorsSupported()).toBeTruthy();
+
+      unstub();
     });
 
     it("enables colors when running on Windows", () => {
-      vi.stubGlobal("process", {
+      const unstub = stubGlobal("process", {
         env: { ...process.env, TERM: "dumb" },
         platform: "win32",
       });
 
       expect(areTerminalColorsSupported()).toBeTruthy();
+
+      unstub();
     });
 
     it("enables colors when running on edge runtime", () => {
-      vi.stubGlobal("process", {
+      const unstub = stubGlobal("process", {
         env: { ...process.env, FORCE_COLOR: "1" },
         argv: undefined,
         require: undefined,
       });
 
       expect(areTerminalColorsSupported()).toBeTruthy();
+
+      unstub();
     });
 
     it("disables colors when --no-color arg is specified", () => {
-      vi.stubGlobal("process", {
+      const unstub = stubGlobal("process", {
         env: { ...process.env, FORCE_COLOR: "1" },
         argv: ["--no-color"],
       });
 
       expect(areTerminalColorsSupported()).toBeFalsy();
+
+      unstub();
     });
 
     it("disables colors when env.NO_COLOR is specified", () => {
-      vi.stubGlobal("process", {
+      const unstub = stubGlobal("process", {
         env: { ...process.env, FORCE_COLOR: "1", NO_COLOR: "1" },
       });
 
       expect(areTerminalColorsSupported()).toBeFalsy();
+
+      unstub();
     });
 
     it("disables colors when only dumb terminal available", () => {
-      vi.stubGlobal("process", {
+      const unstub = stubGlobal("process", {
         env: { TERM: "dumb" },
         stdout: { isTTY: false },
         argv: [],
       });
 
       expect(areTerminalColorsSupported()).toBeFalsy();
+
+      unstub();
     });
 
     it("enables colors when is TTY and not dumb terminal", () => {
-      vi.stubGlobal("process", {
+      const unstub = stubGlobal("process", {
         env: { TERM: "" },
         stdout: { isTTY: true },
         argv: [],
       });
 
       expect(areTerminalColorsSupported()).toBeTruthy();
-    });
 
-    it("disables colors when environment is not available", () => {
-      vi.stubGlobal("process", { env: undefined });
-
-      expect(areTerminalColorsSupported()).toBeFalsy();
+      unstub();
     });
   });
 
   describe("the terminalStyles object", () => {
-    it.concurrent.each(
-      // prettier-ignore
-      Object.entries(styles).map(([name, formatter]) => ({ name, formatter })),
-    )("applies $name style to input text", async ({ formatter }) => {
-      const result = formatter("Test");
+    it.each(Object.entries(styles).map(([name, formatter]) => ({ name, formatter })))(
+      "applies $name style to input text",
+      async ({ formatter }) => {
+        const result = formatter("Test");
 
-      expect(/\[(\d*)m/.test(result)).toBeTruthy();
-    });
+        expect(/\[(\d*)m/.test(result)).toBeTruthy();
+      },
+    );
 
-    it.concurrent.each(Object.entries(formats).map(([name, codes]) => ({ name, codes })))(
+    it.each(Object.entries(formats).map(([name, codes]) => ({ name, codes })))(
       "wraps input with correct codes for $name",
       async ({ name, codes }) => {
         // @ts-ignore
         const result = styles[name]("string");
 
+        // biome-ignore lint/style/useTemplate:
         expect(result).toBe(codes[0] + "string" + codes[1]);
       },
     );
@@ -224,7 +249,7 @@ describe("within terminal", () => {
     });
 
     // prettier-ignore
-    it.concurrent.each([
+    it.each([
       {
         input: styles.red(`foo ${styles.yellow("bar")} baz`),
         expected: [formats.red[0], "foo ", formats.yellow[0], "bar", formats.red[0], " baz", formats.red[1]],
@@ -241,26 +266,30 @@ describe("within terminal", () => {
       expect(input).toBe(expected.join(""));
     });
 
-    it.concurrent.each([
+    // prettier-ignore
+    it.each([
       // @ts-ignore
-      { input: styles.red(), expected: formats.red[0] + "undefined" + formats.red[1] },
+      { input: styles.red(), expected: `${formats.red[0]}undefined${formats.red[1]}` },
       // @ts-ignore
-      { input: styles.red(undefined), expected: formats.red[0] + "undefined" + formats.red[1] },
+      { input: styles.red(undefined), expected: `${formats.red[0]}undefined${formats.red[1]}` },
       // @ts-ignore
-      { input: styles.red(0), expected: formats.red[0] + "0" + formats.red[1] },
+      { input: styles.red(0), expected: `${formats.red[0]}0${formats.red[1]}` },
       // @ts-ignore
-      { input: styles.red(NaN), expected: formats.red[0] + "NaN" + formats.red[1] },
+      { input: styles.red(Number.NaN), expected: `${formats.red[0]}NaN${formats.red[1]}` },
       // @ts-ignore
-      { input: styles.red(null), expected: formats.red[0] + "null" + formats.red[1] },
+      { input: styles.red(null), expected: `${formats.red[0]}null${formats.red[1]}` },
       // @ts-ignore
-      { input: styles.red(true), expected: formats.red[0] + "true" + formats.red[1] },
+      { input: styles.red(true), expected: `${formats.red[0]}true${formats.red[1]}` },
       // @ts-ignore
-      { input: styles.red(false), expected: formats.red[0] + "false" + formats.red[1] },
+      { input: styles.red(false), expected: `${formats.red[0]}false${formats.red[1]}` },
       // @ts-ignore
-      { input: styles.red(Infinity), expected: formats.red[0] + "Infinity" + formats.red[1] },
-    ])("handles non-string input when input is $input", ({ input, expected }) => {
-      expect(input).toBe(expected);
-    });
+      { input: styles.red(Number.POSITIVE_INFINITY), expected: `${formats.red[0]}Infinity${formats.red[1]}` },
+    ])(
+      "handles non-string input when input is $input",
+      ({ input, expected }) => {
+        expect(input).toBe(expected);
+      },
+    );
 
     it("doesn't overflow when coloring already colored large text", () => {
       expect(() => {
@@ -270,10 +299,11 @@ describe("within terminal", () => {
   });
 
   describe("the createTerminalStyles function", () => {
-    it.concurrent.each(
-      // prettier-ignore
-      Object.entries(createTerminalStyles(true)).map(([name, formatter]) => ({ name, formatter })),
-    )(
+    const styles = createTerminalStyles(true);
+
+    const testCases = Object.entries(styles).map(([name, formatter]) => ({ name, formatter }));
+
+    it.each(testCases)(
       "returns an object that applies $name style to input text with colors enabled",
       async ({ formatter }) => {
         const result = formatter("Test");

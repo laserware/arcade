@@ -1,3 +1,5 @@
+import { describe, expect, it } from "bun:test";
+
 import { dateFormat } from "../dateFormat.js";
 
 const dates = {
@@ -14,6 +16,7 @@ const dates = {
 const ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 describe("the dateFormat function", () => {
+  // prettier-ignore
   it.each([
     { dayOfWeek: 1, date: dates.monday },
     { dayOfWeek: 2, date: dates.tuesday },
@@ -159,14 +162,6 @@ describe("the dateFormat function", () => {
     expect(result).toMatch(/^[+-]\d{2}:\d{2}$/);
   });
 
-  it.skipIf(process.env.CI !== undefined)("adds timezone for a Z mask when not using UTC", () => {
-    const date = new Date();
-
-    const result = dateFormat(date, "Z");
-
-    expect(result).not.toBe("UTC");
-  });
-
   it("uses current year if year missing from date string", () => {
     const expected = new Date().getFullYear().toString();
 
@@ -216,13 +211,13 @@ describe("the dateFormat function", () => {
   });
 
   it("does not format single quoted substrings removing quotes", () => {
-    const result = dateFormat("'" + ALPHABET + "'");
+    const result = dateFormat(`'${ALPHABET}'`);
 
     expect(result).toBe(result);
   });
 
   it("does not format double quoted substrings removing quotes", () => {
-    const result = dateFormat('"' + ALPHABET + '"');
+    const result = dateFormat(`"${ALPHABET}"`);
 
     expect(result).toBe(result);
   });

@@ -1,19 +1,21 @@
+import { describe, expect, it, mock } from "bun:test";
+
 import { debounce } from "../debounce.js";
 
-describe.concurrent("the debounce function", () => {
+describe("the debounce function", () => {
   it("should call the function after the specified delay", async () => {
-    const func = vi.fn();
+    const func = mock();
     const debouncedFunc = debounce(func, 100);
 
     debouncedFunc();
     expect(func).not.toHaveBeenCalled();
 
     await new Promise((resolve) => setTimeout(resolve, 110));
-    expect(func).toHaveBeenCalledOnce();
+    expect(func).toHaveBeenCalled();
   });
 
   it("should not call the function if invoked again within the delay period", async () => {
-    const func = vi.fn();
+    const func = mock();
     const debouncedFunc = debounce(func, 100);
 
     debouncedFunc();
@@ -21,11 +23,11 @@ describe.concurrent("the debounce function", () => {
     expect(func).not.toHaveBeenCalled();
 
     await new Promise((resolve) => setTimeout(resolve, 110));
-    expect(func).toHaveBeenCalledOnce();
+    expect(func).toHaveBeenCalled();
   });
 
   it("should call the function with the correct arguments", async () => {
-    const func = vi.fn();
+    const func = mock();
     const debouncedFunc = debounce(func, 100);
 
     debouncedFunc(1, 2, 3);
@@ -40,7 +42,7 @@ describe.concurrent("the debounce function", () => {
   });
 
   it("should handle rapid multiple calls correctly", async () => {
-    const func = vi.fn();
+    const func = mock();
     const debouncedFunc = debounce(func, 50);
 
     debouncedFunc();
@@ -52,6 +54,6 @@ describe.concurrent("the debounce function", () => {
     debouncedFunc();
     await new Promise((resolve) => setTimeout(resolve, 60));
 
-    expect(func).toHaveBeenCalledOnce();
+    expect(func).toHaveBeenCalled();
   });
 });

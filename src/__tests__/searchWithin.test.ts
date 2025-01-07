@@ -1,3 +1,5 @@
+import { describe, expect, it } from "bun:test";
+
 import { searchWithin } from "../searchWithin.js";
 
 interface TestItem {

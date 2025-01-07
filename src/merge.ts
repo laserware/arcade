@@ -99,16 +99,16 @@ function mergeObject(
   const destination: Record<string, any> = {};
 
   if (isMergeableObject(target)) {
-    getKeys(target).forEach((key) => {
+    for (const key of getKeys(target)) {
       // @ts-ignore
       destination[key] = cloneValue(target[key]);
-    });
+    }
   }
 
-  getKeys(source).forEach((key) => {
+  for (const key of getKeys(source)) {
     // TODO: Find out a way to test this, I'm not sure what to do here.
     if (isPropertyUnsafe(target, key)) {
-      return;
+      continue;
     }
 
     if (isPropertyInObject(target, key) && isMergeableObject(source[key])) {
@@ -117,7 +117,7 @@ function mergeObject(
     } else {
       destination[key] = cloneValue(source[key]);
     }
-  });
+  }
 
   return destination;
 }

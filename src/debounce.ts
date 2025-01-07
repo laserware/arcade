@@ -24,6 +24,7 @@ export function debounce(func: AnyFunc, delay: number): AnyFunc {
   return (...args) => {
     clearTimeout(timeout);
 
+    // @ts-ignore
     timeout = setTimeout(() => {
       func(...args);
     }, delay);

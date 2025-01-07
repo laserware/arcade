@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { toBoolean } from "../toBoolean.js";
 
-describe.concurrent("the toBoolean function", () => {
+describe("the toBoolean function", () => {
   it("returns true for boolean true", async () => {
     expect(toBoolean(true)).toBe(true);
   });

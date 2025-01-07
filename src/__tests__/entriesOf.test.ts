@@ -1,7 +1,9 @@
+import { describe, expect, it } from "bun:test";
+
 import { entriesOf } from "../entriesOf.js";
 import type { Dict } from "../types.js";
 
-describe.concurrent("the entriesOf function", () => {
+describe("the entriesOf function", () => {
   enum TestKey {
     A = "a",
     B = "b",

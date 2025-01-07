@@ -1,3 +1,5 @@
+import { describe, expect, it } from "bun:test";
+
 import { isPlainObject } from "../isPlainObject.js";
 import { noop } from "../noop.js";
 

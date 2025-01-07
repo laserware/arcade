@@ -76,9 +76,12 @@ export function clamp(value: number, lower: number, upper: number): number {
   let validLower = Number(lower);
   let validUpper = Number(upper);
 
+  // biome-ignore lint/suspicious/noSelfCompare: Copied from source
   validLower = validLower === validLower ? validLower : 0;
+  // biome-ignore lint/suspicious/noSelfCompare: Copied from source
   validUpper = validUpper === validUpper ? validUpper : 0;
 
+  // biome-ignore lint/suspicious/noSelfCompare: Copied from source
   if (clampedValue === clampedValue) {
     clampedValue = clampedValue <= validUpper ? clampedValue : validUpper;
     clampedValue = clampedValue >= validLower ? clampedValue : validLower;

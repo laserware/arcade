@@ -22,7 +22,7 @@ import { isValidNumber } from "./isValidNumber.js";
  *
  * @category Number
  */
-export function asNumber(value: unknown, fallback: number = 0): number {
+export function asNumber(value: unknown, fallback = 0): number {
   if (isValidNumber(value)) {
     return value;
   }
@@ -36,7 +36,7 @@ export function asNumber(value: unknown, fallback: number = 0): number {
 
     const numericValue = Number(value.replace(/\D/g, ""));
 
-    /* istanbul ignore if -- @preserve: I don't think we'll ever hit this condition, but I'm hedging my bets. */
+    // Not covered in tests, but highly unlikely to hit:
     if (Number.isNaN(numericValue)) {
       return fallback;
     } else {

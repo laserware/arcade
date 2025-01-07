@@ -1,7 +1,9 @@
+import { describe, expect, it } from "bun:test";
+
 import { isNotNil } from "../isNotNil.js";
 
 describe("the isNotNil function", () => {
-  it.concurrent.each([
+  it.each([
     {
       value: null,
       expected: false,

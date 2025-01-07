@@ -1,3 +1,5 @@
+import { describe, expect, it } from "bun:test";
+
 import { cast } from "../cast.js";
 
 describe("the cast function", () => {

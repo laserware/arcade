@@ -1,7 +1,9 @@
+import { describe, expect, it } from "bun:test";
+
 import { isEmpty } from "../isEmpty.js";
 
 describe("the isEmpty function", () => {
-  it.concurrent.each([
+  it.each([
     { value: null, expected: true },
     { value: undefined, expected: true },
     { value: "", expected: true },

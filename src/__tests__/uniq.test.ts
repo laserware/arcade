@@ -1,3 +1,5 @@
+import { describe, expect, it } from "bun:test";
+
 import { uniq } from "../uniq.js";
 
 describe("the uniq function", () => {

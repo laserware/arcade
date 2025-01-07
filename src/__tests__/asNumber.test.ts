@@ -1,3 +1,5 @@
+import { describe, expect, it } from "bun:test";
+
 import { asNumber } from "../asNumber.js";
 
 describe("the asNumber function", () => {
@@ -49,6 +51,6 @@ describe("the asNumber function", () => {
   });
 
   it("returns the fallback for NaN input", () => {
-    expect(asNumber(NaN, 0)).toBe(0);
+    expect(asNumber(Number.NaN, 0)).toBe(0);
   });
 });

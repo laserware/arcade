@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { gte } from "../gte.js";
 
-describe.concurrent("the gte function", () => {
+describe("the gte function", () => {
   it("returns true when both numbers are equal", async () => {
     expect(gte(5, 5)).toBe(true);
   });

@@ -1,13 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "allowImportingTsExtensions": false,
     "declaration": true,
     "declarationMap": false,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
-    "importHelpers": true,
     "lib": ["DOM", "ESNext"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
@@ -18,11 +15,10 @@
     "sourceMap": false,
     "strict": true,
     "strictNullChecks": true,
+    "stripInternal": true,
     "target": "ESNext",
-    "types": ["vitest/globals"],
     "verbatimModuleSyntax": true
   },
-  "include": ["./src/**/*.ts"],
-  "exclude": ["dist", "node_modules"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "./tsup.config.ts"],
+  "exclude": ["dist", "node_modules"]
 }

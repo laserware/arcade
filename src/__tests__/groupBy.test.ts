@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { groupBy } from "../groupBy.js";
 
-describe.concurrent("the groupBy function", () => {
+describe("the groupBy function", () => {
   it("throws an error if the first argument is not a valid array", async () => {
     expect(() => {
       // @ts-expect-error

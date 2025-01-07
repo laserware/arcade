@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { removeAtIndex } from "../removeAtIndex.js";
 
-describe.concurrent("the removeAtIndex function", () => {
+describe("the removeAtIndex function", () => {
   it("removes the item at the specified index from the array", async () => {
     const items = [1, 2, 3, 4];
 

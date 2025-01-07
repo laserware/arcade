@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { sumBy } from "../sumBy.js";
 
-describe.concurrent("the sumBy function", () => {
+describe("the sumBy function", () => {
   it("returns 0 for an empty collection", async () => {
     const result = sumBy([], "value");
     expect(result).toBe(0);

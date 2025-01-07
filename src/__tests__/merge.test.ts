@@ -1,4 +1,5 @@
 // noinspection SpellCheckingInspection
+import { describe, expect, it } from "bun:test";
 
 import { merge, mergeAll } from "../merge.js";
 import type { AnyPlainObject } from "../types.js";
@@ -43,6 +44,7 @@ describe("within merge", () => {
 
       const result = merge(target, source);
 
+      // prettier-ignore
       expect(target).toEqual({ key1: { subkey1: "value1", subkey2: "value2" } });
       expect(result).toEqual(expected);
     });
@@ -68,7 +70,7 @@ describe("within merge", () => {
       };
 
       expect(target).toEqual({ key1: "value1", key2: "value2" });
-      expect(merge(target, source)).toEqual(expected);
+      expect(merge(target, source)).toEqual(expected as any);
     });
 
     it("adds nested object in target", () => {
@@ -100,7 +102,7 @@ describe("within merge", () => {
         },
         key2: "value2",
       });
-      expect(merge(target, source)).toEqual(expected);
+      expect(merge(target, source)).toEqual(expected as any);
     });
 
     it("replaces objects with arrays", () => {
@@ -110,7 +112,7 @@ describe("within merge", () => {
 
       const expected = { key1: ["subkey"] };
 
-      expect(merge(target, source)).toEqual(expected);
+      expect(merge(target, source)).toEqual(expected as any);
     });
 
     it("replaces arrays with objects", () => {
@@ -120,7 +122,7 @@ describe("within merge", () => {
 
       const expected = { key1: { subkey: "one" } };
 
-      expect(merge(target, source)).toEqual(expected);
+      expect(merge(target, source)).toEqual(expected as any);
     });
 
     it("replaces dates with arrays", () => {
@@ -130,7 +132,7 @@ describe("within merge", () => {
 
       const expected = { key1: ["subkey"] };
 
-      expect(merge(target, source)).toEqual(expected);
+      expect(merge(target, source)).toEqual(expected as any);
     });
 
     it("replaces null with arrays", () => {
@@ -140,7 +142,7 @@ describe("within merge", () => {
 
       const expected = { key1: ["subkey"] };
 
-      expect(merge(target, source)).toEqual(expected);
+      expect(merge(target, source)).toEqual(expected as any);
     });
 
     it("works on simple array", () => {
@@ -157,6 +159,7 @@ describe("within merge", () => {
       const target = ["a1", "a2", "c1", "f1", "p1"];
       const source = ["t1", "s1", "c2", "r1", "p2", "p3"];
 
+      // prettier-ignore
       const expected = ["a1", "a2", "c1", "f1", "p1", "t1", "s1", "c2", "r1", "p2", "p3"];
 
       expect(merge(target, source)).toEqual(expected);
@@ -184,6 +187,7 @@ describe("within merge", () => {
     });
 
     it("works on array of objects", () => {
+      // prettier-ignore
       const source = [{ key1: ["one", "three"], key2: ["one"] }, { key3: ["five"] }];
       const target = [{ key1: ["one", "two"] }, { key3: ["four"] }];
 
@@ -194,7 +198,7 @@ describe("within merge", () => {
         { key3: ["five"] },
       ];
 
-      expect(merge(target, source)).toEqual(expected);
+      expect(merge(target, source)).toEqual(expected as any);
       expect(Array.isArray(merge(target, source))).toBeTruthy();
       expect(Array.isArray(merge(target, source)[0].key1)).toBeTruthy();
     });
@@ -236,6 +240,7 @@ describe("within merge", () => {
       const source = { value: undefined };
 
       const hasUndefinedProperty = (object: AnyPlainObject): void => {
+        // prettier-ignore
         expect(Object.prototype.hasOwnProperty.call(object, "value")).toBeTruthy();
         expect(typeof object.value).toBe("undefined");
       };
@@ -267,6 +272,7 @@ describe("within merge", () => {
       const result = merge(target, source);
 
       expect(result[SYMBOL_FAKE]).toBe("value1");
+      // prettier-ignore
       expect(Object.getOwnPropertySymbols(result)).toEqual(Object.getOwnPropertySymbols(source));
     });
 

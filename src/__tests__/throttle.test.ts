@@ -1,8 +1,10 @@
+import { describe, expect, it, mock } from "bun:test";
+
 import { throttle } from "../throttle.js";
 
 describe("the throttle function", () => {
   it("calls the function immediately on first call", () => {
-    const func = vi.fn();
+    const func = mock();
     const throttledFunc = throttle(func, 1_000);
 
     throttledFunc();
@@ -10,7 +12,7 @@ describe("the throttle function", () => {
   });
 
   it("does not call the function again before the delay", () => {
-    const func = vi.fn();
+    const func = mock();
 
     const throttledFunc = throttle(func, 1_000);
 
@@ -21,7 +23,7 @@ describe("the throttle function", () => {
   });
 
   it("calls the function again after the delay", async () => {
-    const func = vi.fn();
+    const func = mock();
     const throttledFunc = throttle(func, 100);
 
     throttledFunc();

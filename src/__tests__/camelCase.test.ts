@@ -1,6 +1,8 @@
+import { describe, expect, it } from "bun:test";
+
 import { camelCase } from "../camelCase.js";
 
-describe.concurrent("the camelCase function", () => {
+describe("the camelCase function", () => {
   it("transforms hyphenated string to camelCase", async () => {
     expect(camelCase("background-color")).toBe("backgroundColor");
   });
