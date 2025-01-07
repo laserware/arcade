@@ -2,12 +2,13 @@
   "name": "@laserware/arcade",
   "version": "3.13.1",
   "description": "Miscellaneous utility functions.",
-  "author": "Mike Rourke <mike.w.rourke@gmail.com>",
+  "author": "Mike Rourke <mike.w.rourke@gmail.com> (https://mikerourke.dev/)",
   "license": "MIT",
   "repository": {
     "url": "git+https://github.com/laserware/arcade.git",
     "type": "git"
   },
+  "homepage": "https://laserware.github.io/arcade/",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -19,12 +20,8 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": [
-    "dist"
-  ],
-  "keywords": [
-    "utilities"
-  ],
+  "files": ["dist"],
+  "keywords": ["utilities"],
   "publishConfig": {
     "access": "public"
   },
@@ -51,8 +48,5 @@
     "typedoc": "^0.27.6",
     "typescript": "^5.7.2"
   },
-  "trustedDependencies": [
-    "@biomejs/biome",
-    "esbuild"
-  ]
+  "trustedDependencies": ["@biomejs/biome", "esbuild"]
 }

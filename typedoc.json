@@ -1,4 +1,5 @@
 {
+  "$schema": "https://typedoc.org/schema.json",
   "cleanOutputDir": true,
   "defaultCategory": "Utility",
   "entryPoints": ["./src/index.ts"],
