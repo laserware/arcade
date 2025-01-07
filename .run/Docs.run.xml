@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Docs" type="CompoundRunConfigurationType">
+    <toRun name="Docs.Debug" type="JavascriptDebugType" />
+    <toRun name="Docs.Generate (Watch)" type="js.build_tools.npm" />
+    <toRun name="Docs.Serve" type="js.build_tools.npm" />
+    <method v="2" />
+  </configuration>
+</component>
