@@ -39,18 +39,17 @@
     "ci": "biome ci src",
     "docs:generate": "typedoc  --options typedoc.json",
     "docs:serve": "mkdir -p ./site && cd ./site && bunx vite",
-    "format": "biome check --formatter-enabled=true --linter-enabled=false --organize-imports-enabled=true --write src",
-    "lint": "biome lint src",
+    "check": "biome check --write src",
     "test": "bun test",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@types/bun": "latest",
-    "@types/node": "^22",
+    "@types/node": "^22.10.5",
     "tsup": "^8.3.5",
     "typedoc": "^0.27.6",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.3"
   },
   "trustedDependencies": [
     "@biomejs/biome",
