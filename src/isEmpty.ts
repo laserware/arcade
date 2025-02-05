@@ -16,7 +16,7 @@ import { isNil } from "./isNil.js";
  *
  * @category Utility
  */
-export function isEmpty(value: any): boolean {
+export function isEmpty(value: unknown): boolean {
   if (isNil(value)) {
     return true;
   }
@@ -33,5 +33,5 @@ export function isEmpty(value: any): boolean {
     return value.size === 0;
   }
 
-  return Object.keys(value).length === 0;
+  return Object.keys(value as object).length === 0;
 }

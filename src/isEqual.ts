@@ -44,7 +44,7 @@ import { isNotNil } from "./isNotNil.js";
  *
  * @returns `true` if both values are deeply equal.
  *
- * @category Object
+ * @category Utility
  */
 export function isEqual(left: any, right: any): boolean {
   if (left === right) {

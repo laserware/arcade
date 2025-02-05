@@ -1,5 +1,3 @@
-import type { AnyPlainObject } from "./types.js";
-
 /**
  * Checks if the specified `value` is a plain object.
  *
@@ -7,9 +5,11 @@ import type { AnyPlainObject } from "./types.js";
  *
  * @returns `true` if the `value` is a plain object.
  *
- * @category Object
+ * @category Utility
+ *
+ * @deprecated Use {@linkcode isObjectLiteral} or {@linkcode is.objectLiteral} instead.
  */
-export function isPlainObject(value: any): value is AnyPlainObject {
+export function isPlainObject(value: any): value is Record<any, any> {
   if (value === null || value === undefined) {
     return false;
   }

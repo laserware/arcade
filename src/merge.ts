@@ -29,9 +29,9 @@
  */
 
 import { isNil } from "./isNil.js";
-import type { AnyPlainObject, OneOrManyOf } from "./types.js";
+import type { OneOrManyOf } from "./types.js";
 
-export type Mergeable = AnyPlainObject | any[];
+export type Mergeable = Record<any, any> | any[];
 
 /**
  * Merges the specified `items` into a single item.
@@ -93,9 +93,9 @@ function mergeArray(target: Mergeable, source: Mergeable): Mergeable[] {
 }
 
 function mergeObject(
-  target: AnyPlainObject,
-  source: AnyPlainObject,
-): AnyPlainObject {
+  target: Record<any, any>,
+  source: Record<any, any>,
+): Record<any, any> {
   const destination: Record<string, any> = {};
 
   if (isMergeableObject(target)) {
@@ -175,7 +175,10 @@ function getKeys(target: Mergeable): string[] {
   return Object.keys(target).concat(getEnumerableOwnPropertySymbols(target));
 }
 
-function isPropertyInObject(object: AnyPlainObject, property: string): boolean {
+function isPropertyInObject(
+  object: Record<any, any>,
+  property: string,
+): boolean {
   try {
     return property in object;
   } catch {
@@ -184,7 +187,7 @@ function isPropertyInObject(object: AnyPlainObject, property: string): boolean {
 }
 
 // Protects from prototype poisoning and unexpected merging up the prototype chain.
-function isPropertyUnsafe(target: AnyPlainObject, key: string): boolean {
+function isPropertyUnsafe(target: Record<any, any>, key: string): boolean {
   // Properties are safe to merge if they don't exist in the target yet:
   if (!isPropertyInObject(target, key)) {
     return false;

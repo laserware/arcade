@@ -1,4 +1,4 @@
-import { isValidNumber } from "./isValidNumber.js";
+import { isValidNumber } from "./is.js";
 
 /**
  * Attempts to extract the numeric value from the specified `value`. This

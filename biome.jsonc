@@ -24,7 +24,8 @@
       "recommended": true,
       "style": {
         "noUselessElse": "off",
-        "noParameterAssign": "off"
+        "noParameterAssign": "off",
+        "noNonNullAssertion": "off"
       },
       "suspicious": {
         "noExplicitAny": "off"

@@ -2,7 +2,6 @@
 import { describe, expect, it } from "bun:test";
 
 import { merge, mergeAll } from "../merge.js";
-import type { AnyPlainObject } from "../types.js";
 
 describe("within merge", () => {
   describe("the merge function", () => {
@@ -236,7 +235,7 @@ describe("within merge", () => {
     it("overwrites values when property is initialised but undefined", () => {
       const source = { value: undefined };
 
-      const hasUndefinedProperty = (object: AnyPlainObject): void => {
+      const hasUndefinedProperty = (object: Record<any, any>): void => {
         expect(Object.prototype.hasOwnProperty.call(object, "value")).toBeTruthy();
         expect(typeof object.value).toBe("undefined");
       };

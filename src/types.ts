@@ -30,13 +30,6 @@ export type AnyDict = Record<DictKey, any>;
 export type AnyFunc = (...args: any[]) => any;
 
 /**
- * Any plain object with key/value pair of type `any`.
- *
- * @category Types
- */
-export type AnyPlainObject = Record<any, any>;
-
-/**
  * Extracts the **string** keys of the specified object into an array.
  *
  * @remarks
@@ -66,7 +59,7 @@ export type OneOrManyOf<T> = T | T[];
  *
  * @category Types
  */
-export type WithNullValues<T extends AnyPlainObject> = {
+export type WithNullValues<T extends Record<any, any>> = {
   [K in keyof T]: T[K] | null;
 };
 
@@ -77,7 +70,7 @@ export type WithNullValues<T extends AnyPlainObject> = {
  *
  * @category Types
  */
-export type WithUndefinedValues<T extends AnyPlainObject> = {
+export type WithUndefinedValues<T extends Record<any, any>> = {
   [K in keyof T]: T[K] | undefined;
 };
 
