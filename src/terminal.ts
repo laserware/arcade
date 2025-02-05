@@ -140,6 +140,8 @@ export function createTerminalStyles(
 
 /**
  * Returns the formatter function used to format the log message.
+ *
+ * @internal
  */
 function getFormatter(
   open: string,

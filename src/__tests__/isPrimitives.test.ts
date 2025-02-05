@@ -1,3 +1,5 @@
+// noinspection JSPrimitiveTypeWrapperUsage
+
 import { describe, expect, it } from "bun:test";
 
 import {
@@ -8,9 +10,9 @@ import {
   isObjectLiteral,
   isString,
   isValidNumber,
-} from "../is.js";
+} from "../isPrimitives.js";
 
-describe("within is", () => {
+describe("within isPrimitives", () => {
   describe("the isArrayOf function", () => {
     it.each([
       [["a", "b", "c"], true, isString],
