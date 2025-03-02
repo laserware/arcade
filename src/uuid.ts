@@ -1,5 +1,3 @@
-import { isRuntime } from "./runtime.js";
-
 /**
  * Generates a V4 UUID using the [Node.js crypto.randomUUID](https://nodejs.org/api/crypto.html#cryptorandomuuidoptions)
  * function or the browser's [crypto.randomUUID](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID)
@@ -10,14 +8,35 @@ import { isRuntime } from "./runtime.js";
  * @category Utility
  */
 export function uuid(): string {
-  if (isRuntime("node")) {
-    // TODO: Find out if using `require` here will cause issues with Node.js/ESM.
-    return require("node:crypto").randomUUID();
+  let result: string | undefined;
+
+  try {
+    if (typeof window !== "undefined" && "crypto" in window) {
+      result = window.crypto.randomUUID();
+    }
+  } catch {
+    // Do nothing.
   }
 
-  if (typeof window !== "undefined" && "crypto" in window) {
-    return window.crypto.randomUUID();
+  try {
+    if (typeof globalThis !== "undefined" && "crypto" in globalThis) {
+      result = globalThis.crypto.randomUUID();
+    }
+  } catch {
+    // Do nothing.
   }
 
-  throw new Error("Unable to generate UUID");
+  try {
+    if (typeof require === "function") {
+      result = require("node:crypto").randomUUID();
+    }
+  } catch {
+    // Do nothing.
+  }
+
+  if (result === undefined) {
+    throw new Error("Unable to generate UUID");
+  } else {
+    return result;
+  }
 }
