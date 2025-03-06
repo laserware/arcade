@@ -51,7 +51,7 @@ export function insertAtIndex<T>(
     return array;
   }
 
-  if (index < 0 || index > array.length - 1) {
+  if (index < 0 || index > array.length) {
     throw new RangeError(`Index ${index} is out of bounds`);
   }
 

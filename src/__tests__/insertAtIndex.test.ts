@@ -21,6 +21,12 @@ describe("the insertAtIndex function", () => {
     expect(() => {
       insertAtIndex(items, -1, 2);
     }).toThrow(RangeError);
+
+    expect(insertAtIndex(items, 3, 4)).toEqual([1, 2, 3, 4]);
+
+    expect(() => {
+      insertAtIndex(items, 4, 2);
+    }).toThrow(RangeError);
   });
 
   it("handles insertion from the beginning of the array", () => {
