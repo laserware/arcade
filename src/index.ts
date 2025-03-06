@@ -11,6 +11,7 @@ export { entriesOf } from "./entriesOf.js";
 export { joinFilePath, splitFilePath } from "./filePaths.js";
 export { groupBy, type Iteratee } from "./groupBy.js";
 export { gte } from "./gte.js";
+export { insertAtIndex } from "./insertAtIndex.js";
 export { isEmpty } from "./isEmpty.js";
 export { isEqual } from "./isEqual.js";
 export { isNil } from "./isNil.js";
