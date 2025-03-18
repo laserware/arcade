@@ -64,6 +64,26 @@ export function isNumber(value: unknown): value is number {
 }
 
 /**
+ * Checks if the specified `value` is a non-null object, but **not** an `Array`,
+ * `RegExp`, or `Date`.
+ *
+ * @param value Value to check if an object.
+ *
+ * @returns `true` if the value is an object.
+ *
+ * @category Utility
+ */
+export function isObject(value: unknown): value is object {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    !Array.isArray(value) &&
+    !(value instanceof RegExp) &&
+    !(value instanceof Date)
+  );
+}
+
+/**
  * Checks if the specified `value` is a plain object.
  *
  * @param value Value to check if plain object.

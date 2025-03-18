@@ -7,6 +7,7 @@ import {
   isBoolean,
   isFunction,
   isNumber,
+  isObject,
   isObjectLiteral,
   isString,
   isValidNumber,
@@ -75,6 +76,30 @@ describe("within isPrimitives", () => {
       [[], false],
     ])("with input %p returns %p", (input, expected) => {
       expect(isNumber(input)).toBe(expected);
+    });
+  });
+
+  describe("the isObject function", () => {
+    it.each([
+      [{}, true],
+      [{ a: 1 }, true],
+      [Object.create(null), true],
+      [new Object(), true],
+      [[], false],
+      [new Date(), false],
+      // biome-ignore lint/complexity/useRegexLiterals: Needed for test case.
+      [new RegExp("a"), false],
+      [null, false],
+      [undefined, false],
+      [() => {}, false], // Functions are not considered simple objects
+      [class TestClass {}, false],
+      [new (class {})(), true],
+      [42, false],
+      ["string", false],
+      [true, false],
+      [Symbol("test"), false],
+    ])("with input %p returns %p", (input, expected) => {
+      expect(isObject(input)).toBe(expected);
     });
   });
 

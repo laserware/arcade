@@ -7,6 +7,7 @@ import {
   isBoolean,
   isFunction,
   isNumber,
+  isObject,
   isObjectLiteral,
   isString,
   isValidNumber,
@@ -37,6 +38,11 @@ export const is = {
    * Returns true if the specified `value` is a number.
    */
   number: isNumber,
+  /**
+   * Returns true if the specified `value` is a non-null object that is **not**
+   * an `Array`, `RegExp`, or `Date`.
+   */
+  object: isObject,
   /**
    * Returns true if the specified `value` is an object literal.
    */

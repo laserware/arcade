@@ -12,17 +12,18 @@ export { joinFilePath, splitFilePath } from "./filePaths.js";
 export { groupBy, type Iteratee } from "./groupBy.js";
 export { gte } from "./gte.js";
 export { insertAtIndex } from "./insertAtIndex.js";
+export { is } from "./is.js";
 export { isEmpty } from "./isEmpty.js";
 export { isEqual } from "./isEqual.js";
 export { isNil } from "./isNil.js";
 export { isNotNil } from "./isNotNil.js";
 export { isPlainObject } from "./isPlainObject.js";
-export { is } from "./is.js";
 export {
   isArrayOf,
   isBoolean,
   isFunction,
   isNumber,
+  isObject,
   isObjectLiteral,
   isString,
   isValidNumber,
