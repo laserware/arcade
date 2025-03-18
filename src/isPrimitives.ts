@@ -45,7 +45,6 @@ export function isBoolean(value: unknown): value is boolean {
  *
  * @category Utility
  */
-// biome-ignore lint/complexity/noBannedTypes: Used only for assertion.
 export function isFunction(value: unknown): value is Function {
   return typeof value === "function";
 }
@@ -73,7 +72,7 @@ export function isNumber(value: unknown): value is number {
  *
  * @category Utility
  */
-export function isObject(value: unknown): value is object {
+export function isObject(value: unknown): value is Object {
   return (
     typeof value === "object" &&
     value !== null &&
