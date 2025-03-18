@@ -45,6 +45,8 @@ export interface Dedent {
  * @returns Specified value with indentation removed.
  *
  * @category String
+ *
+ * @function
  */
 export const dedent: Dedent = createDedent({});
 
