@@ -1,5 +1,5 @@
+import { isEqual } from "./equals.js";
 import { isEmpty } from "./isEmpty.js";
-import { isEqual } from "./isEqual.js";
 import { isNil } from "./isNil.js";
 import { isNotNil } from "./isNotNil.js";
 import {

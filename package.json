@@ -54,5 +54,8 @@
   "trustedDependencies": [
     "@biomejs/biome",
     "esbuild"
-  ]
+  ],
+  "dependencies": {
+    "fast-equals": "^5.2.2"
+  }
 }
