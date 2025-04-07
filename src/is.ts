@@ -60,6 +60,10 @@ export const is = {
    */
   empty: isEmpty,
   /**
+   * Returns true if the specified `value` is not empty.
+   */
+  notEmpty: (value: unknown) => !isEmpty(value),
+  /**
    * Returns true if the specified values are equal.
    */
   equal: isEqual,

@@ -30,7 +30,7 @@ export function isArrayOf<T>(
  *
  * @returns `true` if the `value` is a boolean.
  *
- * @category Other
+ * @category Utility
  */
 export function isBoolean(value: unknown): value is boolean {
   return typeof value === "boolean";
