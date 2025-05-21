@@ -43,19 +43,19 @@
     "test": "bun test",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "fast-equals": "^5.2.2"
+  },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@types/bun": "^1.2.8",
-    "@types/node": "^22.14.0",
-    "tsup": "^8.4.0",
-    "typedoc": "^0.28.2",
+    "@types/bun": "^1.2.13",
+    "@types/node": "^22.15.21",
+    "tsup": "^8.5.0",
+    "typedoc": "^0.28.4",
     "typescript": "^5.8.3"
   },
   "trustedDependencies": [
     "@biomejs/biome",
     "esbuild"
-  ],
-  "dependencies": {
-    "fast-equals": "^5.2.2"
-  }
+  ]
 }
