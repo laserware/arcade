@@ -29,7 +29,7 @@ import type { DictKey } from "./types.js";
  * console.log(food.vegs);
  * // ["lettuce", "cucumber"]
  *
- * // For new group:
+ * // For the new group:
  * appendToGroup(food, "candy", "Snickers");
  *
  * // Note that the group was created:
@@ -72,7 +72,7 @@ export function appendToGroup<V, K extends DictKey = string>(
  * console.log(food[1]);
  * // ["lettuce", "cucumber"]
  *
- * // For new group:
+ * // For the new group:
  * appendToGroup(food, 2, "Snickers");
  *
  * // Note that the group was created:

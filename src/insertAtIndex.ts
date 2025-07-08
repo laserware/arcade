@@ -1,7 +1,7 @@
 /**
  * Inserts the specified `item` into the specified `array` at the specified `index`.
  *
- * @param array Existing array to add items to.
+ * @param array The existing array to add items to.
  * @param index Index at which to insert items.
  * @param item Item to insert in the array at the specified index.
  *
@@ -22,7 +22,7 @@ export function insertAtIndex<T>(array: T[], index: number, item: T): T[];
 /**
  * Inserts the specified `items` into the specified `array` at the specified `index`.
  *
- * @param array Existing array to add items to.
+ * @param array The existing array to add items to.
  * @param index Index at which to insert items.
  * @param items Items to insert in the array at the specified index.
  *

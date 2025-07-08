@@ -8,7 +8,7 @@ import { isNil } from "./isNil.js";
  * @param value Value to check.
  * @param predicate Predicate function to confirm the type matches.
  *
- * @returns `true` if the `value` is an array of specified type.
+ * @returns `true` if the `value` is an array of the specified type.
  *
  * @category Utility
  */

@@ -39,7 +39,7 @@ export type TerminalStyleFormatter = (input: string) => string;
  *
  * @category Terminal
  */
-// biome-ignore format:
+// biome-ignore format: Ignore
 export type TerminalStyle =
   | "reset"
   // Text Decoration:
@@ -56,7 +56,7 @@ export type TerminalStyle =
   | "bgMagentaBright" | "bgCyanBright" | "bgWhiteBright";
 
 /**
- * Object with key of terminal style and value of the corresponding formatter
+ * Object with a key of terminal style and value of the corresponding formatter
  * callback to apply style to an input.
  *
  * @category Terminal
@@ -79,7 +79,7 @@ export const terminalStyles = createTerminalStyles();
  *
  * @param enabled If `true`, use styles, otherwise ignore.
  *
- * @returns Object with key of terminal style and value of the corresponding formatter
+ * @returns Object with a key of terminal style and value of the corresponding formatter
  *          callback to apply style to an input.
  *
  * @category Terminal
@@ -149,7 +149,7 @@ function getFormatter(
   replace: string = open,
 ): TerminalStyleFormatter {
   return (input: string): string => {
-    // biome-ignore lint/style/useTemplate:
+    // biome-ignore lint/style/useTemplate: Performance
     const string = "" + input;
     const index = string.indexOf(close, open.length);
 
@@ -179,7 +179,7 @@ function replaceClose(
 
 /**
  * Checks if terminal colors are supported based on runtime, environment
- * variables, and argv passed into application.
+ * variables, and argv passed into the application.
  *
  * Use for testing purposes only!
  *

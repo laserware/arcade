@@ -4,8 +4,7 @@ import { isRuntime } from "./runtime.js";
 
 /**
  * Possible platforms for the host. Note that Linux encompasses several different
- * distros. But for the purposes of this library, we only need to know the
- * specific OS distro.
+ * distros. But for this library, we only need to know the specific OS distro.
  *
  * @category Platform
  */
@@ -32,7 +31,7 @@ export function getPlatform(): Platform {
 
     // navigator.userAgentData.platform is the 2022 way of detecting.
     // Note that this userAgentData feature is available only in secure contexts (HTTPS):
-    // biome-ignore format:
+    // biome-ignore format: Ignore
     const platformString = anyNavigator?.userAgentData?.platform ?? anyNavigator?.platform ?? "";
 
     cachedPlatform = parsePlatform(platformString);
@@ -65,7 +64,7 @@ export function isPlatform(platform: Platform): boolean {
 /**
  * Parses the platform string and returns the appropriate Platform enum.
  *
- * @param platformString String value to extract platform from.
+ * @param platformString String value to extract the platform from.
  */
 function parsePlatform(platformString: string): Platform {
   switch (true) {

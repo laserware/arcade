@@ -19,7 +19,7 @@ export type Iteratee<T> = (item: T) => DictKey;
  * @param items Array of items to group.
  * @param property Property of item to group by.
  *
- * @returns Object with key of `property` and value of values keyed by `property`.
+ * @returns Object with a key of `property` and value of values keyed by `property`.
  *
  * @category Collection
  */
@@ -34,7 +34,7 @@ export function groupBy<T>(items: T[], property: string): Dict<T[]>;
  * @param items Array of items to group.
  * @param iteratee Function that returns the key to group by.
  *
- * @returns Object with key of `property` and value of values keyed by `iteratee`.
+ * @returns Object with a key of `property` and value of values keyed by `iteratee`.
  *
  * @category Collection
  */

@@ -27,15 +27,15 @@
  * Type annotations were added and options were removed.
  */
 
-const REG_EXP_UPPERCASE = /[\p{Lu}]/u;
-const REG_EXP_LOWERCASE = /[\p{Ll}]/u;
+const REG_EXP_UPPERCASE = /\p{Lu}/u;
+const REG_EXP_LOWERCASE = /\p{Ll}/u;
 const REG_EXP_IDENTIFIER = /([\p{Alpha}\p{N}_]|$)/u;
 const REG_EXP_SEPARATORS = /[_.\- ]+/;
 
 const REG_EXP_LEADING_SEPARATORS = new RegExp(`^${REG_EXP_SEPARATORS.source}`);
-// biome-ignore format:
+// biome-ignore format: Ignore
 const REG_EXP_SEPARATORS_AND_IDENTIFIER = new RegExp(REG_EXP_SEPARATORS.source + REG_EXP_IDENTIFIER.source, "gu");
-// biome-ignore format:
+// biome-ignore format: Ignore
 const REG_EXP_NUMBERS_AND_IDENTIFIER = new RegExp(`\\d+${REG_EXP_IDENTIFIER.source}`, "gu");
 
 /**
@@ -99,7 +99,7 @@ function preserveCamelCase(value: string): string {
     }
 
     // Not covered in tests because this is vendored:
-    // biome-ignore format:
+    // biome-ignore format: Ignore
     if (isLastCharUpper && isLastLastCharUpper && REG_EXP_LOWERCASE.test(character)) {
       value = `${value.slice(0, index - 1)}-${value.slice(index - 1)}`;
 

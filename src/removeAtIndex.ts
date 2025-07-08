@@ -6,7 +6,7 @@
  * @param items Array of items containing the item to remove.
  * @param index Index of the item to remove.
  *
- * @returns Copy of array with item at `index` removed. If the specified `items`
+ * @returns Copy of the array with item at `index` removed. If the specified `items`
  *          array is empty, returns `items`.
  *
  * @throws [RangeError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError) if the specified `index` is out of bounds.

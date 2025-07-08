@@ -28,11 +28,11 @@
  */
 
 /**
- * Converts the specified `value` to kebab-case.
+ * Converts the specified `value` to `kebab-case`.
  *
- * @param value Value to convert to kebab-case.
+ * @param value Value to convert to `kebab-case`.
  *
- * @returns The specified `value` in kebab-case.
+ * @returns The specified `value` in `kebab-case`.
  *
  * @category String
  */
@@ -46,9 +46,9 @@ export function kebabCase(value: string): string {
   }
 
   return (
-    // biome-ignore format:
+    // biome-ignore format: Ignore
     value
-      // Ensure that the first letter is lowercase, otherwise an additional
+      // Ensure that the first letter is lowercase; otherwise an additional
       // "-" is added to the front of the string:
       .charAt(0).toLowerCase().concat(value.slice(1))
       // Replace words that start with a capital letter with `-<first letter>`:

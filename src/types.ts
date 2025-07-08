@@ -1,12 +1,12 @@
 /**
- * Valid key type for an object (i.e. dictionary).
+ * Valid key type for an object (i.e., dictionary).
  *
  * @category Types
  */
 export type DictKey = string | number | symbol;
 
 /**
- * Key/value pair with key of valid {@linkcode DictKey}.
+ * Key/value pair with a key of valid {@linkcode DictKey}.
  *
  * @template V Type of value in the object.
  * @template K Type of key in the object.
@@ -16,7 +16,7 @@ export type DictKey = string | number | symbol;
 export type Dict<V, K extends DictKey = string> = Record<K, V>;
 
 /**
- * Object with key of {@linkcode DictKey} and any value.
+ * Object with a key of {@linkcode DictKey} and any value.
  *
  * @category Types
  */
@@ -34,7 +34,7 @@ export type AnyFunc = (...args: any[]) => any;
  *
  * @remarks
  * The reason this isn't called `StringKeysOf` is because 99% of the time, I
- * need the string keys to iterate over an object or access a value and I
+ * need the string keys to iterate over an object or access a value, and I
  * don't want to cast the key to a `string`.
  *
  * @template T Object with keys to extract.
@@ -84,7 +84,7 @@ export type WithUndefinedValues<T extends Record<any, any>> = {
 export type Maybe<T> = T | null | undefined;
 
 /**
- * Represents primitive values (i.e. booleans, numbers, and strings).
+ * Represents primitive values (i.e., booleans, numbers, and strings).
  *
  * @category Types
  */

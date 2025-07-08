@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import { isEqual } from "./equals.js";
 import { isEmpty } from "./isEmpty.js";
 import { isNil } from "./isNil.js";
@@ -52,7 +54,7 @@ export const is = {
    */
   string: isString,
   /**
-   * Returns true if the specified `value` is a *valid* number (i.e. not `NaN`).
+   * Returns true if the specified `value` is a *valid* number (i.e., not `NaN`).
    */
   validNumber: isValidNumber,
   /**

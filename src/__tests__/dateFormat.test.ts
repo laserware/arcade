@@ -30,7 +30,7 @@ describe("the dateFormat function", () => {
     expect(result).toBe(dayOfWeek.toString());
   });
 
-  // biome-ignore format:
+  // biome-ignore format: Ignore
   it.each([
     { date: "1993-03-12",              mask: "d",    expected: "12" },
     { date: "2020-11-1",               mask: "d",    expected: "1" },
@@ -170,7 +170,7 @@ describe("the dateFormat function", () => {
   });
 
   it.each(
-    // biome-ignore format:
+    // biome-ignore format: Ignore
     [
       { offset: -1, mask: "DDDD", expected: "Yesterday" },
       { offset: -1, mask: "DDD",  expected: "Ysd" },
@@ -191,7 +191,7 @@ describe("the dateFormat function", () => {
   );
 
   it.each(
-    // biome-ignore format:
+    // biome-ignore format: Ignore
     [
       { offset: -1, mask: "DDDD", expected: "Yesterday" },
       { offset: -1, mask: "DDD",  expected: "Ysd" },
@@ -232,7 +232,7 @@ describe("the dateFormat function", () => {
   });
 
   it.each(
-    // biome-ignore format:
+    // biome-ignore format: Ignore
     [
       { date: "1984-02-7",  mask: "W",  expected: "6" },
       { date: "2013-01-3",  mask: "W",  expected: "1" },
@@ -250,7 +250,7 @@ describe("the dateFormat function", () => {
   });
 
   describe("when UTC is specified", () => {
-    // biome-ignore format:
+    // biome-ignore format: Ignore
     it.each([
       { date: "1993-03-12",              mask: "d",    expected: "12" },
       { date: "2020-11-1",               mask: "d",    expected: "1" },

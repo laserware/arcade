@@ -236,7 +236,7 @@ describe("within merge", () => {
       const source = { value: undefined };
 
       const hasUndefinedProperty = (object: Record<any, any>): void => {
-        expect(Object.prototype.hasOwnProperty.call(object, "value")).toBeTruthy();
+        expect(Object.hasOwn(object, "value")).toBeTruthy();
         expect(typeof object.value).toBe("undefined");
       };
 

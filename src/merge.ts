@@ -194,9 +194,8 @@ function isPropertyUnsafe(target: Record<any, any>, key: string): boolean {
   }
 
   // Unsafe if they exist up the prototype chain:
-  const isOnPrototypeChain =
-    Object.hasOwnProperty.call(target, key) &&
-    Object.propertyIsEnumerable.call(target, key);
+  // biome-ignore format: Ignore
+  const isOnPrototypeChain = Object.hasOwn(target, key) && Object.propertyIsEnumerable.call(target, key);
 
   return !isOnPrototypeChain;
 }

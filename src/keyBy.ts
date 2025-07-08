@@ -1,14 +1,14 @@
 import type { Dict } from "./types.js";
 
 /**
- * Converts a collection of `items` to keyed by the specified `field` name.
+ * Converts a collection of `items` to an object keyed by the specified `field` name.
  *
  * @template T Type of item in the specified `items` array.
  *
  * @param items Array of objects.
  * @param field Field to key by.
  *
- * @returns Object with key of the `field` name and value of the entry that corresponds to `field`.
+ * @returns Object with a key of the `field` name and value of the entry that corresponds to `field`.
  *
  * @example
  * keyBy(
@@ -33,7 +33,7 @@ export function keyBy<T>(items: T[], field: string): Dict<T> {
 
     const key = value[field] as string;
     if (key === undefined) {
-      // biome-ignore format:
+      // biome-ignore format: Ignore
       throw new Error(`Unable to convert array to dictionary, key field ${field} not found`);
     }
 

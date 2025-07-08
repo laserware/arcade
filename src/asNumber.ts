@@ -3,7 +3,7 @@ import { isValidNumber } from "./isPrimitives.js";
 /**
  * Attempts to extract the numeric value from the specified `value`. This
  * function will _always_ return a number. If a number cannot be extracted from
- * the value, returns the specified `fallback`.
+ * the value, it returns the specified `fallback`.
  *
  * @param value Value from which to extract number.
  * @param [fallback=0] Optional fallback if a number cannot be extracted.
@@ -36,7 +36,7 @@ export function asNumber(value: unknown, fallback = 0): number {
 
     const numericValue = Number(value.replace(/\D/g, ""));
 
-    // Not covered in tests, but highly unlikely to hit:
+    // Not covered in tests but highly unlikely to hit:
     if (Number.isNaN(numericValue)) {
       return fallback;
     } else {

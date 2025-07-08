@@ -190,8 +190,7 @@ describe("within terminal", () => {
         // @ts-ignore
         const result = styles[name]("string");
 
-        // biome-ignore lint/style/useTemplate:
-        expect(result).toBe(codes[0] + "string" + codes[1]);
+        expect(result).toBe(`${codes[0]}string${codes[1]}`);
       },
     );
 
@@ -248,25 +247,60 @@ describe("within terminal", () => {
       expect(result).toBe(expected);
     });
 
-    // biome-ignore format:
+    // biome-ignore format: Ignore
     it.each([
       {
         input: styles.red(`foo ${styles.yellow("bar")} baz`),
-        expected: [formats.red[0], "foo ", formats.yellow[0], "bar", formats.red[0], " baz", formats.red[1]],
+        expected: [
+          formats.red[0],
+          "foo ",
+          formats.yellow[0],
+          "bar",
+          formats.red[0],
+          " baz",
+          formats.red[1],
+        ],
       },
       {
         input: styles.bold(`foo ${styles.red(styles.dim("bar"))} baz`),
-        expected: [formats.bold[0], "foo ", formats.red[0], formats.dim[0], "bar", formats.dim[1], formats.bold[0], formats.red[1], " baz", formats.bold[1]],
+        expected: [
+          formats.bold[0],
+          "foo ",
+          formats.red[0],
+          formats.dim[0],
+          "bar",
+          formats.dim[1],
+          formats.bold[0],
+          formats.red[1],
+          " baz",
+          formats.bold[1],
+        ],
       },
       {
-        input: styles.yellow(`foo ${styles.red(styles.bold("red"))} bar ${styles.cyan("cyan")} baz`),
-        expected: [formats.yellow[0], "foo ", formats.red[0], formats.bold[0], "red", formats.bold[1], formats.yellow[0], " bar ", formats.cyan[0], "cyan", formats.yellow[0], " baz", formats.yellow[1]],
+        input: styles.yellow(
+          `foo ${styles.red(styles.bold("red"))} bar ${styles.cyan("cyan")} baz`,
+        ),
+        expected: [
+          formats.yellow[0],
+          "foo ",
+          formats.red[0],
+          formats.bold[0],
+          "red",
+          formats.bold[1],
+          formats.yellow[0],
+          " bar ",
+          formats.cyan[0],
+          "cyan",
+          formats.yellow[0],
+          " baz",
+          formats.yellow[1],
+        ],
       },
     ])("handles close sequence replacement for $input", async ({ input, expected }) => {
       expect(input).toBe(expected.join(""));
     });
 
-    // biome-ignore format:
+    // biome-ignore format: Ignore
     it.each([
       // @ts-ignore
       { input: styles.red(), expected: `${formats.red[0]}undefined${formats.red[1]}` },
